@@ -11,3 +11,19 @@ html {
   color: #f5f5f5;
 }
 }
+
+/* header, footer */
+header, footer {
+  font-family: "Lexend";
+  font-weight: <--!weight-->
+}
+
+nav {
+  font-family: "Lexend";
+  font-weight: <--!weight-->
+}
+
+body {
+  font-family: "OpenDyslexic"; <--!to amend-->
+  font-weight: <--!weight-->
+}

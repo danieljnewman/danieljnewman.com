@@ -103,8 +103,12 @@ html {
   font-style: normal;
 }
 
-/* header, footer */
-header, footer {
+header {
+  font-family: "Lexend";
+  font-weight: <--!weight-->
+}
+
+footer {
   font-family: "Lexend";
   font-weight: <--!weight-->
 }
@@ -115,6 +119,11 @@ nav {
 }
 
 body {
-  font-family: "OpenDyslexic"; <--!to amend-->
+  font-family: "OpenDyslexic";
   font-weight: <--!weight-->
+}
+
+a h1 {
+  color: inherit;
+  text-decoration: none;
 }

@@ -40,6 +40,69 @@ html {
   font-style: italic;
 }
 
+@font-face {
+  font-family: "Lexend";
+  src: url("fonts/lexend-thin.woff2") format("woff2");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lexend";
+  src: url("fonts/lexend-extra-light.woff2") format("woff2");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lexend";
+  src: url("fonts/lexend-light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lexend";
+  src: url("fonts/lexend-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lexend";
+  src: url("fonts/lexend-medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lexend";
+  src: url("fonts/lexend-semi-bold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lexend";
+  src: url("fonts/lexend-bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lexend";
+  src: url("fonts/lexend-extra-bold.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lexend";
+  src: url("fonts/lexend-black.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+}
+
 /* header, footer */
 header, footer {
   font-family: "Lexend";

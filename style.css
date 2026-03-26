@@ -162,6 +162,10 @@ nav li {
 
 /* dropdown to go here */
 
+main {
+  padding-top: 1em;
+}
+
 footer, footer * {
   font-family: "Lexend" !important;
   font-weight: 700 !important;

@@ -110,12 +110,12 @@ a h1 {
 
 header {
   font-family: "Lexend";
-  font-weight: <--!weight-->
+  font-weight: 800;
 }
 
 nav {
   font-family: "Lexend";
-  font-weight: <--!weight-->
+  font-weight: 600;
 }
 
 nav ul {
@@ -132,7 +132,7 @@ nav a {
 
 footer {
   font-family: "Lexend";
-  font-weight: <--!weight-->
+  font-weight: 700;
 }
 
 body p {

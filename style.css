@@ -128,21 +128,21 @@ nav ul {
   margin: 0;
   padding: 0;
   display: flex;
-  gap: <--!unknown-->;
+  gap: 2em;
 }
 
 nav ul > li {
   position: relative;
 }
 
-nav a {
+nav a, nav span {
   font-family: "Lexend";
   font-weight: 600;
   color: var(--text-color);
   text-decoration: none;
 } **
 
-/* to fix v */
+/* to fix or change */
 nav a:hover {
   text-decoration: none;
 }
@@ -158,6 +158,7 @@ nav li {
 footer, footer * {
   font-family: "Lexend" !important;
   font-weight: 700 !important;
+  padding: 1em;
 }
 
 body p {

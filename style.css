@@ -132,6 +132,10 @@ footer {
   font-weight: 700;
 }
 
+footer p {
+  font-family: inherit;
+}
+
 body p {
   font-family: "OpenDyslexic";
   font-style: normal;

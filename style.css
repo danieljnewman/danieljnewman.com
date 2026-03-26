@@ -104,11 +104,17 @@ html {
 }
 
 
-header a h1 {
+header h1 a {
   font-family: "Lexend";
   font-weight: 800;
-  color: inherit !important;
-  text-decoration: none !important;
+  color: var(--color);
+  text-decoration: none;
+  display: inline-block;
+}
+
+header h1 a:hover {
+  color: var(--color);
+  text-decoration: none;
 }
 
 nav {

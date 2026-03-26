@@ -105,11 +105,16 @@ html {
 
 header {
   position: fixed;
-  /* other info to go here */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1em;
+  padding: 2em; /* 1 or 2 */
+  background-color: var(--header-bg, white);  /* needed so content scrolls under background */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);      /* optional shadow */
 }
 
 header h1 a {
@@ -155,7 +160,7 @@ nav li {
   display: inline-block;
 }
 
-/* dropdown to go hear */
+/* dropdown to go here */
 
 footer, footer * {
   font-family: "Lexend" !important;

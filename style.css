@@ -161,7 +161,7 @@ footer, footer * {
   padding: 1em;
 }
 
-footer span {
+footer span, hr {
   padding: 0;
 }
 

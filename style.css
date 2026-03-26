@@ -112,8 +112,8 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2em; /* 1 or 2 */
-  background-color: var(--header-bg, white);  /* needed so content scrolls under background */
+  padding: 1em;
+  background-color: var(--header-bg, #323232);  /* need to change colour */ 
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);      /* optional shadow */
 }
 

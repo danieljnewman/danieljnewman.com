@@ -155,7 +155,7 @@ nav li {
 
 /* dropdown to go hear */
 
-footer, footer *, {
+footer, footer * {
   font-family: "Lexend" !important;
   font-weight: 700 !important;
   padding: 1em;

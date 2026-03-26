@@ -17,7 +17,7 @@ html {
   --text-color: #121212;
 }
 
-[data-theme="dark"] {
+[data-theme: dark] {
   --header-bg: #323232;
   --text-color: #f5f5f5;
 }

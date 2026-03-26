@@ -158,7 +158,7 @@ nav li {
 footer, footer * {
   font-family: "Lexend" !important;
   font-weight: 700 !important;
-  padding: 1em;
+  padding: 0.5em;
 }
 
 body p {

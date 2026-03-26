@@ -130,7 +130,7 @@ nav a {
 
 footer, footer * {
   font-family: "Lexend" !important;
-  font-weight: 700;
+  font-weight: 700 !important;
 }
 
 body p {

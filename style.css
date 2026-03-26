@@ -12,16 +12,6 @@ html {
 }
 }
 
-:root {
-  --header-bg: #f5f5f5;
-  --text-color: #121212;
-}
-
-@media (prefers-color-scheme: dark] {
-  header-bg: #323232;
-  text-color: #f5f5f5;
-}
-
 /* ^ add header colors ^ */
 
 @font-face {

@@ -135,12 +135,12 @@ nav ul > li {
   position: relative;
 }
 
-nav a, nav span {
+nav a, nav * {
   font-family: "Lexend";
   font-weight: 600;
   color: var(--text-color);
   text-decoration: none;
-} **
+}
 
 /* to fix or change */
 nav a:hover {

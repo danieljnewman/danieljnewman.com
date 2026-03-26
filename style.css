@@ -2,7 +2,6 @@
 html {
   background-color: white;
   color: #121212;
-  header-background: #f5f5f5;
 }
 
 /* Dark mode */
@@ -10,8 +9,17 @@ html {
 html {
   background-color: #121212;
   color: #f5f5f5;
-  header-background: #323232;
 }
+}
+
+:root {
+  --header-bg: #f5f5f5;
+  --text-color: #121212;
+}
+
+[data-theme="dark"] {
+  --header-bg: #323232;
+  --text-color: #f5f5f5;
 }
 
 /* ^ add header colors ^ */
@@ -117,7 +125,8 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 1em;
-  /* background-color: var(--header-bg, #323232);  /* need to change colour */ */
+  background-color: var(--header-bg);
+  color: var(--text-color);
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);      /* optional shadow */
 }
 

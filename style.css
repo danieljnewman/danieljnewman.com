@@ -104,6 +104,8 @@ html {
 }
 
 header {
+  position: fixed;
+  /* other info to go here */
   display: flex;
   align-items: center;
   justify-content: space-between;

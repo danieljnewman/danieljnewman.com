@@ -128,8 +128,8 @@ nav a {
   text-decoration: none;
 }
 
-footer, footer *, footer span {
-  font-family: "Lexend";
+footer, footer * {
+  font-family: "Lexend" !important;
   font-weight: 700;
 }
 

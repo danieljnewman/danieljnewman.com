@@ -103,6 +103,11 @@ html {
   font-style: normal;
 }
 
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
 header h1 a {
   font-family: "Lexend";

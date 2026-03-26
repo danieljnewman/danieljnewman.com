@@ -103,6 +103,7 @@ html {
   font-style: normal;
 }
 
+
 header h1 {
   font-family: "Lexend";
   font-weight: 800;
@@ -117,9 +118,9 @@ nav {
 
 nav ul {
   list-style: none;
-  position: relative;
   padding: 0;
   margin: 0;
+  position: relative;
 }
 
 nav a {
@@ -127,13 +128,9 @@ nav a {
   text-decoration: none;
 }
 
-footer {
+footer, footer p {
   font-family: "Lexend";
   font-weight: 700;
-}
-
-footer p {
-  font-family: inherit;
 }
 
 body p {
@@ -142,7 +139,7 @@ body p {
   font-weight: 400;
 }
 
-body h2, h3, h4, h5, h6 {
+body h2, body h3, body h4, body h5, body h6 {
   font-family: "OpenDyslexic";
   font-style: normal;
   font-weight: 700;

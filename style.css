@@ -155,9 +155,10 @@ nav li {
 
 /* dropdown to go hear */
 
-footer, footer *, footer span {
+footer, footer *, footer span, footer script {
   font-family: "Lexend" !important;
   font-weight: 700 !important;
+  padding: 1em;
 }
 
 body p {

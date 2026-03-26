@@ -107,7 +107,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: <--!unknown-->;
+  padding: 1em;
 }
 
 header h1 a {

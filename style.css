@@ -137,7 +137,7 @@ nav ul > li {
 
 nav a, nav * {
   font-family: "Lexend";
-  font-weight: 600;
+  font-weight: 500;
   color: var(--text-color);
   text-decoration: none;
 }

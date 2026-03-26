@@ -104,7 +104,7 @@ html {
 }
 
 
-header h1 {
+header h1 a {
   font-family: "Lexend";
   font-weight: 800;
   color: inherit !important;

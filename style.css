@@ -2,7 +2,7 @@
 html {
   background-color: white;
   color: #121212;
-  header-bg: #f5f5f5;
+  header-background: #f5f5f5;
 }
 
 /* Dark mode */
@@ -10,7 +10,7 @@ html {
 html {
   background-color: #121212;
   color: #f5f5f5;
-  header-bg: #323232;
+  header-background: #323232;
 }
 }
 

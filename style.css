@@ -225,16 +225,12 @@ main {
   padding-top: 4em; /* or change to px */
 }
 
-footer, footer * {
+footer, footer *, footer span {
   font-family: "Lexend" !important;
   font-weight: 700 !important;
   padding: 0.5em;           /* top/bottom 0.5em, left/right 1em */
   background-color: var(--header-bg);
   color: var(--text-color);
-}
-
-footer span {
-  padding: 0;
 }
 
 body p {

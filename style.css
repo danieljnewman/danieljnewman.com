@@ -124,7 +124,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: 1em;
+  padding: 1.5em;
 
   background-color: var(--header-bg);
   color: var(--text-color);
@@ -233,7 +233,7 @@ main {
 
 footer {
   width: 100%;
-  padding: 1em;
+  padding: 1.5em;
   background-color: var(--header-bg);
   color: var(--text-color);
   font-family: "Lexend" !important;

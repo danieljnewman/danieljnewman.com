@@ -215,11 +215,6 @@ nav a:active {
   background-color: rgba(0,0,0,0.1); /* COME BACK TO THIS!! */
 }
 
-main {
-  padding: 20em;
-  padding-left: 2em;
-}
-
 footer {
   width: 100%;
   padding: 0.75em;
@@ -240,6 +235,14 @@ footer * {
 
 footer span {
   padding: 0;
+}
+
+main {
+  padding: 2rem;
+  padding-left: 2em;
+  padding-right: 2em;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 body {

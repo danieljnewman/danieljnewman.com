@@ -125,7 +125,6 @@ header {
   align-items: center;
   justify-content: flex-start; /* H1 left */
   padding: 1em;
-  padding-right: 1em;
 
   background-color: var(--header-bg);
   color: var(--text-color);
@@ -235,7 +234,7 @@ main {
 
 footer {
   width: 100%;
- /* padding: 0.25em 1em;              /* reduce vertical padding to ~half */
+  padding: 1em;
   background-color: var(--header-bg);
   color: var(--text-color);
   font-family: "Lexend" !important;

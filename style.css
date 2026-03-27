@@ -178,7 +178,7 @@ nav ul li ul.submenu {
   top: 100%;
   left: 0;
 
-  background: var(--bg-color, white);
+  background: var(--bg-color);
   min-width: 180px;
   padding: 0.5em 0;
   z-index: 1000;

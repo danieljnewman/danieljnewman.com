@@ -152,7 +152,8 @@ header h1 a:hover {
 
 /* Nav aligned right */
 nav {
-  margin-left: auto; /* pushes nav to far right */
+  margin-left: auto;
+  margin-right: 1em;
 }
 
 /* ====== Nav Lists ====== */

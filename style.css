@@ -121,7 +121,7 @@ header {
   z-index: 1000;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding: 1em;
   background-color: var(--header-bg);
   color: var(--text-color);

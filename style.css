@@ -234,9 +234,8 @@ main {
 /* } */
 
 footer {
-  width: 100%;                     /* full width of viewport */
-  box-sizing: border-box;           /* include padding in width */
-  padding: 0.25em 1em;              /* reduce vertical padding to ~half */
+  width: 100%;
+ /* padding: 0.25em 1em;              /* reduce vertical padding to ~half */
   background-color: var(--header-bg);
   color: var(--text-color);
   font-family: "Lexend" !important;

@@ -244,9 +244,15 @@ main {
   margin: 0 auto;
 }
 
-body {
+html, body {
+  height: 100%;
   margin: 0;
 }
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 
 body p {
   font-family: "OpenDyslexic";

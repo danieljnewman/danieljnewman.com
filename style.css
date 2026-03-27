@@ -178,15 +178,17 @@ nav li {
 /* Dropdown menu */
 nav ul li ul.dropdown {
   display: none;
-  position: absolute;   /* absolute relative to parent li */
-  top: 100%;            /* below parent link */
+  position: absolute;
+  top: 100%;
   left: 0;
-  background: var(--bg-color, white); /* optional: background */
+
+  background: var(--bg-color, white); /* may need to look at */
   padding: 0.5em 0;
   list-style: none;
   margin: 0;
-  min-width: 150px;     /* optional width */
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* optional */
+
+  min-width: 150px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 /* Dropdown items */
@@ -199,6 +201,7 @@ nav ul li ul.dropdown li a {
   display: block;
   padding: 0.5em 1em;
   font-weight: 600;
+  text-decoration: none;
 }
 
 /* Show dropdown on hover */

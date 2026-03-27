@@ -1,6 +1,6 @@
 /* Default (light mode) */
 html {
-  background-color: white;
+  background-color: #f0f8ff;
   color: #121212;
 }
 
@@ -8,8 +8,18 @@ html {
 @media (prefers-color-scheme: dark) {
 html {
   background-color: #121212;
-  color: #f5f5f5;
+  color: #f6f6f6;
 }
+}
+
+:root {
+  --header-bg: #f5f5f5;      /* header background in light mode */
+  --text-color: #121212;     /* text color in light mode */
+}
+
+[data-theme="dark"] {
+  --header-bg: #323232;      /* dark header background */
+  --text-color: #f5f5f5;     /* text color in dark mode */
 }
 
 /* ^ add header colors ^ */

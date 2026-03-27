@@ -234,7 +234,6 @@ main {
 
 footer {
   width: 100%;
-  padding: 1em;
   background-color: var(--header-bg);
   color: var(--text-color);
   font-family: "Lexend" !important;

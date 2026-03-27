@@ -228,12 +228,11 @@ main {
 footer, footer * {
   font-family: "Lexend" !important;
   font-weight: 700 !important;
-  padding: 0.5em 1em;           /* top/bottom 0.5em, left/right 1em */
+  padding: 0.5em;           /* top/bottom 0.5em, left/right 1em */
   background-color: var(--header-bg);
   color: var(--text-color);
 }
 
-/* Keep any spans or hr clean */
 footer span {
   padding: 0;
 }

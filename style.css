@@ -143,74 +143,64 @@ header h1 a:hover {
   text-decoration: none;
 }
 
+/* Reset */
 nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: flex;
-  gap: 2em;
 }
 
-nav ul > li {
+/* Top-level layout */
+nav ul.nav {
+  display: flex;
+  gap: 1.5em;
+}
+
+/* Positioning context */
+nav ul li {
   position: relative;
 }
 
-nav a, nav * {
-  font-family: "Lexend";
-  font-weight: 500;
-  color: var(--text-color);
-  text-decoration: none;
-}
-
-/* to fix or change */
-nav a:hover {
-  text-decoration: none;
-}
-
-nav li {
-  margin: 0;
-  padding: 0;
-  display: inline-block;
-}
-
-/* v dropdown to go here v */
-
-/* Dropdown menu */
-nav ul li ul.dropdown {
+/* Submenus */
+nav ul li ul.submenu {
   display: none;
   position: absolute;
   top: 100%;
   left: 0;
 
-  background: var(--bg-color, white); /* may need to look at */
+  background: var(--bg-color, white);
+  min-width: 180px;
   padding: 0.5em 0;
-  list-style: none;
-  margin: 0;
 
-  min-width: 150px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  z-index: 1000;
 }
 
-/* Dropdown items */
-nav ul li ul.dropdown li {
-  width: 100%;
+/* Second level (flyout) */
+nav ul li ul.submenu ul.submenu {
+  top: 0;
+  left: 100%;
 }
 
-/* Dropdown links */
-nav ul li ul.dropdown li a {
+/* Show on hover */
+nav ul li:hover > ul.submenu {
+  display: block;
+}
+
+/* Links */
+nav a,
+nav span {
   display: block;
   padding: 0.5em 1em;
-  font-weight: 600;
+}
+
+/* Typography */
+nav a,
+nav span {
+  font-family: "Lexend";
+  font-weight: 500;
+  color: var(--text-color);
   text-decoration: none;
 }
-
-/* Show dropdown on hover */
-nav ul li:hover > ul.dropdown {
-  display: block;
-}
-
-/* ^ to check ^ */
-
 
 main {
   padding-top: 4em; /* or change to px */

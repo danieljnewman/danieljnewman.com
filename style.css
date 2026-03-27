@@ -233,7 +233,11 @@ footer {
   color: var(--text-color);
 }
 
-footer *, footer span {
+footer * {
+  padding: 0;
+}
+
+footer span {
   padding: 0;
 }
 

@@ -249,10 +249,12 @@ body p {
   font-family: "OpenDyslexic";
   font-style: normal;
   font-weight: 400;
+  padding: 1em;
 }
 
 body h2, body h3, body h4, body h5, body h6 {
   font-family: "OpenDyslexic";
   font-style: normal;
   font-weight: 700;
+  padding: 1em;
 }

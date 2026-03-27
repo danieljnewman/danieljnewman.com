@@ -153,7 +153,7 @@ nav ul {
 /* Top-level layout */
 nav ul.nav {
   display: flex;
-  gap: 1.5em;
+  gap: 0.4em;
 }
 
 /* Positioning context */
@@ -187,15 +187,13 @@ nav ul li:hover > ul.submenu {
 }
 
 /* Links */
-nav a,
-nav span {
+nav a, nav span {
   display: block;
-  padding: 0.5em 1em;
+  padding: 0.3em 0.5em;
 }
 
 /* Typography */
-nav a,
-nav span {
+nav a, nav span {
   font-family: "Lexend";
   font-weight: 500;
   color: var(--text-color);

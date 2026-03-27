@@ -225,12 +225,22 @@ main {
   padding-top: 4em; /* or change to px */
 }
 
-footer, footer * {
+/* footer, footer * {
   font-family: "Lexend" !important;
   font-weight: 700 !important;
   padding: 0.5em;           /* top/bottom 0.5em, left/right 1em */
+/*  background-color: var(--header-bg); */
+ /* color: var(--text-color); */
+/* } */
+
+footer, footer * {
+  width: 100%;                     /* full width of viewport */
+  box-sizing: border-box;           /* include padding in width */
+  padding: 0.25em 1em;              /* reduce vertical padding to ~half */
   background-color: var(--header-bg);
   color: var(--text-color);
+  font-family: "Lexend" !important;
+  font-weight: 700 !important;
 }
 
 footer span {

@@ -113,7 +113,6 @@ html {
   font-style: normal;
 }
 
-/* ====== Header ====== */
 header {
   position: fixed;
   top: 0;
@@ -150,27 +149,22 @@ header h1 a:hover {
   text-decoration: none;
 }
 
-/* Nav aligned right */
 nav {
   margin-left: auto;
   margin-right: 3em;
 }
 
-/* ====== Nav Lists ====== */
-/* Remove bullets and default spacing for all nav lists */
 nav ul, nav ul ul {
-  list-style: none; /* removes bullets */
+  list-style: none;
   margin: 0;
   padding: 0;
 }
 
-/* Top-level nav layout */
 nav ul.nav {
   display: flex;
-  gap: 0.4em; /* spacing between top-level items */
+  gap: 0.4em;
 }
 
-/* Each list item relative for dropdown positioning */
 nav ul li {
   position: relative;
   margin: 0;
@@ -214,24 +208,16 @@ nav a, nav span {
 
 /* Hover / active states */
 nav a:hover {
-  background-color: rgba(0,0,0,0.05); /* subtle highlight */
+  background-color: rgba(0,0,0,0.05); /* subtle highlight */ /* COME BACK TO THIS!! */
 }
 
 nav a:active {
-  background-color: rgba(0,0,0,0.1);
+  background-color: rgba(0,0,0,0.1); /* COME BACK TO THIS!! */
 }
 
 main {
   padding-top: 4em; /* or change to px */
 }
-
-/* footer, footer * {
-  font-family: "Lexend" !important;
-  font-weight: 700 !important;
-  padding: 0.5em;           /* top/bottom 0.5em, left/right 1em */
-/*  background-color: var(--header-bg); */
- /* color: var(--text-color); */
-/* } */
 
 footer {
   width: 100%;

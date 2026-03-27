@@ -124,7 +124,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: flex-start; /* H1 left */
-  padding-left: 1em;
+  padding: 1em;
   padding-right: 1em;
 
   background-color: var(--header-bg);

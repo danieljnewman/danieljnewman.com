@@ -173,12 +173,12 @@ nav ul li {
 
 /* ====== Dropdowns / Submenus ====== */
 nav ul li ul.submenu {
-  display: none; /* hidden by default */
+  display: none;
   position: absolute;
   top: 100%;
   left: 0;
 
-  background: var(--bg-color);
+  background: var(--bg-color, white);
   min-width: 180px;
   padding: 0.5em 0;
   z-index: 1000;
@@ -221,7 +221,7 @@ main {
 
 footer {
   width: 100%;
-  padding: 1em;
+  padding: 0.75em;
   padding-left: 2em;
   padding-right: 2em;
   background-color: var(--header-bg);

@@ -233,7 +233,7 @@ footer, footer * {
   color: var(--text-color);
 }
 
-footer span, hr {
+footer span {
   padding: 0;
 }
 

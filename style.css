@@ -220,11 +220,25 @@ nav a:hover {
 }
 
 nav a.active {
-  background-color: rgba(0,0,0,0.1); /* COME BACK TO THIS!! */
+  background-color: rgba(0,0,0,0.1);
 }
 
 nav a:visited {
   color: var(--text-color);
+}
+
+@media (prefers-color-scheme: dark) {
+  nav a:hover {
+    background-color: rgba(255,255,255,0.08);
+  }
+
+  nav a:active {
+    background-color: rgba(255,255,255,0.15);
+  }
+
+  nav a.active {
+    background-color: rgba(255,255,255,0.12);
+  }
 }
 
 footer {

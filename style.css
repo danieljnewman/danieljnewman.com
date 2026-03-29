@@ -219,7 +219,7 @@ nav a:hover {
   background-color: rgba(0,0,0,0.05);
 }
 
-nav a:active {
+nav a.active {
   background-color: rgba(0,0,0,0.1); /* COME BACK TO THIS!! */
 }
 

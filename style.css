@@ -217,7 +217,7 @@ nav span {
 
 /* Hover / active states */
 nav a:hover {
-  background-color: rgba(0,0,0,0.05); /* subtle highlight */ /* COME BACK TO THIS!! */
+  background-color: rgba(0,0,0,0.1); /* subtle highlight */ /* COME BACK TO THIS!! */
 }
 
 nav a:active {

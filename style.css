@@ -195,15 +195,24 @@ nav ul li:hover > ul.submenu {
   display: block;
 }
 
-/* ====== Links ====== */
-nav a, nav span {
+nav a {
   display: block;
-  padding: 0.3em 0.5em; /* spacing inside links */
+  padding: 0.3em 0.5em;
   font-family: "Lexend";
   font-weight: 500;
   color: var(--text-color);
   text-decoration: none;
   cursor: pointer;
+}
+
+nav span {
+  display: block;
+  padding: 0.3em 0.5em;
+  font-family: "Lexend";
+  font-weight: 500;
+  color: var(--text-color);
+  text-decoration: none;
+  cursor: default;
 }
 
 /* Hover / active states */

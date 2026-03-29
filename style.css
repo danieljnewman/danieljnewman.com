@@ -215,13 +215,16 @@ nav span {
   cursor: default;
 }
 
-/* Hover / active states */
 nav a:hover {
-  background-color: rgba(0,0,0,0.1); /* subtle highlight */ /* COME BACK TO THIS!! */
+  background-color: rgba(0,0,0,0.05);
 }
 
 nav a:active {
   background-color: rgba(0,0,0,0.1); /* COME BACK TO THIS!! */
+}
+
+nav a:visited {
+  color: var(--text-color);
 }
 
 footer {

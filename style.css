@@ -233,15 +233,15 @@ nav a:visited {
 
 @media (prefers-color-scheme: dark) {
   nav a:hover {
-    background-color: rgba(255,255,255,0.05);
+    background-color: rgba(255,255,255,0.08);
   }
 
   nav a:active {
-    background-color: rgba(255,255,255,0.075);
+    background-color: rgba(255,255,255,0.12);
   }
 
   nav a.active {
-    background-color: rgba(255,255,255,0.1);
+    background-color: rgba(255,255,255,0.16);
   }
 }
 

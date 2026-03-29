@@ -260,7 +260,7 @@ body {
   flex-direction: column;
   min-height: 100vh;
 
-body p, body * {
+main, body p, body * {
   font-family: "OpenDyslexic";
   font-style: normal;
   font-weight: 400;

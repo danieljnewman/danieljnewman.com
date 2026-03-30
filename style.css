@@ -299,24 +299,28 @@ main, body h2, body h3, body h4, body h5, body h6 {
   font-weight: 700;
 }
 
-.contact-section {
-  max-width: 600px;
-  margin: 2rem auto;
-  padding: 1.5rem;
+/* Contact page-specific main */
+main.contact-page {
+  flex: none;            /* stops main from stretching and moving h2 */
+  padding-top: 6rem;     /* offset for fixed header */
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
-.contact-section h2 {
-  margin-bottom: 1rem;
+/* Optional: make sure h2 spacing is consistent */
+main.contact-page h2 {
+  margin-bottom: 2rem;
+}
+
+/* Contact section styling stays the same */
+.contact-section {
+  max-width: 600px;
+  margin: 0 auto;        /* centers form */
+  padding: 0;
 }
 
 .form-group {
   margin-bottom: 1rem;
-}
-
-label { /* COME BACK TO */
-  display: block;
-  margin-bottom: 0.3rem;
-  font-weight: 500;
 }
 
 input, textarea {
@@ -327,7 +331,7 @@ input, textarea {
   font-size: 1rem;
 }
 
-button { /*COME BACK TO */
+button { /* COME BACK TO THIS */
   padding: 0.7rem 1.2rem;
   border: none;
   background: #333;

@@ -360,35 +360,35 @@ button:hover {
   padding: 20px;
 }
 
-.event-card {
+.gallery-card {
   background: #1a1a1a;
   border-radius: 12px;
   overflow: hidden;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.event-card:hover {
+.gallery-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
-.event-card img {
+.gallery-card img {
   width: 100%;
   height: 260px;
   object-fit: cover;
   display: block;
 }
 
-.event-info {
+.info {
   padding: 15px;
 }
 
-.event-info h2 {
+.info h3 {
   margin: 0 0 6px;
   font-size: 1.2rem;
 }
 
-.event-info p {
+.info p {
   margin: 0;
   font-size: 0.9rem;
   color: #aaa;

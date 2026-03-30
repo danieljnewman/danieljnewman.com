@@ -340,3 +340,107 @@ button { /*COME BACK TO */
 button:hover {
   opacity: 0.85;
 }
+
+
+/* NEED TO LOOK AT FULLY */
+
+/* Back link (gallery pages) */
+.back-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+/* ========== PORTFOLIO GRID (CARDS) ========== */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.event-card {
+  background: #1a1a1a;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.event-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+}
+
+.event-info {
+  padding: 15px;
+}
+
+.event-info h2 {
+  margin: 0 0 6px;
+  font-size: 1.2rem;
+}
+
+.event-info p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+/* ========== PHOTO GRID (GALLERY) ========== */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+  padding: 20px;
+}
+
+.photo-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+  border-radius: 8px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  cursor: pointer;
+}
+
+.photo-grid img:hover {
+  transform: scale(1.03);
+  opacity: 0.95;
+}
+
+/* ========== RESPONSIVE TWEAKS ========== */
+@media (max-width: 600px) {
+  header {
+    padding: 30px 15px;
+  }
+
+  .event-card img {
+    height: 200px;
+  }
+}
+
+/* ========== OPTIONAL LIGHT MODE ========== */
+@media (prefers-color-scheme: light) {
+  body {
+    background: #f5f5f5;
+    color: #111;
+  }
+
+  .event-card {
+    background: #fff;
+  }
+
+  .event-info p,
+  .back-link {
+    color: #555;
+  }
+}

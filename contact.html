@@ -47,8 +47,7 @@
 
     <section class="contact-section">
 
-      <form id="contact-form" action="#" method="POST">
-      <form name="contact" method="POST" data-netlify="true">
+      <form id="contact-form" name="contact" method="POST" data-netlify="true">
       <input type="hidden" name="form-name" value="contact">
     
         <div class="form-group">
@@ -72,19 +71,8 @@
         </div>
 
         <button type="submit">Send Message</button>
-
-          <script>
-            document.getElementById("contact-form").addEventListener("submit", function(e) {
-            const email = document.getElementById("email").value;
-
-            if (!email.includes("@")) {
-              alert("Please enter a valid email.");
-              e.preventDefault();
-            }
-            });
-          </script>
       </form>
-      
+
     </section>
   
   </main>

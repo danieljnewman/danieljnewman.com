@@ -299,7 +299,7 @@ main, body h2, body h3, body h4, body h5, body h6 {
   font-weight: 700;
 }
 
-main h2 {
+main h2 { /* MAY COME BACK TO */
   text-align: center;
   margin-bottom: 2rem;
 }

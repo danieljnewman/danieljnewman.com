@@ -124,7 +124,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: 0, 2em;
+  padding: 1em, 2em;
 
   background-color: var(--header-bg);
   color: var(--text-color);
@@ -265,7 +265,7 @@ footer span {
 }
 
 main {
-  padding-top: var(--header-height);
+  padding-top: calc(1em + 2rem);
   padding-left: 2em;
   padding-right: 2em;
   margin: 0 auto;

@@ -365,7 +365,8 @@ button:hover {
 
 .portfolio-page .photo-story img {
   width: 100%;
-  height: auto;
+  height: 500px;
   display: block;
   border-radius: 8px;
+  object-fit: contain;
 }

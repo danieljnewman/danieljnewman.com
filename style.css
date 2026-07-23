@@ -355,23 +355,17 @@ button:hover {
 }
 
 .portfolio-page .photo-story {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px 25px;
   max-width: 1400px;
   margin: 0 auto;
   padding: 30px;
 }
 
-.portfolio-page .photo-row {
-  display: flex;
-  gap: 30px;
-}
-
 .portfolio-page .photo-story img {
-  width: 50%;
+  width: 100%;
   height: auto;
   display: block;
-  object-fit; contain;
   border-radius: 8px;
 }

@@ -357,15 +357,21 @@ button:hover {
 .portfolio-page .photo-story {
   display: flex;
   flex-direction: column;
-  gap: 30px;
-  max-width: 1200px;
+  gap: 40px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 30px;
+}
+
+.portfolio-page .photo-row {
+  display: flex;
+  gap: 30px;
 }
 
 .portfolio-page .photo-story img {
   width: 50%;
   height: auto;
   display: block;
+  object-fit; contain;
   border-radius: 8px;
 }

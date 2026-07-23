@@ -353,3 +353,19 @@ button:hover {
   object-fit: cover;
   border-radius: 8px;
 }
+
+.portfolio-page .photo-story {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.portfolio-page .photo-story img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}

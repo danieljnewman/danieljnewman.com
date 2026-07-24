@@ -423,3 +423,7 @@ button:hover {
     margin: 0;
     font-size: 1rem;
 }
+
+.gallery-card.spf .overlay {
+    background: #007A3D; /* CHANGE TO THE ACTUAL GREEN */
+}

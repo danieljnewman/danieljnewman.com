@@ -370,3 +370,56 @@ button:hover {
   border-radius: 8px;
   object-fit: contain;
 }
+
+
+.gallery-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    display: block;
+    aspect-ratio: 1 / 1;
+}
+
+.gallery-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity .35s ease;
+}
+
+.gallery-card .overlay {
+    position: absolute;
+    inset: 0;
+
+    color: #fff;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    opacity: 0;
+    transition: opacity .35s ease;
+}
+
+.gallery-card:hover img {
+    opacity: 0;
+}
+
+.gallery-card:hover .overlay {
+    opacity: 1;
+}
+
+.gallery-card h4 {
+    margin: 0 0 10px;
+    font-size: 1.4rem;
+}
+
+.gallery-card p {
+    margin: 0;
+    font-size: 1rem;
+}

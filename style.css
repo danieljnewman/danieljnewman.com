@@ -385,7 +385,7 @@ button:hover {
     overflow: hidden;
     border-radius: 12px;
     display: block;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 3 / 2;
 }
 
 .gallery-card img {

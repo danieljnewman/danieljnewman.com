@@ -351,6 +351,7 @@ button:hover {
     max-width: 1400px;
     margin: 0 auto;
     padding: 30px 0;
+    min-width: 0;
 }
 
 .gallery-card {
@@ -359,6 +360,7 @@ button:hover {
     border-radius: 12px;
     display: block;
     height: 280px;
+    min-width: 0;
 }
 
 .gallery-card img {
@@ -372,17 +374,14 @@ button:hover {
 .gallery-card .overlay {
     position: absolute;
     inset: 0;
-
+    box-sizing: border-box;
     color: #fff;
     text-align: center;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     padding: 20px;
-
     opacity: 0;
     transition: opacity .35s ease;
 }
@@ -405,58 +404,48 @@ button:hover {
     font-size: 1rem;
 }
 
-.gallery-card.spf .overlay {
-    background: #007A3D; /* CHANGE TO THE ACTUAL GREEN */
+.gallery-card.spf .overlay { /* CHANGE TO THE ACTUAL GREEN */
+    background: #007A3D;
 }
 
 .portfolio-page .photo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    min-width: 0;
 }
 
 .portfolio-page .photo-grid img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  border-radius: 8px;
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 8px;
 }
 
 .portfolio-page .photo-story {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 40px 25px;
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 30px 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 40px 25px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 30px 0;
+    min-width: 0;
 }
 
 .portfolio-page .photo-story img {
-  width: 100%;
-  height: 500px;
-  display: block;
-  border-radius: 8px;
-  object-fit: contain;
-}
-
-.portfolio-page {
+    width: 100%;
     max-width: 100%;
+    height: 500px;
+    display: block;
+    border-radius: 8px;
+    object-fit: contain;
+}
+
+.portfolio-page {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
     overflow-x: hidden;
-}
-
-body * {
-  outline: 1px solid red;
-}
-
-.portfolio-page {
-    outline: 5px solid blue;
-}
-
-main {
-    outline: 5px solid green;
-}
-
-.portfolio-page {
-    overflow: hidden;
 }

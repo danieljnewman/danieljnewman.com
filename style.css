@@ -452,3 +452,7 @@ body * {
 .portfolio-page {
     outline: 5px solid blue;
 }
+
+main {
+    outline: 5px solid green;
+}

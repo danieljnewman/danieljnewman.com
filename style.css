@@ -346,7 +346,9 @@ button:hover {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px;
     width: 100%;
+    max-width: 1400px;
     margin: 0 auto;
+    padding: 30px 0;
 }
 
 .gallery-card {
@@ -422,9 +424,10 @@ button:hover {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 40px 25px;
+  width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 30px;
+  padding: 30px 0;
 }
 
 .portfolio-page .photo-story img {
@@ -433,6 +436,11 @@ button:hover {
   display: block;
   border-radius: 8px;
   object-fit: contain;
+}
+
+.portfolio-page {
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 body * {

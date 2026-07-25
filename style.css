@@ -347,7 +347,6 @@ button:hover {
     gap: 20px;
     width: 100%;
     margin: 0 auto;
-    padding: 30px;
 }
 
 .gallery-card {
@@ -421,7 +420,7 @@ button:hover {
 
 .portfolio-page .photo-story {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 40px 25px;
   max-width: 1400px;
   margin: 0 auto;

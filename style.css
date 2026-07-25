@@ -436,3 +436,7 @@ button:hover {
 .gallery-card.spf .overlay {
     background: #007A3D; /* CHANGE TO THE ACTUAL GREEN */
 }
+
+body * {
+  outline: 1px solid red;
+}

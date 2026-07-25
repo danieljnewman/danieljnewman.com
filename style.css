@@ -456,3 +456,7 @@ body * {
 main {
     outline: 5px solid green;
 }
+
+.portfolio-page {
+    overflow: hidden;
+}

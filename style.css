@@ -442,7 +442,7 @@ button:hover {
   height: 400px;
   display: block;
   border-radius: 8px;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .portfolio-page {

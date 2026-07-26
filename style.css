@@ -347,7 +347,7 @@ button:hover {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0;
+  padding: 20px, 0;
   min-width: 0;
 }
 
@@ -378,7 +378,7 @@ button:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0;
+  padding: 20px, 0;
   opacity: 0;
   transition: opacity .35s ease;
 }

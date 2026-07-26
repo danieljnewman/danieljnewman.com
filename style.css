@@ -344,7 +344,7 @@ button:hover {
 }
 
 .portfolio-grid {
-    display: grid;
+    display: none;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px;
     width: 100%;

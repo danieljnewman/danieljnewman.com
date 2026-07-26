@@ -357,7 +357,7 @@ button:hover {
 .gallery-card {
     position: relative;
     overflow: hidden;
-    border-radius: 12px;
+    border-radius: 10px;
     display: block;
     height: 280px;
     min-width: 0;

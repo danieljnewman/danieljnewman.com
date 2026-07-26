@@ -348,7 +348,7 @@ button:hover {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 10px;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 10px 0;
     min-width: 0;
@@ -381,7 +381,7 @@ button:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 10px;
     opacity: 0;
     transition: opacity .35s ease;
 }
@@ -428,9 +428,9 @@ button:hover {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 40px 25px;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 20px 0;
+    padding: 10px 0;
     min-width: 0;
 }
 

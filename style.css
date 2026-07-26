@@ -347,7 +347,7 @@ button:hover {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 20px, 0;
+  padding: 20px, 0; /* MAY COME BACK TO */
   min-width: 0;
 }
 
@@ -378,10 +378,34 @@ button:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px, 0;
+  padding: 20px, 0; /* MAY COME BACK TO */
   opacity: 0;
   transition: opacity .35s ease;
 }
+
+.gallery-card:hover img {
+  opacity: 0;
+}
+
+.gallery-card:hover .overlay {
+  opacity: 1;
+}
+
+.gallery-card h4 {
+  margin: 0 0 10px;
+  font-size: 1.4rem;
+}
+
+.gallery-card p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.gallery-card.spf .overlay { 
+  background: #007A3D; /* CHANGE TO THE ACTUAL GREEN */
+}
+
+
 
 * {
     outline: 1px solid red;

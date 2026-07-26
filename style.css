@@ -402,7 +402,11 @@ button:hover {
 }
 
 .gallery-card.spf .overlay { 
-  background: #007A3D; /* CHANGE TO THE ACTUAL GREEN */
+  background: #3E8B44;
+}
+
+.gallery-card.aoitp .overlay { 
+  background: #3E8B45;
 }
 
 .back-link {

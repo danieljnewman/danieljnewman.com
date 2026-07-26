@@ -116,7 +116,6 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  box-sizing: border-box;
 
   z-index: 1000;
 
@@ -243,7 +242,6 @@ nav a:visited {
 
 footer {
   width: 100%;
-  box-sizing: border-box;
   padding: 0.75em;
   padding-left: 2em;
   padding-right: 2em;
@@ -352,7 +350,7 @@ button:hover {
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 30px 0;
+    padding: 20px 0;
     min-width: 0;
 }
 
@@ -432,7 +430,7 @@ button:hover {
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 30px 0;
+    padding: 20px 0;
     min-width: 0;
 }
 

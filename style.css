@@ -264,13 +264,15 @@ footer span {
 }
 
 main {
-  padding-top: 6rem;
-  padding-left: 2em;
-  padding-right: 2em;
-  margin: 0 auto;
-  flex: 1;
-  width: 100%;
-  min-width: 0;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1400px;
+
+    margin: 0 auto;
+
+    padding: 6rem 2em 0;
+
+    flex: 1;
 }
 
 html {

@@ -343,11 +343,11 @@ button:hover {
 .portfolio-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
+  gap: 20px;
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 10px 0;
+  padding: 20px 0;
   min-width: 0;
 }
 
@@ -368,7 +368,20 @@ button:hover {
   transition: opacity .35s ease;
 }
 
-
+.gallery-card .overlay {
+  position: absolute;
+  inset: 0;
+  box-sizing: border-box;
+  color: #fff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity .35s ease;
+}
 
 * {
     outline: 1px solid red;

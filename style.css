@@ -425,7 +425,7 @@ button:hover {
 
 .portfolio-page .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 16px;
     max-width: 1600px;
     margin: 0 auto;

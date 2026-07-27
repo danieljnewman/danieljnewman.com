@@ -414,11 +414,11 @@ button:hover {
 }
 
 .back-link {
-    display: inline-block;
-    margin-bottom: 20px;
+  display: inline-block;
+  margin-bottom: 20px;
 }
 
-* {
+/* {
   outline: 1px solid red;
   outline-display: hidden;
 }
@@ -450,16 +450,17 @@ button:hover {
 
 
 .portfolio-page .gallery-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
 }
 
 .portfolio-page .gallery-grid img {
-    height: 220px;
-    width: auto;
-    display: block;
-    border-radius: 8px;
+  height: 220px;
+  width: auto;
+  display: block;
+  border-radius: 8px;
 }
 
 /* .portfolio-page .gallery-grid img:hover {

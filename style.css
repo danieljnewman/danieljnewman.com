@@ -466,5 +466,5 @@ button:hover {
 
 * {
   outline: 1px solid red;
-  display: hidden;
+  outline-display: hidden;
 }

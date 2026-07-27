@@ -423,29 +423,12 @@ button:hover {
   outline-display: hidden;
 }
 
-/* .portfolio-page .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 16px;
-    max-width: 1600px;
-    margin: 0 auto;
-    padding: 20px 0;
-}
 
 .portfolio-page .gallery-grid a {
     display: block;
 }
 
-.portfolio-page .gallery-grid img {
-    width: 100%;
-    height: 300px;
-    object-fit: contain;
-    object-position: center top;
-    display: block;
-    border-radius: 8px;
-    cursor: zoom-in;
-    transition: transform 0.25s ease;
-} */
+*/
 
 
 
@@ -457,7 +440,7 @@ button:hover {
 }
 
 .portfolio-page .gallery-grid img {
-  height: 220px;
+  height: 200px;
   width: auto;
   display: block;
   border-radius: 8px;

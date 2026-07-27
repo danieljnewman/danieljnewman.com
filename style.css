@@ -406,7 +406,11 @@ button:hover {
 }
 
 .gallery-card.aoitp .overlay { 
-  background: #e03eaa;
+  background: #c845a5;
+}
+
+.gallery-card.tm .overlay { 
+  background: #ce6d96;
 }
 
 .back-link {

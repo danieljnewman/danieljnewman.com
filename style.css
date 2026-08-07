@@ -354,6 +354,7 @@ button:hover {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
+  margin-bottom: 20px;
   padding: 20px, 0; /* MAY COME BACK TO */
   min-width: 0;
 }

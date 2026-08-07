@@ -470,6 +470,6 @@ button:hover {
   border-radius: 8px;
 }
 
-/* .portfolio-page .gallery-grid img:hover {
+.portfolio-page .gallery-grid img:hover {
     transform: scale(1.02);
-} */
+}

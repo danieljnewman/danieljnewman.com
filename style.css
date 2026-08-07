@@ -401,12 +401,24 @@ button:hover {
   font-size: 1rem;
 }
 
+.gallery-card.aoitp .overlay { 
+  background: #c845a5;
+}
+
+.gallery-card.bdo .overlay { 
+  background: #7466a3;
+}
+
+.gallery-card.pil .overlay { 
+  background: #;
+}
+
 .gallery-card.spf .overlay { 
   background: #3e8b45;
 }
 
-.gallery-card.aoitp .overlay { 
-  background: #c845a5;
+.gallery-card.tflff .overlay { 
+  background: #9e386c;
 }
 
 .gallery-card.tm .overlay { 

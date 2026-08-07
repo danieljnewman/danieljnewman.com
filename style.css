@@ -339,7 +339,14 @@ button { /*COME BACK TO */
 button:hover {
   opacity: 0.85;
 }
-  
+
+.portfolio-intro {
+  font-style: italic;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 .portfolio-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

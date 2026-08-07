@@ -417,6 +417,10 @@ button:hover {
   background: #7466a3;
 }
 
+.gallery-card.rrl .overlay { 
+  background: #d93a34;
+}
+
 .gallery-card.pil .overlay { 
   background: #;
 }

@@ -341,10 +341,12 @@ button:hover {
 }
 
 
-.portfolio p{
+.portfolio p {
   font-family: "OpenDyslexic";
   font-weight: 400;
   font-style: italic;
+  text-align: center;
+  margin-bottom: 20px;
 }
   
 .portfolio-grid {

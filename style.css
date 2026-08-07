@@ -340,6 +340,13 @@ button:hover {
   opacity: 0.85;
 }
 
+
+.portfolio p{
+  font-family: "OpenDyslexic";
+  font-weight: 400;
+  font-style: italic;
+}
+  
 .portfolio-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

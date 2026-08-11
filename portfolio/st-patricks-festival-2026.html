@@ -266,38 +266,100 @@
     </div>
 
     <div class="lightbox-view">
-        <span class="lightbox-close">&times;</span>
-        <img src="" alt="">
+
+      <button class="lightbox-prev" aria-label="Previous photo">&#10094;</button>
+
+      <img src="" alt="">
+
+      <button class="lightbox-next" aria-label="Next photo">&#10095;</button>
+
+      <button class="lightbox-close" aria-label="Close">&times;</button>
+
     </div>
 
     <script>
-    const lightboxLinks = document.querySelectorAll(".lightbox");
-    const lightbox = document.querySelector(".lightbox-view");
-    const lightboxImage = lightbox.querySelector("img");
-    const closeButton = document.querySelector(".lightbox-close");
+      
+      const lightboxLinks = document.querySelectorAll(".lightbox");
+      const lightbox = document.querySelector(".lightbox-view");
+      const lightboxImage = lightbox.querySelector("img");
+      const closeButton = lightbox.querySelector(".lightbox-close");
+      const previousButton = lightbox.querySelector(".lightbox-prev");
+      const nextButton = lightbox.querySelector(".lightbox-next");
 
-    lightboxLinks.forEach(link => {
-        link.addEventListener("click", function(e) {
-            e.preventDefault();
+      let currentPhoto = 0;
 
-            lightboxImage.src = this.href;
-            lightboxImage.alt = this.querySelector("img").alt;
-            lightbox.style.display = "flex";
+      function showPhoto(index) {
+        if (index < 0) {
+          index = lightboxLinks.length - 1;
+      }
+
+        if (index >= lightboxLinks.length) {
+        index = 0;
+      }
+
+        currentPhoto = index;
+
+        const link = lightboxLinks[currentPhoto];
+        const image = link.querySelector("img");
+
+        lightboxImage.src = link.href;
+        lightboxImage.alt = image.alt;
+
+        lightbox.style.display = "flex";
+    }
+
+        function closeLightbox() {
+          lightbox.style.display = "none";
+          lightboxImage.src = "";
+      }
+
+        lightboxLinks.forEach((link, index) => {
+          link.addEventListener("click", function(e) {
+          e.preventDefault();
+          showPhoto(index);
         });
-    });
+      });
 
-    closeButton.addEventListener("click", function() {
-        lightbox.style.display = "none";
-        lightboxImage.src = "";
-    });
+        previousButton.addEventListener("click", function(e) {
+          e.stopPropagation();
+          showPhoto(currentPhoto - 1);
+      });
 
-    lightbox.addEventListener("click", function(e) {
-        if (e.target === lightbox) {
-            lightbox.style.display = "none";
-            lightboxImage.src = "";
+        nextButton.addEventListener("click", function(e) {
+          e.stopPropagation();
+          showPhoto(currentPhoto + 1);
+      });
+
+        closeButton.addEventListener("click", function(e) {
+          e.stopPropagation();
+          closeLightbox();
+      });
+
+        lightbox.addEventListener("click", function(e) {
+          if (e.target === lightbox) {
+          closeLightbox();
         }
-    });
-    </script>
+      });
+
+        document.addEventListener("keydown", function(e) {
+          if (lightbox.style.display !== "flex") {
+          return;
+        }
+
+          if (e.key === "ArrowLeft") {
+          showPhoto(currentPhoto - 1);
+        }
+
+          if (e.key === "ArrowRight") {
+          showPhoto(currentPhoto + 1);
+        }
+
+          if (e.key === "Escape") {
+          closeLightbox();
+        }
+      });
+      
+</script>
   
   </main>
   

@@ -51,10 +51,15 @@
 
     <section class="gallery-grid">
 
-      <img src="../../images/portfolio/st-patricks-festival-2026/SPF_2026_001.webp" alt="Photo 1" loading="lazy">
-      <img src="../../images/portfolio/st-patricks-festival-2026/SPF_2026_002.webp" alt="Photo 2" loading="lazy">
-      <img src="../../images/portfolio/st-patricks-festival-2026/SPF_2026_003.webp" alt="Photo 3" loading="lazy">
-      <img src="../../images/portfolio/st-patricks-festival-2026/SPF_2026_004.webp" alt="Photo 4" loading="lazy">
+      <a  href="../../images/portfolio/st-patricks-festival-2026/SPF_2026_001.webp" class="lightbox">
+        <img src="../../images/portfolio/st-patricks-festival-2026/SPF_2026_001.webp" alt="Photo 1" loading="lazy">
+      <a  href="../../images/portfolio/st-patricks-festival-2026/SPF_2026_002.webp" class="lightbox">
+        <img src="../../images/portfolio/st-patricks-festival-2026/SPF_2026_002.webp" alt="Photo 2" loading="lazy">
+      <a  href="../../images/portfolio/st-patricks-festival-2026/SPF_2026_003.webp" class="lightbox">  
+        <img src="../../images/portfolio/st-patricks-festival-2026/SPF_2026_003.webp" alt="Photo 3" loading="lazy">
+      <a  href="../../images/portfolio/st-patricks-festival-2026/SPF_2026_004.webp" class="lightbox">  
+        <img src="../../images/portfolio/st-patricks-festival-2026/SPF_2026_004.webp" alt="Photo 4" loading="lazy">
+        
       <img src="../../images/portfolio/st-patricks-festival-2026/SPF_2026_005.webp" alt="Photo 5" loading="lazy">
       <img src="../../images/portfolio/st-patricks-festival-2026/SPF_2026_006.webp" alt="Photo 6" loading="lazy">
       <img src="../../images/portfolio/st-patricks-festival-2026/SPF_2026_007.webp" alt="Photo 7" loading="lazy">
@@ -259,6 +264,40 @@
     </section>
 
     </div>
+
+    <div class="lightbox-view">
+        <span class="lightbox-close">&times;</span>
+        <img src="" alt="">
+    </div>
+
+    <script>
+    const lightboxLinks = document.querySelectorAll(".lightbox");
+    const lightbox = document.querySelector(".lightbox-view");
+    const lightboxImage = lightbox.querySelector("img");
+    const closeButton = document.querySelector(".lightbox-close");
+
+    lightboxLinks.forEach(link => {
+        link.addEventListener("click", function(e) {
+            e.preventDefault();
+
+            lightboxImage.src = this.href;
+            lightboxImage.alt = this.querySelector("img").alt;
+            lightbox.style.display = "flex";
+        });
+    });
+
+    closeButton.addEventListener("click", function() {
+        lightbox.style.display = "none";
+        lightboxImage.src = "";
+    });
+
+    lightbox.addEventListener("click", function(e) {
+        if (e.target === lightbox) {
+            lightbox.style.display = "none";
+            lightboxImage.src = "";
+        }
+    });
+    </script>
   
   </main>
   

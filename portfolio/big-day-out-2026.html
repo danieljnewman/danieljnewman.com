@@ -57,7 +57,7 @@
 
     <section class="gallery-grid">
 
-/*      <a href="../../images/portfolio/as-one-in-the-park-2026/AOITP_2026_001.webp" class="lightbox">
+    /*<a href="../../images/portfolio/as-one-in-the-park-2026/AOITP_2026_001.webp" class="lightbox">
         <img src="../../images/portfolio/as-one-in-the-park-2026/AOITP_2026_001.webp" alt="Photo 1" loading="lazy"></a>
       <a href="../../images/portfolio/as-one-in-the-park-2026/AOITP_2026_002.webp" class="lightbox">
         <img src="../../images/portfolio/as-one-in-the-park-2026/AOITP_2026_002.webp" alt="Photo 2" loading="lazy"></a>
@@ -748,7 +748,7 @@
       <a href="../../images/portfolio/as-one-in-the-park-2026/AOITP_2026_345.webp" class="lightbox">
         <img src="../../images/portfolio/as-one-in-the-park-2026/AOITP_2026_345.webp" alt="Photo 345" loading="lazy"></a>
       <a href="../../images/portfolio/as-one-in-the-park-2026/AOITP_2026_346.webp" class="lightbox">
-        <img src="../../images/portfolio/as-one-in-the-park-2026/AOITP_2026_346.webp" alt="Photo 346" loading="lazy"></a> */
+        <img src="../../images/portfolio/as-one-in-the-park-2026/AOITP_2026_346.webp" alt="Photo 346" loading="lazy"></a>*/
 
     </section>
 
@@ -859,6 +859,17 @@
       document.getElementById("year").textContent = new Date().getFullYear();
     </script>
   </footer>  
+
+  <script>
+  const menuToggle = document.querySelector(".menu-toggle");
+  const nav = document.querySelector("nav");
+
+  menuToggle.addEventListener("click", () => {
+    const isOpen = nav.classList.toggle("open");
+
+    menuToggle.setAttribute("aria-expanded", isOpen);
+  });
+  </script>
   
 </body>
 </html>

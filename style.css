@@ -307,7 +307,7 @@ header .submenu-toggle {
     height: 22px;
 
     margin-left: auto;
-    margin-right: 0;
+    margin-right: 0.75em;
 
     padding: 0;
 
@@ -414,6 +414,8 @@ header .submenu-toggle {
 
     margin: 0;
     padding: 0;
+
+    margin-right: 0.75em;
 
     border: none;
 

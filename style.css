@@ -147,6 +147,10 @@ header h1 a:hover {
   text-decoration: none;
 }
 
+/* =========================
+   DESKTOP NAVIGATION
+   ========================= */
+
 nav {
   margin-left: auto;
   margin-right: 4em;
@@ -194,20 +198,26 @@ nav ul li:hover > ul.submenu {
 nav a {
   display: block;
   padding: 0.3em 0.5em;
+
   font-family: "Lexend";
   font-weight: 500;
+
   color: var(--text-color);
   text-decoration: none;
+
   cursor: pointer;
 }
 
 nav span {
   display: block;
   padding: 0.3em 0.5em;
+
   font-family: "Lexend";
   font-weight: 500;
+
   color: var(--text-color);
   text-decoration: none;
+
   cursor: default;
 }
 
@@ -229,7 +239,8 @@ nav a:visited {
 
 
 /* =========================
-   NAVIGATION TOGGLE BUTTONS
+   NAVIGATION TOGGLES
+   HIDDEN ON DESKTOP
    ========================= */
 
 .menu-toggle {
@@ -241,8 +252,8 @@ nav a:visited {
   align-items: center;
 }
 
-.submenu-toggle {
-  display: none;
+header .submenu-toggle {
+  display: none !important;
 }
 
 
@@ -282,10 +293,13 @@ nav a:visited {
   }
 
 
-  /* Hamburger button */
+  /* =========================
+     HAMBURGER
+     ========================= */
 
   .menu-toggle {
     display: flex;
+
     flex-direction: column;
     justify-content: space-between;
 
@@ -310,16 +324,20 @@ nav a:visited {
     height: 3px;
 
     background-color: var(--text-color);
+
     border-radius: 2px;
   }
 
 
-  /* Mobile navigation */
+  /* =========================
+     MOBILE NAV
+     ========================= */
 
   nav {
     display: none;
 
     position: absolute;
+
     top: 100%;
     left: 0;
     right: 0;
@@ -327,6 +345,7 @@ nav a:visited {
     margin: 0;
 
     background-color: var(--header-bg);
+
     box-shadow: 0 4px 6px rgba(0,0,0,.1);
   }
 
@@ -335,13 +354,17 @@ nav a:visited {
   }
 
 
-  /* Main navigation list */
+  /* =========================
+     MAIN NAVIGATION
+     ========================= */
 
   nav ul.nav {
     display: flex;
+
     flex-direction: column;
 
     gap: 0;
+
     width: 100%;
   }
 
@@ -349,20 +372,21 @@ nav a:visited {
     width: 100%;
   }
 
-
-  /* Main navigation links */
-
   nav a,
   nav span {
     padding: 0.8em 1em;
   }
 
 
-  /* Experience / Volunteering row */
+  /* =========================
+     EXPERIENCE / VOLUNTEERING
+     ========================= */
 
   .nav-item-with-toggle {
     display: flex;
+
     align-items: center;
+
     width: 100%;
   }
 
@@ -372,13 +396,18 @@ nav a:visited {
   }
 
 
-  /* Submenu arrow buttons */
+  /* =========================
+     SUBMENU ARROWS
+     MOBILE ONLY
+     ========================= */
 
-  .submenu-toggle {
-    display: flex;
+  header .submenu-toggle {
+    display: flex !important;
 
     align-items: center;
     justify-content: center;
+
+    flex: 0 0 3em;
 
     width: 3em;
     height: 3em;
@@ -387,6 +416,7 @@ nav a:visited {
     padding: 0;
 
     border: none;
+
     background: none;
 
     color: var(--text-color);
@@ -397,12 +427,14 @@ nav a:visited {
     cursor: pointer;
   }
 
-  .submenu-toggle.open {
+  header .submenu-toggle.open {
     transform: rotate(90deg);
   }
 
 
-  /* Mobile dropdowns */
+  /* =========================
+     MOBILE SUBMENUS
+     ========================= */
 
   nav ul li ul.submenu {
     position: static;
@@ -410,14 +442,19 @@ nav a:visited {
     display: none;
 
     min-width: 0;
+
     padding: 0;
 
     background: rgba(0,0,0,0.03);
   }
 
+  /* Disable desktop hover behaviour on mobile */
+
   nav ul li:hover > ul.submenu {
     display: none;
   }
+
+  /* JavaScript opens submenu */
 
   nav ul li > ul.submenu.open {
     display: block;

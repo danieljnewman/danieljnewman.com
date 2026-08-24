@@ -152,7 +152,8 @@ nav {
   margin-right: 4em;
 }
 
-nav ul, nav ul ul {
+nav ul,
+nav ul ul {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -215,7 +216,7 @@ nav a:hover {
 }
 
 nav a:active {
-  background-colour: rgba(0,0,0,0.075);
+  background-color: rgba(0,0,0,0.075);
 }
 
 nav a.active {
@@ -226,19 +227,10 @@ nav a:visited {
   color: var(--text-color);
 }
 
-@media (prefers-color-scheme: dark) {
-  nav a:hover {
-    background-color: rgba(255,255,255,0.08);
-  }
 
-  nav a:active {
-    background-color: rgba(255,255,255,0.12);
-  }
-
-  nav a.active {
-    background-color: rgba(255,255,255,0.16);
-  }
-}
+/* =========================
+   NAVIGATION TOGGLE BUTTONS
+   ========================= */
 
 .menu-toggle {
   display: none;
@@ -253,6 +245,32 @@ nav a:visited {
   display: none;
 }
 
+
+/* =========================
+   DARK MODE
+   ========================= */
+
+@media (prefers-color-scheme: dark) {
+
+  nav a:hover {
+    background-color: rgba(255,255,255,0.08);
+  }
+
+  nav a:active {
+    background-color: rgba(255,255,255,0.12);
+  }
+
+  nav a.active {
+    background-color: rgba(255,255,255,0.16);
+  }
+
+}
+
+
+/* =========================
+   MOBILE NAVIGATION
+   ========================= */
+
 @media (max-width: 768px) {
 
   header {
@@ -263,34 +281,40 @@ nav a:visited {
     font-size: 1.5em;
   }
 
-  /* * Hamburger button */
+
+  /* Hamburger button */
+
   .menu-toggle {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
-  width: 28px;
-  height: 22px;
+    width: 28px;
+    height: 22px;
 
-  margin-left: auto;
-  margin-right: 1em;
+    margin-left: auto;
+    margin-right: 0;
 
-  padding: 0;
+    padding: 0;
 
-  border: none;
-  background: none;
+    border: none;
+    background: none;
 
-  cursor: pointer;
-}
+    cursor: pointer;
+  }
 
   .menu-toggle span {
     display: block;
+
     width: 100%;
     height: 3px;
 
     background-color: var(--text-color);
     border-radius: 2px;
   }
+
+
+  /* Mobile navigation */
 
   nav {
     display: none;
@@ -306,12 +330,12 @@ nav a:visited {
     box-shadow: 0 4px 6px rgba(0,0,0,.1);
   }
 
-  /*
-   * Show navigation when menu is open
-   */
   nav.open {
     display: block;
   }
+
+
+  /* Main navigation list */
 
   nav ul.nav {
     display: flex;
@@ -325,15 +349,61 @@ nav a:visited {
     width: 100%;
   }
 
+
+  /* Main navigation links */
+
   nav a,
   nav span {
     padding: 0.8em 1em;
   }
 
 
-  /*
-   * Mobile dropdowns
-   */
+  /* Experience / Volunteering row */
+
+  .nav-item-with-toggle {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  .nav-item-with-toggle > a,
+  .nav-item-with-toggle > span {
+    flex: 1;
+  }
+
+
+  /* Submenu arrow buttons */
+
+  .submenu-toggle {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 3em;
+    height: 3em;
+
+    margin: 0;
+    padding: 0;
+
+    border: none;
+    background: none;
+
+    color: var(--text-color);
+
+    font-family: "Lexend";
+    font-size: 1em;
+
+    cursor: pointer;
+  }
+
+  .submenu-toggle.open {
+    transform: rotate(90deg);
+  }
+
+
+  /* Mobile dropdowns */
+
   nav ul li ul.submenu {
     position: static;
 
@@ -347,6 +417,10 @@ nav a:visited {
 
   nav ul li:hover > ul.submenu {
     display: none;
+  }
+
+  nav ul li > ul.submenu.open {
+    display: block;
   }
 
 }

@@ -244,6 +244,15 @@ nav a:visited {
   display: none;
 }
 
+.nav-item-with-toggle {
+  display: flex;
+  align-items: center;
+}
+
+.submenu-toggle {
+  display: none;
+}
+
 @media (max-width: 768px) {
 
   header {

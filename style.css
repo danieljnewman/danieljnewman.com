@@ -767,12 +767,26 @@ button:hover {
   opacity: 0.7;
 }
 
+/*EDUCATION PAGE*/
+
+.education section {
+  padding: 0 0 1.2em;
+  margin: 0 0 1.2em;
+  border-bottom: 1px solid currentColor;
+}
 
 .education section h3,
 .education section h4 {
   display: inline-block;
+  margin-top: 0;
+  margin-bottom: 0.25em;
 }
 
 .education section h4 {
   float: right;
+}
+
+.education section ul {
+  margin-top: 0.25em;
+  margin-bottom: 0;
 }

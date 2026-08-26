@@ -766,3 +766,13 @@ button:hover {
 .lightbox-close:hover {
   opacity: 0.7;
 }
+
+
+.education section h3,
+.education section h4 {
+  display: inline-block;
+}
+
+.education section h4 {
+  float: right;
+}

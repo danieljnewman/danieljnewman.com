@@ -802,29 +802,29 @@ button:hover {
 
 /*VOLUNTEERING: SHORT-TERM PAGE*/
 
-.volunteering s-t section {
+.volunteerin-s-t section {
   padding: 0 0 1.2em;
   margin: 0 0 1.2em;
   border-bottom: 1px solid currentColor;
 }
 
-.volunteering s-t section h3,
-.volunteering s-t section h4 {
+.volunteering-s-t section h3,
+.volunteering-s-t section h4 {
   display: inline-block;
   margin-top: 0;
   margin-bottom: 0.25em;
 }
 
-.volunteering s-t section h4 {
+.volunteering-s-t section h4 {
   float: right;
 }
 
-.volunteering s-t section ul {
+.volunteering-s-t section ul {
   margin-top: 0.25em;
   margin-bottom: 0;
 }
 
-.volunteering s-t section:last-child {
+.volunteering-s-t section:last-child {
   border-bottom: none;
   margin-bottom: 0;
 }

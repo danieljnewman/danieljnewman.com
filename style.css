@@ -793,4 +793,5 @@ button:hover {
 
 .education section:last-child {
   border-bottom: none;
+  margin-bottom: none;
 }

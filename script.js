@@ -100,6 +100,20 @@ function initialiseNavigation() {
 loadHeader();
 
 
+
+/* ACTIVE PAGE */
+
+const currentPage = window.location.pathname.replace(/\/$/, '');
+
+document.querySelectorAll('nav a').forEach(link => {
+  const linkPage = new URL(link.href).pathname.replace(/\/$/, '');
+
+  if (linkPage === currentPage) {
+    link.classList.add('active');
+  }
+});
+
+
 /* =========================
    LIGHTBOX
    ========================= */

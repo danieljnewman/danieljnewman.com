@@ -790,3 +790,7 @@ button:hover {
   margin-top: 0.25em;
   margin-bottom: 0;
 }
+
+.education section:last-child {
+  border-bottom: none;
+}

@@ -819,6 +819,11 @@ button:hover {
   float: right;
 }
 
+.volunteering-short-term section h5 {
+  margin-top: 0;
+  margin-bottom: 0.25em;
+}
+
 .volunteering-short-term section ul {
   margin-top: 0.25em;
   margin-bottom: 0;

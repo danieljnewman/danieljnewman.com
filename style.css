@@ -238,10 +238,7 @@ nav a:visited {
 }
 
 
-/* =========================
-   NAVIGATION TOGGLES
-   HIDDEN ON DESKTOP
-   ========================= */
+/*== NAVIGATION TOGGLES - HIDDEN ON DESKTOP == */
 
 .menu-toggle {
   display: none;
@@ -257,9 +254,7 @@ header .submenu-toggle {
 }
 
 
-/* =========================
-   DARK MODE
-   ========================= */
+/*==DARK MODE==*/
 
 @media (prefers-color-scheme: dark) {
 

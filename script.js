@@ -467,6 +467,18 @@ document.addEventListener(
   }
 );
 
+document.addEventListener("DOMContentLoaded", () => {
+
+  const grid = document.querySelector("#home-grid");
+
+  if (!grid) {
+    return;
+  }
+
+  grid.innerHTML = "<p>HOME GRID WORKING</p>";
+
+});
+
 /* =========================
    LIGHTBOX
    ========================= */

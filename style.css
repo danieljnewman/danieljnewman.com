@@ -349,9 +349,7 @@ header .submenu-toggle {
   }
 
 
-  /* =========================
-     MAIN NAVIGATION
-     ========================= */
+  /* == MAIN NAVIGATION == */
 
   nav ul.nav {
     display: flex;
@@ -721,9 +719,27 @@ main h2 { /* MAY COME BACK TO */
   background: #251546;
 }
 
+.portfolio-page .portfolio-page-link {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.portfolio-page .portfolio-page-link h3 {
+    margin: 0;
+}
+
+.portfolio-page .portfolio-page-link .back-link {
+    display: block;
+    margin-left: auto;
+    margin-bottom: 20px;
+    white-space: nowrap;
+}
+
 /*Back to Port link*/
 
-.back-link {
+/*.back-link {
   display: inline-block;
   margin-bottom: 20px;
 }
@@ -743,7 +759,7 @@ main h2 { /* MAY COME BACK TO */
 .portfolio-page .portfolio-page-link .back-link {
     margin-left: auto;
     white-space: nowrap;
-}
+} */
 
 /* {
   outline: 1px solid red;

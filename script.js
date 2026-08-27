@@ -4,7 +4,8 @@
 
 async function loadHeader() {
 
-  const headerContainer = document.querySelector("#site-header");
+  const headerContainer =
+    document.querySelector("#site-header");
 
   if (!headerContainer) {
     return;
@@ -12,21 +13,27 @@ async function loadHeader() {
 
   try {
 
-    const response = await fetch("/header.html");
+    const response =
+      await fetch("/header.html");
 
     if (!response.ok) {
       throw new Error("Failed to load header");
     }
 
-    const headerHTML = await response.text();
+    const headerHTML =
+      await response.text();
 
-    headerContainer.innerHTML = headerHTML;
+    headerContainer.innerHTML =
+      headerHTML;
 
     initialiseNavigation();
 
   } catch (error) {
 
-    console.error("Error loading header:", error);
+    console.error(
+      "Error loading header:",
+      error
+    );
 
   }
 
@@ -39,19 +46,34 @@ async function loadHeader() {
 
 function initialiseNavigation() {
 
-  const menuToggle = document.querySelector(".menu-toggle");
-  const nav = document.querySelector("nav");
+  const menuToggle =
+    document.querySelector(".menu-toggle");
+
+  const nav =
+    document.querySelector("nav");
+
 
   if (menuToggle && nav) {
 
-    menuToggle.addEventListener("click", () => {
+    menuToggle.addEventListener(
+      "click",
+      () => {
 
-      const isOpen = nav.classList.toggle("open");
+        const isOpen =
+          nav.classList.toggle("open");
 
-      menuToggle.classList.toggle("open", isOpen);
-      menuToggle.setAttribute("aria-expanded", isOpen);
+        menuToggle.classList.toggle(
+          "open",
+          isOpen
+        );
 
-    });
+        menuToggle.setAttribute(
+          "aria-expanded",
+          isOpen
+        );
+
+      }
+    );
 
   }
 
@@ -61,34 +83,60 @@ function initialiseNavigation() {
      ========================= */
 
   const submenuToggles =
-    document.querySelectorAll(".submenu-toggle");
+    document.querySelectorAll(
+      ".submenu-toggle"
+    );
 
-  submenuToggles.forEach(toggle => {
 
-    toggle.addEventListener("click", () => {
+  submenuToggles.forEach(
+    toggle => {
 
-      const parent = toggle.closest(".nav-item-with-toggle");
+      toggle.addEventListener(
+        "click",
+        () => {
 
-      if (!parent) {
-        return;
-      }
+          const parent =
+            toggle.closest(
+              ".nav-item-with-toggle"
+            );
 
-      const submenu = parent.parentElement.querySelector(
-        ":scope > .submenu"
+          if (!parent) {
+            return;
+          }
+
+
+          const submenu =
+            parent.parentElement.querySelector(
+              ":scope > .submenu"
+            );
+
+          if (!submenu) {
+            return;
+          }
+
+
+          const isOpen =
+            submenu.classList.toggle(
+              "open"
+            );
+
+
+          toggle.classList.toggle(
+            "open",
+            isOpen
+          );
+
+
+          toggle.setAttribute(
+            "aria-expanded",
+            isOpen
+          );
+
+        }
       );
 
-      if (!submenu) {
-        return;
-      }
-
-      const isOpen = submenu.classList.toggle("open");
-
-      toggle.classList.toggle("open", isOpen);
-      toggle.setAttribute("aria-expanded", isOpen);
-
-    });
-
-  });
+    }
+  );
 
 
   /* =========================
@@ -96,20 +144,32 @@ function initialiseNavigation() {
      ========================= */
 
   const currentPage =
-    window.location.pathname.replace(/\/$/, "");
+    window.location.pathname
+      .replace(/\/$/, "");
 
-  document.querySelectorAll("nav a").forEach(link => {
 
-    const linkPage =
-      new URL(link.href, window.location.origin)
+  document
+    .querySelectorAll("nav a")
+    .forEach(link => {
+
+      const linkPage =
+        new URL(
+          link.href,
+          window.location.origin
+        )
         .pathname
         .replace(/\/$/, "");
 
-    if (linkPage === currentPage) {
-      link.classList.add("active");
-    }
 
-  });
+      if (linkPage === currentPage) {
+
+        link.classList.add(
+          "active"
+        );
+
+      }
+
+    });
 
 }
 
@@ -121,7 +181,6 @@ function initialiseNavigation() {
 loadHeader();
 
 
-```js
 /* =========================
    HOME PORTFOLIO
    ========================= */
@@ -131,19 +190,22 @@ const homePortfolio = [
   {
     event: "big-day-out-2026",
     page: "/portfolio/big-day-out-2026/",
-    prefix: "BDO_2026_"
+    prefix: "BDO_2026_",
+    count: 208
   },
 
   {
     event: "as-one-in-the-park-2026",
     page: "/portfolio/as-one-in-the-park-2026/",
-    prefix: "AOITP_2026_"
+    prefix: "AOITP_2026_",
+    count: 346
   },
 
   {
     event: "st-patricks-festival-2026",
     page: "/portfolio/st-patricks-festival-2026/",
-    prefix: "SPF_2026_"
+    prefix: "SPF_2026_",
+    count: 204
   }
 
   // Add more portfolio events here
@@ -157,17 +219,33 @@ const homePortfolio = [
 
 function shuffle(array) {
 
-  const shuffled = [...array];
+  const shuffled =
+    [...array];
 
-  for (let i = shuffled.length - 1; i > 0; i--) {
+
+  for (
+    let i = shuffled.length - 1;
+    i > 0;
+    i--
+  ) {
 
     const j =
-      Math.floor(Math.random() * (i + 1));
+      Math.floor(
+        Math.random() * (i + 1)
+      );
 
-    [shuffled[i], shuffled[j]] =
-      [shuffled[j], shuffled[i]];
+
+    [
+      shuffled[i],
+      shuffled[j]
+    ] =
+    [
+      shuffled[j],
+      shuffled[i]
+    ];
 
   }
+
 
   return shuffled;
 
@@ -180,78 +258,49 @@ function shuffle(array) {
 
 function getImageOrientation(src) {
 
-  return new Promise((resolve) => {
+  return new Promise(
+    resolve => {
 
-    const img = new Image();
-
-    img.onload = () => {
-
-      if (img.naturalHeight > img.naturalWidth) {
-
-        resolve("portrait");
-
-      } else {
-
-        resolve("landscape");
-
-      }
-
-    };
-
-    img.onerror = () => {
-
-      resolve(null);
-
-    };
-
-    img.src = src;
-
-  });
-
-}
+      const img =
+        new Image();
 
 
-/* =========================
-   FIND EVENT IMAGES
-   ========================= */
+      img.onload =
+        () => {
 
-async function getEventImages(event) {
+          if (
+            img.naturalHeight >
+            img.naturalWidth
+          ) {
 
-  const images = [];
+            resolve(
+              "portrait"
+            );
 
-  /*
-   * Try image numbers up to 999.
-   *
-   * Missing numbers are simply skipped.
-   */
+          } else {
 
-  for (let i = 1; i <= 999; i++) {
+            resolve(
+              "landscape"
+            );
 
-    const number =
-      String(i).padStart(3, "0");
+          }
 
-    const image =
-      `/images/portfolio/${event.event}/${event.prefix}${number}.webp`;
+        };
 
-    const orientation =
-      await getImageOrientation(image);
 
-    if (!orientation) {
-      continue;
+      img.onerror =
+        () => {
+
+          resolve(null);
+
+        };
+
+
+      img.src =
+        src;
+
     }
-
-    images.push({
-
-      image: image,
-      page: event.page,
-      event: event.event,
-      orientation: orientation
-
-    });
-
-  }
-
-  return images;
+  );
 
 }
 
@@ -262,18 +311,63 @@ async function getEventImages(event) {
 
 async function buildImageList() {
 
-  const allImages = [];
+  const images = [];
 
-  for (const event of homePortfolio) {
 
-    const eventImages =
-      await getEventImages(event);
+  for (
+    const event
+    of homePortfolio
+  ) {
 
-    allImages.push(...eventImages);
+    for (
+      let i = 1;
+      i <= event.count;
+      i++
+    ) {
+
+      const number =
+        String(i)
+          .padStart(3, "0");
+
+
+      const image =
+        `/images/portfolio/${event.event}/${event.prefix}${number}.webp`;
+
+
+      const orientation =
+        await getImageOrientation(
+          image
+        );
+
+
+      /*
+       * Missing image numbers are
+       * simply skipped.
+       */
+
+      if (!orientation) {
+        continue;
+      }
+
+
+      images.push({
+
+        image: image,
+
+        page: event.page,
+
+        event: event.event,
+
+        orientation: orientation
+
+      });
+
+    }
 
   }
 
-  return allImages;
+
+  return images;
 
 }
 
@@ -289,95 +383,67 @@ async function getHomeImages() {
 
 
   /*
-   * Shuffle everything first so
-   * the selection changes each time.
+   * Shuffle all available photos.
    */
 
   const shuffled =
     shuffle(allImages);
 
 
-  const selected = [];
-  const eventCounts = {};
-
-
-  /*
-   * Try to select exactly:
-   *
-   * 2 portraits
-   * 6 landscapes
-   *
-   * Maximum 2 photos per event.
-   */
-
   const portraits =
     shuffled.filter(
-      item => item.orientation === "portrait"
+      item =>
+        item.orientation ===
+        "portrait"
     );
+
 
   const landscapes =
     shuffled.filter(
-      item => item.orientation === "landscape"
+      item =>
+        item.orientation ===
+        "landscape"
     );
 
 
-  /* =========================
-     TWO PORTRAITS
-     ========================= */
+  const selected = [];
 
-  for (const item of portraits) {
-
-    if (selected.length >= 2) {
-      break;
-    }
-
-    const count =
-      eventCounts[item.event] || 0;
-
-    if (count >= 2) {
-      continue;
-    }
-
-    selected.push(item);
-
-    eventCounts[item.event] =
-      count + 1;
-
-  }
+  const eventCounts = {};
 
 
   /* =========================
-     SIX LANDSCAPES
+     SELECT PORTRAITS
      ========================= */
 
-  for (const item of landscapes) {
+  for (
+    const item
+    of portraits
+  ) {
 
     if (
       selected.filter(
         photo =>
-          photo.orientation === "landscape"
-      ).length >= 6
+          photo.orientation ===
+          "portrait"
+      ).length >= 2
     ) {
+
       break;
+
     }
 
-    if (
-      selected.some(
-        photo =>
-          photo.image === item.image
-      )
-    ) {
-      continue;
-    }
 
     const count =
       eventCounts[item.event] || 0;
+
 
     if (count >= 2) {
       continue;
     }
 
+
     selected.push(item);
+
 
     eventCounts[item.event] =
       count + 1;
@@ -385,24 +451,81 @@ async function getHomeImages() {
   }
 
 
-  /*
-   * Separate the selected photos.
-   */
+  /* =========================
+     SELECT LANDSCAPES
+     ========================= */
+
+  for (
+    const item
+    of landscapes
+  ) {
+
+    if (
+      selected.filter(
+        photo =>
+          photo.orientation ===
+          "landscape"
+      ).length >= 6
+    ) {
+
+      break;
+
+    }
+
+
+    if (
+      selected.some(
+        photo =>
+          photo.image ===
+          item.image
+      )
+    ) {
+
+      continue;
+
+    }
+
+
+    const count =
+      eventCounts[item.event] || 0;
+
+
+    if (count >= 2) {
+      continue;
+    }
+
+
+    selected.push(item);
+
+
+    eventCounts[item.event] =
+      count + 1;
+
+  }
+
+
+  /* =========================
+     SEPARATE PHOTOS
+     ========================= */
 
   const portraitImages =
     selected.filter(
-      item => item.orientation === "portrait"
+      item =>
+        item.orientation ===
+        "portrait"
     );
+
 
   const landscapeImages =
     selected.filter(
-      item => item.orientation === "landscape"
+      item =>
+        item.orientation ===
+        "landscape"
     );
 
 
   /*
-   * Return them in the positions
-   * expected by the CSS.
+   * Eight grid positions:
    *
    * 1 = portrait
    * 2 = landscape
@@ -419,10 +542,15 @@ async function getHomeImages() {
     portraitImages[0],
 
     landscapeImages[0],
+
     landscapeImages[1],
+
     landscapeImages[2],
+
     landscapeImages[3],
+
     landscapeImages[4],
+
     landscapeImages[5],
 
     portraitImages[1]
@@ -433,13 +561,16 @@ async function getHomeImages() {
 
 
 /* =========================
-   DISPLAY IMAGES
+   DISPLAY HOME IMAGES
    ========================= */
 
 async function displayHomeImages() {
 
   const grid =
-    document.querySelector("#home-grid");
+    document.querySelector(
+      "#home-grid"
+    );
+
 
   if (!grid) {
     return;
@@ -451,58 +582,79 @@ async function displayHomeImages() {
 
 
   /*
-   * Fade out
+   * Fade out.
    */
 
-  grid.style.opacity = "0";
+  grid.style.opacity =
+    "0";
 
 
-  setTimeout(() => {
+  setTimeout(
+    () => {
 
-    grid.innerHTML = "";
-
-
-    images.forEach(item => {
-
-      if (!item) {
-        return;
-      }
+      grid.innerHTML =
+        "";
 
 
-      const link =
-        document.createElement("a");
+      images.forEach(
+        item => {
 
-      link.href =
-        item.page;
-
-
-      const img =
-        document.createElement("img");
-
-      img.src =
-        item.image;
-
-      img.alt =
-        "View portfolio";
-
-      img.loading =
-        "lazy";
+          if (!item) {
+            return;
+          }
 
 
-      link.appendChild(img);
+          const link =
+            document.createElement(
+              "a"
+            );
 
-      grid.appendChild(link);
 
-    });
+          link.href =
+            item.page;
 
 
-    /*
-     * Fade in
-     */
+          const img =
+            document.createElement(
+              "img"
+            );
 
-    grid.style.opacity = "1";
 
-  }, 800);
+          img.src =
+            item.image;
+
+
+          img.alt =
+            "View portfolio";
+
+
+          img.loading =
+            "lazy";
+
+
+          link.appendChild(
+            img
+          );
+
+
+          grid.appendChild(
+            link
+          );
+
+        }
+      );
+
+
+      /*
+       * Fade in.
+       */
+
+      grid.style.opacity =
+        "1";
+
+    },
+    800
+  );
 
 }
 
@@ -519,7 +671,8 @@ document.addEventListener(
 
 
     /*
-     * Change photos every 60 seconds.
+     * Change photos every
+     * 60 seconds.
      */
 
     setInterval(
@@ -530,19 +683,58 @@ document.addEventListener(
   }
 );
 
+
 /* =========================
    LIGHTBOX
    ========================= */
 
-const lightboxLinks = document.querySelectorAll(".lightbox");
-const lightbox = document.querySelector(".lightbox-view");
+function initialiseLightbox() {
 
-if (lightboxLinks.length && lightbox) {
+  const lightboxLinks =
+    document.querySelectorAll(
+      ".lightbox"
+    );
 
-  const lightboxImage = lightbox.querySelector("img");
-  const closeButton = lightbox.querySelector(".lightbox-close");
-  const previousButton = lightbox.querySelector(".lightbox-prev");
-  const nextButton = lightbox.querySelector(".lightbox-next");
+
+  const lightbox =
+    document.querySelector(
+      ".lightbox-view"
+    );
+
+
+  if (
+    !lightboxLinks.length ||
+    !lightbox
+  ) {
+
+    return;
+
+  }
+
+
+  const lightboxImage =
+    lightbox.querySelector(
+      "img"
+    );
+
+
+  const closeButton =
+    lightbox.querySelector(
+      ".lightbox-close"
+    );
+
+
+  const previousButton =
+    lightbox.querySelector(
+      ".lightbox-prev"
+    );
+
+
+  const nextButton =
+    lightbox.querySelector(
+      ".lightbox-next"
+    );
+
 
   let currentPhoto = 0;
 
@@ -554,22 +746,49 @@ if (lightboxLinks.length && lightbox) {
   function showPhoto(index) {
 
     if (index < 0) {
-      index = lightboxLinks.length - 1;
+
+      index =
+        lightboxLinks.length - 1;
+
     }
 
-    if (index >= lightboxLinks.length) {
+
+    if (
+      index >=
+      lightboxLinks.length
+    ) {
+
       index = 0;
+
     }
 
-    currentPhoto = index;
 
-    const link = lightboxLinks[currentPhoto];
-    const image = link.querySelector("img");
+    currentPhoto =
+      index;
 
-    lightboxImage.src = link.href;
-    lightboxImage.alt = image.alt;
 
-    lightbox.style.display = "flex";
+    const link =
+      lightboxLinks[
+        currentPhoto
+      ];
+
+
+    const image =
+      link.querySelector(
+        "img"
+      );
+
+
+    lightboxImage.src =
+      link.href;
+
+
+    lightboxImage.alt =
+      image.alt;
+
+
+    lightbox.style.display =
+      "flex";
 
   }
 
@@ -580,8 +799,12 @@ if (lightboxLinks.length && lightbox) {
 
   function closeLightbox() {
 
-    lightbox.style.display = "none";
-    lightboxImage.src = "";
+    lightbox.style.display =
+      "none";
+
+
+    lightboxImage.src =
+      "";
 
   }
 
@@ -590,49 +813,67 @@ if (lightboxLinks.length && lightbox) {
      PHOTO CLICK
      ========================= */
 
-  lightboxLinks.forEach((link, index) => {
+  lightboxLinks.forEach(
+    (link, index) => {
 
-    link.addEventListener("click", function(e) {
+      link.addEventListener(
+        "click",
+        function(e) {
 
-      e.preventDefault();
+          e.preventDefault();
 
-      showPhoto(index);
 
-    });
+          showPhoto(index);
 
-  });
+        }
+      );
+
+    }
+  );
 
 
   /* =========================
-     PREVIOUS BUTTON
+     PREVIOUS
      ========================= */
 
   if (previousButton) {
 
-    previousButton.addEventListener("click", function(e) {
+    previousButton.addEventListener(
+      "click",
+      function(e) {
 
-      e.stopPropagation();
+        e.stopPropagation();
 
-      showPhoto(currentPhoto - 1);
 
-    });
+        showPhoto(
+          currentPhoto - 1
+        );
+
+      }
+    );
 
   }
 
 
   /* =========================
-     NEXT BUTTON
+     NEXT
      ========================= */
 
   if (nextButton) {
 
-    nextButton.addEventListener("click", function(e) {
+    nextButton.addEventListener(
+      "click",
+      function(e) {
 
-      e.stopPropagation();
+        e.stopPropagation();
 
-      showPhoto(currentPhoto + 1);
 
-    });
+        showPhoto(
+          currentPhoto + 1
+        );
+
+      }
+    );
 
   }
 
@@ -643,13 +884,17 @@ if (lightboxLinks.length && lightbox) {
 
   if (closeButton) {
 
-    closeButton.addEventListener("click", function(e) {
+    closeButton.addEventListener(
+      "click",
+      function(e) {
 
-      e.stopPropagation();
+        e.stopPropagation();
 
-      closeLightbox();
 
-    });
+        closeLightbox();
+
+      }
+    );
 
   }
 
@@ -658,45 +903,90 @@ if (lightboxLinks.length && lightbox) {
      CLICK OUTSIDE IMAGE
      ========================= */
 
-  lightbox.addEventListener("click", function(e) {
+  lightbox.addEventListener(
+    "click",
+    function(e) {
 
-    if (e.target === lightbox) {
+      if (
+        e.target ===
+        lightbox
+      ) {
 
-      closeLightbox();
+        closeLightbox();
+
+      }
 
     }
-
-  });
+  );
 
 
   /* =========================
      KEYBOARD CONTROLS
      ========================= */
 
-  document.addEventListener("keydown", function(e) {
+  document.addEventListener(
+    "keydown",
+    function(e) {
 
-    if (lightbox.style.display !== "flex") {
-      return;
+      if (
+        lightbox.style.display !==
+        "flex"
+      ) {
+
+        return;
+
+      }
+
+
+      if (
+        e.key ===
+        "ArrowLeft"
+      ) {
+
+        showPhoto(
+          currentPhoto - 1
+        );
+
+      }
+
+
+      if (
+        e.key ===
+        "ArrowRight"
+      ) {
+
+        showPhoto(
+          currentPhoto + 1
+        );
+
+      }
+
+
+      if (
+        e.key ===
+        "Escape"
+      ) {
+
+        closeLightbox();
+
+      }
+
     }
-
-    if (e.key === "ArrowLeft") {
-
-      showPhoto(currentPhoto - 1);
-
-    }
-
-    if (e.key === "ArrowRight") {
-
-      showPhoto(currentPhoto + 1);
-
-    }
-
-    if (e.key === "Escape") {
-
-      closeLightbox();
-
-    }
-
-  });
+  );
 
 }
+
+
+/* =========================
+   START LIGHTBOX
+   ========================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    initialiseLightbox();
+
+  }
+);
+```

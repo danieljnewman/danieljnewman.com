@@ -122,6 +122,232 @@ loadHeader();
 
 
 /* =========================
+   HOME PORTFOLIO GRID
+   ========================= */
+
+const homePortfolio = [
+
+  {
+    event: "st-patricks-festival-2026",
+    page: "/portfolio/st-patricks-festival-2026/",
+    images: [
+      "/images/portfolio/st-patricks-festival-2026/SPF_001.webp",
+      "/images/portfolio/st-patricks-festival-2026/SPF_002.webp",
+      "/images/portfolio/st-patricks-festival-2026/SPF_003.webp",
+      "/images/portfolio/st-patricks-festival-2026/SPF_004.webp"
+    ]
+  },
+
+  {
+    event: "as-one-in-the-park-2026",
+    page: "/portfolio/as-one-in-the-park-2026/",
+    images: [
+      "/images/portfolio/as-one-in-the-park-2026/AOITP_2026_001.webp",
+      "/images/portfolio/as-one-in-the-park-2026/AOITP_2026_002.webp",
+      "/images/portfolio/as-one-in-the-park-2026/AOITP_2026_003.webp",
+      "/images/portfolio/as-one-in-the-park-2026/AOITP_2026_004.webp"
+    ]
+  }
+
+  // Add more events here
+
+];
+
+
+/* =========================
+   SHUFFLE ARRAY
+   ========================= */
+
+function shuffle(array) {
+
+  const shuffled = [...array];
+
+  for (let i = shuffled.length - 1; i > 0; i--) {
+
+    const j = Math.floor(Math.random() * (i + 1));
+
+    [shuffled[i], shuffled[j]] =
+      [shuffled[j], shuffled[i]];
+
+  }
+
+  return shuffled;
+}
+
+
+/* =========================
+   SELECT SIX IMAGES
+   ========================= */
+
+function getRandomHomeImages() {
+
+  const selected = [];
+  const eventCounts = {};
+
+  const events = shuffle(homePortfolio);
+
+  /*
+   * First choose one image from each event.
+   * This gives us variety where possible.
+   */
+
+  for (const event of events) {
+
+    if (selected.length >= 6) {
+      break;
+    }
+
+    if (!event.images.length) {
+      continue;
+    }
+
+    const image =
+      event.images[
+        Math.floor(Math.random() * event.images.length)
+      ];
+
+    selected.push({
+      image: image,
+      page: event.page,
+      event: event.event
+    });
+
+    eventCounts[event.event] = 1;
+
+  }
+
+
+  /*
+   * If we have fewer than six images,
+   * fill the remaining spaces.
+   * Maximum two images per event.
+   */
+
+  const remaining = [];
+
+  for (const event of events) {
+
+    for (const image of event.images) {
+
+      remaining.push({
+        image: image,
+        page: event.page,
+        event: event.event
+      });
+
+    }
+
+  }
+
+  const shuffledRemaining = shuffle(remaining);
+
+
+  for (const item of shuffledRemaining) {
+
+    if (selected.length >= 6) {
+      break;
+    }
+
+    const count = eventCounts[item.event] || 0;
+
+    if (count >= 2) {
+      continue;
+    }
+
+    if (
+      selected.some(
+        selectedItem => selectedItem.image === item.image
+      )
+    ) {
+      continue;
+    }
+
+    selected.push(item);
+
+    eventCounts[item.event] = count + 1;
+
+  }
+
+
+  return shuffle(selected);
+
+}
+
+
+/* =========================
+   DISPLAY IMAGES
+   ========================= */
+
+function displayHomeImages() {
+
+  const grid = document.querySelector("#home-grid");
+
+  if (!grid) {
+    return;
+  }
+
+  const images = getRandomHomeImages();
+
+  /*
+   * Fade out
+   */
+
+  grid.style.opacity = "0";
+
+
+  setTimeout(() => {
+
+    grid.innerHTML = "";
+
+
+    images.forEach(item => {
+
+      const link = document.createElement("a");
+
+      link.href = item.page;
+
+
+      const img = document.createElement("img");
+
+      img.src = item.image;
+      img.alt = "View portfolio";
+      img.loading = "lazy";
+
+
+      link.appendChild(img);
+      grid.appendChild(link);
+
+    });
+
+
+    /*
+     * Fade back in
+     */
+
+    grid.style.opacity = "1";
+
+  }, 800);
+
+}
+
+
+/* =========================
+   START HOMEPAGE GRID
+   ========================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  displayHomeImages();
+
+  /*
+   * Change photos every 60 seconds
+   */
+
+  setInterval(displayHomeImages, 60000);
+
+});
+
+/* =========================
    LIGHTBOX
    ========================= */
 

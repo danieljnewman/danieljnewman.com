@@ -121,34 +121,32 @@ function initialiseNavigation() {
 loadHeader();
 
 
+```js
 /* =========================
    HOME PORTFOLIO
    ========================= */
 
 const homePortfolio = [
 
-   // Add more portfolio events here
-
-   {
+  {
     event: "big-day-out-2026",
     page: "/portfolio/big-day-out-2026/",
-    prefix: "BDO_2026_",
-    count: 208
-  }
-   
-   {
+    prefix: "BDO_2026_"
+  },
+
+  {
     event: "as-one-in-the-park-2026",
     page: "/portfolio/as-one-in-the-park-2026/",
-    prefix: "AOITP_2026_",
-    count: 346
-  }
-   
+    prefix: "AOITP_2026_"
+  },
+
   {
     event: "st-patricks-festival-2026",
     page: "/portfolio/st-patricks-festival-2026/",
-    prefix: "SPF_2026_",
-    count: 204
-  },
+    prefix: "SPF_2026_"
+  }
+
+  // Add more portfolio events here
 
 ];
 
@@ -163,7 +161,8 @@ function shuffle(array) {
 
   for (let i = shuffled.length - 1; i > 0; i--) {
 
-    const j = Math.floor(Math.random() * (i + 1));
+    const j =
+      Math.floor(Math.random() * (i + 1));
 
     [shuffled[i], shuffled[j]] =
       [shuffled[j], shuffled[i]];
@@ -188,15 +187,21 @@ function getImageOrientation(src) {
     img.onload = () => {
 
       if (img.naturalHeight > img.naturalWidth) {
+
         resolve("portrait");
+
       } else {
+
         resolve("landscape");
+
       }
 
     };
 
     img.onerror = () => {
+
       resolve(null);
+
     };
 
     img.src = src;
@@ -207,42 +212,68 @@ function getImageOrientation(src) {
 
 
 /* =========================
+   FIND EVENT IMAGES
+   ========================= */
+
+async function getEventImages(event) {
+
+  const images = [];
+
+  /*
+   * Try image numbers up to 999.
+   *
+   * Missing numbers are simply skipped.
+   */
+
+  for (let i = 1; i <= 999; i++) {
+
+    const number =
+      String(i).padStart(3, "0");
+
+    const image =
+      `/images/portfolio/${event.event}/${event.prefix}${number}.webp`;
+
+    const orientation =
+      await getImageOrientation(image);
+
+    if (!orientation) {
+      continue;
+    }
+
+    images.push({
+
+      image: image,
+      page: event.page,
+      event: event.event,
+      orientation: orientation
+
+    });
+
+  }
+
+  return images;
+
+}
+
+
+/* =========================
    BUILD IMAGE LIST
    ========================= */
 
 async function buildImageList() {
 
-  const images = [];
+  const allImages = [];
 
   for (const event of homePortfolio) {
 
-    for (let i = 1; i <= event.count; i++) {
+    const eventImages =
+      await getEventImages(event);
 
-      const number =
-        String(i).padStart(3, "0");
-
-      const image =
-        `/images/portfolio/${event.event}/${event.prefix}${number}.webp`;
-
-      const orientation =
-        await getImageOrientation(image);
-
-      if (!orientation) {
-        continue;
-      }
-
-      images.push({
-        image: image,
-        page: event.page,
-        event: event.event,
-        orientation: orientation
-      });
-
-    }
+    allImages.push(...eventImages);
 
   }
 
-  return images;
+  return allImages;
 
 }
 
@@ -257,20 +288,13 @@ async function getHomeImages() {
     await buildImageList();
 
 
-  const portraits =
-    shuffle(
-      allImages.filter(
-        item => item.orientation === "portrait"
-      )
-    );
+  /*
+   * Shuffle everything first so
+   * the selection changes each time.
+   */
 
-
-  const landscapes =
-    shuffle(
-      allImages.filter(
-        item => item.orientation === "landscape"
-      )
-    );
+  const shuffled =
+    shuffle(allImages);
 
 
   const selected = [];
@@ -278,11 +302,28 @@ async function getHomeImages() {
 
 
   /*
-   * Select two portraits.
+   * Try to select exactly:
    *
-   * Maximum two images from
-   * the same portfolio event.
+   * 2 portraits
+   * 6 landscapes
+   *
+   * Maximum 2 photos per event.
    */
+
+  const portraits =
+    shuffled.filter(
+      item => item.orientation === "portrait"
+    );
+
+  const landscapes =
+    shuffled.filter(
+      item => item.orientation === "landscape"
+    );
+
+
+  /* =========================
+     TWO PORTRAITS
+     ========================= */
 
   for (const item of portraits) {
 
@@ -305,20 +346,25 @@ async function getHomeImages() {
   }
 
 
-  /*
-   * Select six landscapes.
-   */
+  /* =========================
+     SIX LANDSCAPES
+     ========================= */
 
   for (const item of landscapes) {
 
-    if (selected.length >= 8) {
+    if (
+      selected.filter(
+        photo =>
+          photo.orientation === "landscape"
+      ).length >= 6
+    ) {
       break;
     }
 
     if (
       selected.some(
-        selectedItem =>
-          selectedItem.image === item.image
+        photo =>
+          photo.image === item.image
       )
     ) {
       continue;
@@ -340,14 +386,13 @@ async function getHomeImages() {
 
 
   /*
-   * Separate portraits and landscapes.
+   * Separate the selected photos.
    */
 
   const portraitImages =
     selected.filter(
       item => item.orientation === "portrait"
     );
-
 
   const landscapeImages =
     selected.filter(
@@ -356,8 +401,8 @@ async function getHomeImages() {
 
 
   /*
-   * Return the images in the
-   * correct grid positions.
+   * Return them in the positions
+   * expected by the CSS.
    *
    * 1 = portrait
    * 2 = landscape
@@ -463,7 +508,7 @@ async function displayHomeImages() {
 
 
 /* =========================
-   START
+   START HOME GRID
    ========================= */
 
 document.addEventListener(

@@ -404,62 +404,12 @@ async function getHomeImages() {
 
 
   /*
-   * Position 1
-   * Must be portrait.
+   * Select two portraits.
    */
 
   for (const item of portraits) {
 
-    selected.push(item);
-
-    usedImages.add(item.image);
-
-    eventCounts[item.event] = 1;
-
-    break;
-
-  }
-
-
-  /*
-   * Position 5
-   * Must be another portrait.
-   */
-
-  for (const item of portraits) {
-
-    if (
-      usedImages.has(item.image)
-    ) {
-      continue;
-    }
-
-    if (
-      (eventCounts[item.event] || 0) >= 2
-    ) {
-      continue;
-    }
-
-    selected.push(item);
-
-    usedImages.add(item.image);
-
-    eventCounts[item.event] =
-      (eventCounts[item.event] || 0) + 1;
-
-    break;
-
-  }
-
-
-  /*
-   * Positions 2, 3, 4 and 6
-   * Must be landscape.
-   */
-
-  for (const item of landscapes) {
-
-    if (selected.length >= 6) {
+    if (selected.length >= 2) {
       break;
     }
 
@@ -485,10 +435,41 @@ async function getHomeImages() {
 
 
   /*
-   * Make sure we have six images.
+   * Select six landscapes.
    */
 
-  if (selected.length < 6) {
+  for (const item of landscapes) {
+
+    if (selected.length >= 8) {
+      break;
+    }
+
+    if (usedImages.has(item.image)) {
+      continue;
+    }
+
+    const count =
+      eventCounts[item.event] || 0;
+
+    if (count >= 2) {
+      continue;
+    }
+
+    selected.push(item);
+
+    usedImages.add(item.image);
+
+    eventCounts[item.event] =
+      count + 1;
+
+  }
+
+
+  /*
+   * Make sure we have eight images.
+   */
+
+  if (selected.length < 8) {
 
     console.warn(
       "Not enough suitable portfolio images for homepage."
@@ -500,15 +481,7 @@ async function getHomeImages() {
 
 
   /*
-   * Put images into the exact
-   * positions required by CSS:
-   *
-   * 1 = portrait
-   * 2 = landscape
-   * 3 = landscape
-   * 4 = landscape
-   * 5 = portrait
-   * 6 = landscape
+   * Separate portraits and landscapes.
    */
 
   const portraitImages =
@@ -523,19 +496,32 @@ async function getHomeImages() {
         item.orientation === "landscape"
     );
 
+
+  /*
+   * Homepage positions:
+   *
+   * 1 = portrait
+   * 2 = landscape
+   * 3 = landscape
+   * 4 = landscape
+   * 5 = landscape
+   * 6 = landscape
+   * 7 = landscape
+   * 8 = portrait
+   */
+
   return [
 
     portraitImages[0],
 
     landscapeImages[0],
-
     landscapeImages[1],
-
     landscapeImages[2],
+    landscapeImages[3],
+    landscapeImages[4],
+    landscapeImages[5],
 
-    portraitImages[1],
-
-    landscapeImages[3]
+    portraitImages[1]
 
   ];
 

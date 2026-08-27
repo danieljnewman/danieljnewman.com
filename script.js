@@ -133,7 +133,7 @@ const homePortfolio = [
     event: "big-day-out-2026",
     page: "/portfolio/big-day-out-2026/",
     prefix: "BDO_2026_",
-    count: 214
+    count: 208
   }
    
    {

@@ -719,11 +719,12 @@ main h2 { /* MAY COME BACK TO */
   background: #251546;
 }
 
- .portfolio-page-link {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 20px;
+.portfolio-page-link {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .portfolio-page-link h3 {

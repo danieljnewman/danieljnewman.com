@@ -731,6 +731,23 @@ main h2 { /* MAY COME BACK TO */
   margin-bottom: 20px;
 }
 
+.portfolio-page .portfolio-page-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.portfolio-page .portfolio-page-link h3 {
+    margin: 0;
+}
+
+.portfolio-page .portfolio-page-link .back-link {
+    white-space: nowrap;
+    margin-left: auto;
+}
+
 /* {
   outline: 1px solid red;
   outline-display: hidden;

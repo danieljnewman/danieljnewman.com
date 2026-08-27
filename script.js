@@ -127,29 +127,28 @@ loadHeader();
 
 const homePortfolio = [
 
+   // Add more portfolio events here
+
+   {
+    event: "big-day-out-2026",
+    page: "/portfolio/big-day-out-2026/",
+    prefix: "BDO_2026_",
+    count: 214
+  }
+   
+   {
+    event: "as-one-in-the-park-2026",
+    page: "/portfolio/as-one-in-the-park-2026/",
+    prefix: "AOITP_2026_",
+    count: 346
+  }
+   
   {
     event: "st-patricks-festival-2026",
     page: "/portfolio/st-patricks-festival-2026/",
-    images: [
-      "/images/portfolio/st-patricks-festival-2026/SPF_001.webp",
-      "/images/portfolio/st-patricks-festival-2026/SPF_002.webp",
-      "/images/portfolio/st-patricks-festival-2026/SPF_003.webp",
-      "/images/portfolio/st-patricks-festival-2026/SPF_004.webp"
-    ]
+    prefix: "SPF_2026_",
+    count: 204
   },
-
-  {
-    event: "as-one-in-the-park-2026",
-    page: "/portfolio/as-one-in-the-park-2026/",
-    images: [
-      "/images/portfolio/as-one-in-the-park-2026/AOITP_001.webp",
-      "/images/portfolio/as-one-in-the-park-2026/AOITP_002.webp",
-      "/images/portfolio/as-one-in-the-park-2026/AOITP_003.webp",
-      "/images/portfolio/as-one-in-the-park-2026/AOITP_004.webp"
-    ]
-  }
-
-  // Add more portfolio events here
 
 ];
 
@@ -172,6 +171,7 @@ function shuffle(array) {
   }
 
   return shuffled;
+
 }
 
 
@@ -216,7 +216,13 @@ async function buildImageList() {
 
   for (const event of homePortfolio) {
 
-    for (const image of event.images) {
+    for (let i = 1; i <= event.count; i++) {
+
+      const number =
+        String(i).padStart(3, "0");
+
+      const image =
+        `/images/portfolio/${event.event}/${event.prefix}${number}.webp`;
 
       const orientation =
         await getImageOrientation(image);
@@ -247,19 +253,24 @@ async function buildImageList() {
 
 async function getHomeImages() {
 
-  const allImages = await buildImageList();
+  const allImages =
+    await buildImageList();
 
-  const portraits = shuffle(
-    allImages.filter(
-      item => item.orientation === "portrait"
-    )
-  );
 
-  const landscapes = shuffle(
-    allImages.filter(
-      item => item.orientation === "landscape"
-    )
-  );
+  const portraits =
+    shuffle(
+      allImages.filter(
+        item => item.orientation === "portrait"
+      )
+    );
+
+
+  const landscapes =
+    shuffle(
+      allImages.filter(
+        item => item.orientation === "landscape"
+      )
+    );
 
 
   const selected = [];
@@ -267,57 +278,40 @@ async function getHomeImages() {
 
 
   /*
-   * Select portrait for position 1
+   * Select two portraits.
+   *
+   * Maximum two images from
+   * the same portfolio event.
    */
 
   for (const item of portraits) {
 
-    if (!eventCounts[item.event]) {
-
-      selected.push(item);
-      eventCounts[item.event] = 1;
-
+    if (selected.length >= 2) {
       break;
-
     }
+
+    const count =
+      eventCounts[item.event] || 0;
+
+    if (count >= 2) {
+      continue;
+    }
+
+    selected.push(item);
+
+    eventCounts[item.event] =
+      count + 1;
 
   }
 
 
   /*
-   * Select portrait for position 5
-   */
-
-  for (const item of portraits) {
-
-    if (
-      !selected.some(
-        selectedItem =>
-          selectedItem.image === item.image
-      )
-      &&
-      (eventCounts[item.event] || 0) < 2
-    ) {
-
-      selected.push(item);
-      eventCounts[item.event] =
-        (eventCounts[item.event] || 0) + 1;
-
-      break;
-
-    }
-
-  }
-
-
-  /*
-   * Select four landscape images
-   * while respecting the event limit.
+   * Select six landscapes.
    */
 
   for (const item of landscapes) {
 
-    if (selected.length >= 6) {
+    if (selected.length >= 8) {
       break;
     }
 
@@ -339,21 +333,14 @@ async function getHomeImages() {
 
     selected.push(item);
 
-    eventCounts[item.event] = count + 1;
+    eventCounts[item.event] =
+      count + 1;
 
   }
 
 
   /*
-   * Put the images into the correct
-   * positions:
-   *
-   * 1 = portrait
-   * 2 = landscape
-   * 3 = landscape
-   * 4 = landscape
-   * 5 = portrait
-   * 6 = landscape
+   * Separate portraits and landscapes.
    */
 
   const portraitImages =
@@ -361,19 +348,40 @@ async function getHomeImages() {
       item => item.orientation === "portrait"
     );
 
+
   const landscapeImages =
     selected.filter(
       item => item.orientation === "landscape"
     );
 
 
+  /*
+   * Return the images in the
+   * correct grid positions.
+   *
+   * 1 = portrait
+   * 2 = landscape
+   * 3 = landscape
+   * 4 = landscape
+   * 5 = landscape
+   * 6 = landscape
+   * 7 = landscape
+   * 8 = portrait
+   */
+
   return [
+
     portraitImages[0],
+
     landscapeImages[0],
     landscapeImages[1],
     landscapeImages[2],
-    portraitImages[1],
-    landscapeImages[3]
+    landscapeImages[3],
+    landscapeImages[4],
+    landscapeImages[5],
+
+    portraitImages[1]
+
   ];
 
 }
@@ -391,6 +399,7 @@ async function displayHomeImages() {
   if (!grid) {
     return;
   }
+
 
   const images =
     await getHomeImages();
@@ -414,21 +423,29 @@ async function displayHomeImages() {
         return;
       }
 
+
       const link =
         document.createElement("a");
 
-      link.href = item.page;
+      link.href =
+        item.page;
 
 
       const img =
         document.createElement("img");
 
-      img.src = item.image;
-      img.alt = "View portfolio";
-      img.loading = "lazy";
+      img.src =
+        item.image;
+
+      img.alt =
+        "View portfolio";
+
+      img.loading =
+        "lazy";
 
 
       link.appendChild(img);
+
       grid.appendChild(link);
 
     });
@@ -455,8 +472,9 @@ document.addEventListener(
 
     displayHomeImages();
 
+
     /*
-     * Change photos every 60 seconds
+     * Change photos every 60 seconds.
      */
 
     setInterval(

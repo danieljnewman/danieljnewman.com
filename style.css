@@ -833,3 +833,37 @@ button:hover {
   border-bottom: none;
   margin-bottom: 0;
 }
+
+/*VOLUNTEERING: LONG-TERM PAGE*/
+
+.volunteering-long-term section {
+  padding: 0 0 1.2em;
+  margin: 0 0 1.2em;
+  border-bottom: 1px solid currentColor;
+}
+
+.volunteering-long-term section h3,
+.volunteering-long-term section h4 {
+  display: inline-block;
+  margin-top: 0;
+  margin-bottom: 0.25em;
+}
+
+.volunteering-long-term section h4 {
+  float: right;
+}
+
+.volunteering-long-term section h5 {
+  margin-top: 0;
+  margin-bottom: 0.25em;
+}
+
+.volunteering-long-term section ul {
+  margin-top: 0.25em;
+  margin-bottom: 0;
+}
+
+.volunteering-long-term section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}

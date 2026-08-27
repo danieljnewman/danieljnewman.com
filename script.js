@@ -122,7 +122,7 @@ loadHeader();
 
 
 /* =========================
-   HOME PORTFOLIO GRID
+   HOME PORTFOLIO
    ========================= */
 
 const homePortfolio = [
@@ -142,20 +142,20 @@ const homePortfolio = [
     event: "as-one-in-the-park-2026",
     page: "/portfolio/as-one-in-the-park-2026/",
     images: [
-      "/images/portfolio/as-one-in-the-park-2026/AOITP_2026_001.webp",
-      "/images/portfolio/as-one-in-the-park-2026/AOITP_2026_002.webp",
-      "/images/portfolio/as-one-in-the-park-2026/AOITP_2026_003.webp",
-      "/images/portfolio/as-one-in-the-park-2026/AOITP_2026_004.webp"
+      "/images/portfolio/as-one-in-the-park-2026/AOITP_001.webp",
+      "/images/portfolio/as-one-in-the-park-2026/AOITP_002.webp",
+      "/images/portfolio/as-one-in-the-park-2026/AOITP_003.webp",
+      "/images/portfolio/as-one-in-the-park-2026/AOITP_004.webp"
     ]
   }
 
-  // Add more events here
+  // Add more portfolio events here
 
 ];
 
 
 /* =========================
-   SHUFFLE ARRAY
+   SHUFFLE
    ========================= */
 
 function shuffle(array) {
@@ -176,89 +176,164 @@ function shuffle(array) {
 
 
 /* =========================
-   SELECT SIX IMAGES
+   GET IMAGE ORIENTATION
    ========================= */
 
-function getRandomHomeImages() {
+function getImageOrientation(src) {
 
-  const selected = [];
-  const eventCounts = {};
+  return new Promise((resolve) => {
 
-  const events = shuffle(homePortfolio);
+    const img = new Image();
 
-  /*
-   * First choose one image from each event.
-   * This gives us variety where possible.
-   */
+    img.onload = () => {
 
-  for (const event of events) {
+      if (img.naturalHeight > img.naturalWidth) {
+        resolve("portrait");
+      } else {
+        resolve("landscape");
+      }
 
-    if (selected.length >= 6) {
-      break;
-    }
+    };
 
-    if (!event.images.length) {
-      continue;
-    }
+    img.onerror = () => {
+      resolve(null);
+    };
 
-    const image =
-      event.images[
-        Math.floor(Math.random() * event.images.length)
-      ];
+    img.src = src;
 
-    selected.push({
-      image: image,
-      page: event.page,
-      event: event.event
-    });
+  });
 
-    eventCounts[event.event] = 1;
-
-  }
+}
 
 
-  /*
-   * If we have fewer than six images,
-   * fill the remaining spaces.
-   * Maximum two images per event.
-   */
+/* =========================
+   BUILD IMAGE LIST
+   ========================= */
 
-  const remaining = [];
+async function buildImageList() {
 
-  for (const event of events) {
+  const images = [];
+
+  for (const event of homePortfolio) {
 
     for (const image of event.images) {
 
-      remaining.push({
+      const orientation =
+        await getImageOrientation(image);
+
+      if (!orientation) {
+        continue;
+      }
+
+      images.push({
         image: image,
         page: event.page,
-        event: event.event
+        event: event.event,
+        orientation: orientation
       });
 
     }
 
   }
 
-  const shuffledRemaining = shuffle(remaining);
+  return images;
+
+}
 
 
-  for (const item of shuffledRemaining) {
+/* =========================
+   SELECT HOME IMAGES
+   ========================= */
+
+async function getHomeImages() {
+
+  const allImages = await buildImageList();
+
+  const portraits = shuffle(
+    allImages.filter(
+      item => item.orientation === "portrait"
+    )
+  );
+
+  const landscapes = shuffle(
+    allImages.filter(
+      item => item.orientation === "landscape"
+    )
+  );
+
+
+  const selected = [];
+  const eventCounts = {};
+
+
+  /*
+   * Select portrait for position 1
+   */
+
+  for (const item of portraits) {
+
+    if (!eventCounts[item.event]) {
+
+      selected.push(item);
+      eventCounts[item.event] = 1;
+
+      break;
+
+    }
+
+  }
+
+
+  /*
+   * Select portrait for position 5
+   */
+
+  for (const item of portraits) {
+
+    if (
+      !selected.some(
+        selectedItem =>
+          selectedItem.image === item.image
+      )
+      &&
+      (eventCounts[item.event] || 0) < 2
+    ) {
+
+      selected.push(item);
+      eventCounts[item.event] =
+        (eventCounts[item.event] || 0) + 1;
+
+      break;
+
+    }
+
+  }
+
+
+  /*
+   * Select four landscape images
+   * while respecting the event limit.
+   */
+
+  for (const item of landscapes) {
 
     if (selected.length >= 6) {
       break;
     }
 
-    const count = eventCounts[item.event] || 0;
-
-    if (count >= 2) {
+    if (
+      selected.some(
+        selectedItem =>
+          selectedItem.image === item.image
+      )
+    ) {
       continue;
     }
 
-    if (
-      selected.some(
-        selectedItem => selectedItem.image === item.image
-      )
-    ) {
+    const count =
+      eventCounts[item.event] || 0;
+
+    if (count >= 2) {
       continue;
     }
 
@@ -269,7 +344,37 @@ function getRandomHomeImages() {
   }
 
 
-  return shuffle(selected);
+  /*
+   * Put the images into the correct
+   * positions:
+   *
+   * 1 = portrait
+   * 2 = landscape
+   * 3 = landscape
+   * 4 = landscape
+   * 5 = portrait
+   * 6 = landscape
+   */
+
+  const portraitImages =
+    selected.filter(
+      item => item.orientation === "portrait"
+    );
+
+  const landscapeImages =
+    selected.filter(
+      item => item.orientation === "landscape"
+    );
+
+
+  return [
+    portraitImages[0],
+    landscapeImages[0],
+    landscapeImages[1],
+    landscapeImages[2],
+    portraitImages[1],
+    landscapeImages[3]
+  ];
 
 }
 
@@ -278,15 +383,18 @@ function getRandomHomeImages() {
    DISPLAY IMAGES
    ========================= */
 
-function displayHomeImages() {
+async function displayHomeImages() {
 
-  const grid = document.querySelector("#home-grid");
+  const grid =
+    document.querySelector("#home-grid");
 
   if (!grid) {
     return;
   }
 
-  const images = getRandomHomeImages();
+  const images =
+    await getHomeImages();
+
 
   /*
    * Fade out
@@ -302,12 +410,18 @@ function displayHomeImages() {
 
     images.forEach(item => {
 
-      const link = document.createElement("a");
+      if (!item) {
+        return;
+      }
+
+      const link =
+        document.createElement("a");
 
       link.href = item.page;
 
 
-      const img = document.createElement("img");
+      const img =
+        document.createElement("img");
 
       img.src = item.image;
       img.alt = "View portfolio";
@@ -321,7 +435,7 @@ function displayHomeImages() {
 
 
     /*
-     * Fade back in
+     * Fade in
      */
 
     grid.style.opacity = "1";
@@ -332,20 +446,26 @@ function displayHomeImages() {
 
 
 /* =========================
-   START HOMEPAGE GRID
+   START
    ========================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
 
-  displayHomeImages();
+    displayHomeImages();
 
-  /*
-   * Change photos every 60 seconds
-   */
+    /*
+     * Change photos every 60 seconds
+     */
 
-  setInterval(displayHomeImages, 60000);
+    setInterval(
+      displayHomeImages,
+      60000
+    );
 
-});
+  }
+);
 
 /* =========================
    LIGHTBOX

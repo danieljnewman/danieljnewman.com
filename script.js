@@ -67,24 +67,21 @@ function initialiseNavigation() {
 
     toggle.addEventListener("click", () => {
 
-      const parent =
-        toggle.closest(".nav-item-with-toggle");
+      const parent = toggle.closest(".nav-item-with-toggle");
 
       if (!parent) {
         return;
       }
 
-      const submenu =
-        parent.parentElement.querySelector(
-          ":scope > .submenu"
-        );
+      const submenu = parent.parentElement.querySelector(
+        ":scope > .submenu"
+      );
 
       if (!submenu) {
         return;
       }
 
-      const isOpen =
-        submenu.classList.toggle("open");
+      const isOpen = submenu.classList.toggle("open");
 
       toggle.classList.toggle("open", isOpen);
       toggle.setAttribute("aria-expanded", isOpen);
@@ -128,127 +125,53 @@ loadHeader();
    HOME PORTFOLIO
    ========================= */
 
-async function getPortfolioEvents() {
+const homePortfolio = [
 
-  const response =
-    await fetch("/portfolio/");
+  {
+    event: "st-patricks-festival-2026",
+    page: "/portfolio/st-patricks-festival-2026/",
+    images: [
+      "/images/portfolio/st-patricks-festival-2026/SPF_001.webp",
+      "/images/portfolio/st-patricks-festival-2026/SPF_002.webp",
+      "/images/portfolio/st-patricks-festival-2026/SPF_003.webp",
+      "/images/portfolio/st-patricks-festival-2026/SPF_004.webp"
+    ]
+  },
 
-  if (!response.ok) {
-    throw new Error("Failed to load portfolio page");
+  {
+    event: "as-one-in-the-park-2026",
+    page: "/portfolio/as-one-in-the-park-2026/",
+    images: [
+      "/images/portfolio/as-one-in-the-park-2026/AOITP_001.webp",
+      "/images/portfolio/as-one-in-the-park-2026/AOITP_002.webp",
+      "/images/portfolio/as-one-in-the-park-2026/AOITP_003.webp",
+      "/images/portfolio/as-one-in-the-park-2026/AOITP_004.webp"
+    ]
   }
 
-  const html =
-    await response.text();
+  // Add more portfolio events here
 
-  const parser =
-    new DOMParser();
-
-  const document =
-    parser.parseFromString(html, "text/html");
-
-  const links =
-    [...document.querySelectorAll("a[href]")];
-
-  const eventLinks = [];
-
-  links.forEach(link => {
-
-    const url =
-      new URL(link.href, window.location.origin);
-
-    const path =
-      url.pathname.replace(/\/$/, "");
-
-    /*
-     * Only use links inside /portfolio/
-     * and ignore the main portfolio page itself.
-     */
-
-    if (
-      path.startsWith("/portfolio/") &&
-      path !== "/portfolio" &&
-      !eventLinks.some(
-        existing => existing.page === path
-      )
-    ) {
-
-      eventLinks.push({
-        page: path + "/"
-      });
-
-    }
-
-  });
-
-  return eventLinks;
-
-}
+];
 
 
 /* =========================
-   GET IMAGES FROM EVENT PAGE
+   SHUFFLE
    ========================= */
 
-async function getEventImages(event) {
+function shuffle(array) {
 
-  try {
+  const shuffled = [...array];
 
-    const response =
-      await fetch(event.page);
+  for (let i = shuffled.length - 1; i > 0; i--) {
 
-    if (!response.ok) {
-      return [];
-    }
+    const j = Math.floor(Math.random() * (i + 1));
 
-    const html =
-      await response.text();
-
-    const parser =
-      new DOMParser();
-
-    const document =
-      parser.parseFromString(html, "text/html");
-
-    /*
-     * Your portfolio galleries use
-     * .lightbox links.
-     */
-
-    const links =
-      [...document.querySelectorAll(
-        ".lightbox"
-      )];
-
-    return links.map(link => {
-
-      const image =
-        link.querySelector("img");
-
-      if (!image) {
-        return null;
-      }
-
-      return {
-        image: link.href,
-        thumbnail: image.src,
-        page: event.page,
-        event: event.page
-      };
-
-    }).filter(Boolean);
-
-  } catch (error) {
-
-    console.error(
-      "Error loading portfolio event:",
-      event.page,
-      error
-    );
-
-    return [];
+    [shuffled[i], shuffled[j]] =
+      [shuffled[j], shuffled[i]];
 
   }
 
+  return shuffled;
 }
 
 
@@ -258,35 +181,25 @@ async function getEventImages(event) {
 
 function getImageOrientation(src) {
 
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
 
-    const image =
-      new Image();
+    const img = new Image();
 
-    image.onload = () => {
+    img.onload = () => {
 
-      if (
-        image.naturalHeight >
-        image.naturalWidth
-      ) {
-
+      if (img.naturalHeight > img.naturalWidth) {
         resolve("portrait");
-
       } else {
-
         resolve("landscape");
-
       }
 
     };
 
-    image.onerror = () => {
-
+    img.onerror = () => {
       resolve(null);
-
     };
 
-    image.src = src;
+    img.src = src;
 
   });
 
@@ -294,34 +207,28 @@ function getImageOrientation(src) {
 
 
 /* =========================
-   BUILD ALL PORTFOLIO IMAGES
+   BUILD IMAGE LIST
    ========================= */
 
-async function buildPortfolioImages() {
+async function buildImageList() {
 
-  const events =
-    await getPortfolioEvents();
+  const images = [];
 
-  const allImages = [];
+  for (const event of homePortfolio) {
 
-  for (const event of events) {
-
-    const images =
-      await getEventImages(event);
-
-    for (const item of images) {
+    for (const image of event.images) {
 
       const orientation =
-        await getImageOrientation(
-          item.image
-        );
+        await getImageOrientation(image);
 
       if (!orientation) {
         continue;
       }
 
-      allImages.push({
-        ...item,
+      images.push({
+        image: image,
+        page: event.page,
+        event: event.event,
         orientation: orientation
       });
 
@@ -329,42 +236,7 @@ async function buildPortfolioImages() {
 
   }
 
-  return allImages;
-
-}
-
-
-/* =========================
-   SHUFFLE
-   ========================= */
-
-function shuffle(array) {
-
-  const shuffled =
-    [...array];
-
-  for (
-    let i = shuffled.length - 1;
-    i > 0;
-    i--
-  ) {
-
-    const j =
-      Math.floor(
-        Math.random() * (i + 1)
-      );
-
-    [
-      shuffled[i],
-      shuffled[j]
-    ] = [
-      shuffled[j],
-      shuffled[i]
-    ];
-
-  }
-
-  return shuffled;
+  return images;
 
 }
 
@@ -375,86 +247,72 @@ function shuffle(array) {
 
 async function getHomeImages() {
 
-  const allImages =
-    await buildPortfolioImages();
+  const allImages = await buildImageList();
 
-  const portraits =
-    shuffle(
-      allImages.filter(
-        item =>
-          item.orientation === "portrait"
-      )
-    );
+  const portraits = shuffle(
+    allImages.filter(
+      item => item.orientation === "portrait"
+    )
+  );
 
-  const landscapes =
-    shuffle(
-      allImages.filter(
-        item =>
-          item.orientation === "landscape"
-      )
-    );
+  const landscapes = shuffle(
+    allImages.filter(
+      item => item.orientation === "landscape"
+    )
+  );
 
 
   const selected = [];
-
-  const usedImages =
-    new Set();
-
   const eventCounts = {};
 
 
   /*
-   * Position 1
-   * Must be portrait.
+   * Select portrait for position 1
    */
 
   for (const item of portraits) {
 
-    selected.push(item);
+    if (!eventCounts[item.event]) {
 
-    usedImages.add(item.image);
+      selected.push(item);
+      eventCounts[item.event] = 1;
 
-    eventCounts[item.event] = 1;
+      break;
 
-    break;
+    }
 
   }
 
 
   /*
-   * Position 5
-   * Must be another portrait.
+   * Select portrait for position 5
    */
 
   for (const item of portraits) {
 
     if (
-      usedImages.has(item.image)
+      !selected.some(
+        selectedItem =>
+          selectedItem.image === item.image
+      )
+      &&
+      (eventCounts[item.event] || 0) < 2
     ) {
-      continue;
+
+      selected.push(item);
+      eventCounts[item.event] =
+        (eventCounts[item.event] || 0) + 1;
+
+      break;
+
     }
-
-    if (
-      (eventCounts[item.event] || 0) >= 2
-    ) {
-      continue;
-    }
-
-    selected.push(item);
-
-    usedImages.add(item.image);
-
-    eventCounts[item.event] =
-      (eventCounts[item.event] || 0) + 1;
-
-    break;
 
   }
 
 
   /*
-   * Positions 2, 3, 4 and 6
-   * Must be landscape.
+   * Select four landscape images
+   * while respecting the event limit.
    */
 
   for (const item of landscapes) {
@@ -463,7 +321,12 @@ async function getHomeImages() {
       break;
     }
 
-    if (usedImages.has(item.image)) {
+    if (
+      selected.some(
+        selectedItem =>
+          selectedItem.image === item.image
+      )
+    ) {
       continue;
     }
 
@@ -476,32 +339,14 @@ async function getHomeImages() {
 
     selected.push(item);
 
-    usedImages.add(item.image);
-
-    eventCounts[item.event] =
-      count + 1;
+    eventCounts[item.event] = count + 1;
 
   }
 
 
   /*
-   * Make sure we have six images.
-   */
-
-  if (selected.length < 6) {
-
-    console.warn(
-      "Not enough suitable portfolio images for homepage."
-    );
-
-    return [];
-
-  }
-
-
-  /*
-   * Put images into the exact
-   * positions required by CSS:
+   * Put the images into the correct
+   * positions:
    *
    * 1 = portrait
    * 2 = landscape
@@ -513,37 +358,29 @@ async function getHomeImages() {
 
   const portraitImages =
     selected.filter(
-      item =>
-        item.orientation === "portrait"
+      item => item.orientation === "portrait"
     );
 
   const landscapeImages =
     selected.filter(
-      item =>
-        item.orientation === "landscape"
+      item => item.orientation === "landscape"
     );
 
+
   return [
-
     portraitImages[0],
-
     landscapeImages[0],
-
     landscapeImages[1],
-
     landscapeImages[2],
-
     portraitImages[1],
-
     landscapeImages[3]
-
   ];
 
 }
 
 
 /* =========================
-   DISPLAY HOME IMAGES
+   DISPLAY IMAGES
    ========================= */
 
 async function displayHomeImages() {
@@ -555,79 +392,61 @@ async function displayHomeImages() {
     return;
   }
 
-  try {
+  const images =
+    await getHomeImages();
 
-    const images =
-      await getHomeImages();
 
-    if (!images.length) {
-      return;
-    }
+  /*
+   * Fade out
+   */
+
+  grid.style.opacity = "0";
+
+
+  setTimeout(() => {
+
+    grid.innerHTML = "";
+
+
+    images.forEach(item => {
+
+      if (!item) {
+        return;
+      }
+
+      const link =
+        document.createElement("a");
+
+      link.href = item.page;
+
+
+      const img =
+        document.createElement("img");
+
+      img.src = item.image;
+      img.alt = "View portfolio";
+      img.loading = "lazy";
+
+
+      link.appendChild(img);
+      grid.appendChild(link);
+
+    });
 
 
     /*
-     * Fade out.
+     * Fade in
      */
 
-    grid.style.opacity = "0";
+    grid.style.opacity = "1";
 
-
-    setTimeout(() => {
-
-      grid.innerHTML = "";
-
-
-      images.forEach(item => {
-
-        const link =
-          document.createElement("a");
-
-        link.href =
-          item.page;
-
-
-        const image =
-          document.createElement("img");
-
-        image.src =
-          item.image;
-
-        image.alt =
-          "View portfolio";
-
-        image.loading =
-          "lazy";
-
-
-        link.appendChild(image);
-
-        grid.appendChild(link);
-
-      });
-
-
-      /*
-       * Fade in.
-       */
-
-      grid.style.opacity = "1";
-
-    }, 800);
-
-  } catch (error) {
-
-    console.error(
-      "Error loading homepage portfolio:",
-      error
-    );
-
-  }
+  }, 800);
 
 }
 
 
 /* =========================
-   START HOME PORTFOLIO
+   START
    ========================= */
 
 document.addEventListener(
@@ -637,7 +456,7 @@ document.addEventListener(
     displayHomeImages();
 
     /*
-     * Change images every 60 seconds.
+     * Change photos every 60 seconds
      */
 
     setInterval(
@@ -648,43 +467,19 @@ document.addEventListener(
   }
 );
 
-
 /* =========================
    LIGHTBOX
    ========================= */
 
-function initialiseLightbox() {
+const lightboxLinks = document.querySelectorAll(".lightbox");
+const lightbox = document.querySelector(".lightbox-view");
 
-  const lightboxLinks =
-    document.querySelectorAll(".lightbox");
+if (lightboxLinks.length && lightbox) {
 
-  const lightbox =
-    document.querySelector(".lightbox-view");
-
-  if (
-    !lightboxLinks.length ||
-    !lightbox
-  ) {
-    return;
-  }
-
-  const lightboxImage =
-    lightbox.querySelector("img");
-
-  const closeButton =
-    lightbox.querySelector(
-      ".lightbox-close"
-    );
-
-  const previousButton =
-    lightbox.querySelector(
-      ".lightbox-prev"
-    );
-
-  const nextButton =
-    lightbox.querySelector(
-      ".lightbox-next"
-    );
+  const lightboxImage = lightbox.querySelector("img");
+  const closeButton = lightbox.querySelector(".lightbox-close");
+  const previousButton = lightbox.querySelector(".lightbox-prev");
+  const nextButton = lightbox.querySelector(".lightbox-next");
 
   let currentPhoto = 0;
 
@@ -696,33 +491,22 @@ function initialiseLightbox() {
   function showPhoto(index) {
 
     if (index < 0) {
-      index =
-        lightboxLinks.length - 1;
+      index = lightboxLinks.length - 1;
     }
 
-    if (
-      index >=
-      lightboxLinks.length
-    ) {
+    if (index >= lightboxLinks.length) {
       index = 0;
     }
 
     currentPhoto = index;
 
-    const link =
-      lightboxLinks[currentPhoto];
+    const link = lightboxLinks[currentPhoto];
+    const image = link.querySelector("img");
 
-    const image =
-      link.querySelector("img");
+    lightboxImage.src = link.href;
+    lightboxImage.alt = image.alt;
 
-    lightboxImage.src =
-      link.href;
-
-    lightboxImage.alt =
-      image.alt;
-
-    lightbox.style.display =
-      "flex";
+    lightbox.style.display = "flex";
 
   }
 
@@ -733,9 +517,7 @@ function initialiseLightbox() {
 
   function closeLightbox() {
 
-    lightbox.style.display =
-      "none";
-
+    lightbox.style.display = "none";
     lightboxImage.src = "";
 
   }
@@ -745,22 +527,17 @@ function initialiseLightbox() {
      PHOTO CLICK
      ========================= */
 
-  lightboxLinks.forEach(
-    (link, index) => {
+  lightboxLinks.forEach((link, index) => {
 
-      link.addEventListener(
-        "click",
-        function(e) {
+    link.addEventListener("click", function(e) {
 
-          e.preventDefault();
+      e.preventDefault();
 
-          showPhoto(index);
+      showPhoto(index);
 
-        }
-      );
+    });
 
-    }
-  );
+  });
 
 
   /* =========================
@@ -769,18 +546,13 @@ function initialiseLightbox() {
 
   if (previousButton) {
 
-    previousButton.addEventListener(
-      "click",
-      function(e) {
+    previousButton.addEventListener("click", function(e) {
 
-        e.stopPropagation();
+      e.stopPropagation();
 
-        showPhoto(
-          currentPhoto - 1
-        );
+      showPhoto(currentPhoto - 1);
 
-      }
-    );
+    });
 
   }
 
@@ -791,18 +563,13 @@ function initialiseLightbox() {
 
   if (nextButton) {
 
-    nextButton.addEventListener(
-      "click",
-      function(e) {
+    nextButton.addEventListener("click", function(e) {
 
-        e.stopPropagation();
+      e.stopPropagation();
 
-        showPhoto(
-          currentPhoto + 1
-        );
+      showPhoto(currentPhoto + 1);
 
-      }
-    );
+    });
 
   }
 
@@ -813,16 +580,13 @@ function initialiseLightbox() {
 
   if (closeButton) {
 
-    closeButton.addEventListener(
-      "click",
-      function(e) {
+    closeButton.addEventListener("click", function(e) {
 
-        e.stopPropagation();
+      e.stopPropagation();
 
-        closeLightbox();
+      closeLightbox();
 
-      }
-    );
+    });
 
   }
 
@@ -831,72 +595,45 @@ function initialiseLightbox() {
      CLICK OUTSIDE IMAGE
      ========================= */
 
-  lightbox.addEventListener(
-    "click",
-    function(e) {
+  lightbox.addEventListener("click", function(e) {
 
-      if (e.target === lightbox) {
+    if (e.target === lightbox) {
 
-        closeLightbox();
-
-      }
+      closeLightbox();
 
     }
-  );
+
+  });
 
 
   /* =========================
      KEYBOARD CONTROLS
      ========================= */
 
-  document.addEventListener(
-    "keydown",
-    function(e) {
+  document.addEventListener("keydown", function(e) {
 
-      if (
-        lightbox.style.display !==
-        "flex"
-      ) {
-        return;
-      }
+    if (lightbox.style.display !== "flex") {
+      return;
+    }
 
-      if (e.key === "ArrowLeft") {
+    if (e.key === "ArrowLeft") {
 
-        showPhoto(
-          currentPhoto - 1
-        );
-
-      }
-
-      if (e.key === "ArrowRight") {
-
-        showPhoto(
-          currentPhoto + 1
-        );
-
-      }
-
-      if (e.key === "Escape") {
-
-        closeLightbox();
-
-      }
+      showPhoto(currentPhoto - 1);
 
     }
-  );
+
+    if (e.key === "ArrowRight") {
+
+      showPhoto(currentPhoto + 1);
+
+    }
+
+    if (e.key === "Escape") {
+
+      closeLightbox();
+
+    }
+
+  });
 
 }
-
-
-/* =========================
-   START LIGHTBOX
-   ========================= */
-
-document.addEventListener(
-  "DOMContentLoaded",
-  () => {
-
-    initialiseLightbox();
-
-  }
-);

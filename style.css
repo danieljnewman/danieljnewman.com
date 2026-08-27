@@ -527,42 +527,103 @@ main h2 { /* MAY COME BACK TO */
   margin-bottom: 20px;
 }
 
-.contact-section {
-  max-width: 600px;
-  margin: 2rem auto;
-  padding: 1.5rem;
-}
+/*==HOME==*/
 
-.form-group {
-  margin-bottom: 1rem;
-}
-
-label { /* COME BACK TO */
-  display: block;
-  margin-bottom: 0.3rem;
-  font-weight: 700;
-}
-
-input, textarea {
+.home-grid {
   width: 100%;
-  padding: 0.6rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 1rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2em;
+  box-sizing: border-box;
 }
 
-button { /*COME BACK TO */
-  padding: 0.7rem 1.2rem;
-  border: none;
-  background: #333;
-  color: white; 
-  border-radius: 6px;
-  cursor: pointer;
+#home-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 1em;
+  aspect-ratio: 16 / 9;
 }
 
-button:hover {
-  opacity: 0.85;
+#home-grid a {
+  display: block;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
 }
+
+#home-grid a:nth-child(1) {
+  grid-column: 1;
+  grid-row: 1 / 3;
+}
+
+#home-grid a:nth-child(2) {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+#home-grid a:nth-child(3) {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+#home-grid a:nth-child(4) {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+#home-grid a:nth-child(5) {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+#home-grid a:nth-child(6) {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+#home-grid img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.4s ease, opacity 0.8s ease;
+}
+
+#home-grid a:hover img {
+  transform: scale(1.03);
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 700px) {
+
+  .home-grid {
+    padding: 1em;
+  }
+
+  #home-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    aspect-ratio: 4 / 3;
+  }
+
+  #home-grid a:nth-child(1),
+  #home-grid a:nth-child(2),
+  #home-grid a:nth-child(3),
+  #home-grid a:nth-child(4),
+  #home-grid a:nth-child(5),
+  #home-grid a:nth-child(6) {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+}
+
+/*PORTFOLIO*/
 
 .portfolio-intro {
   font-style: italic;
@@ -866,4 +927,43 @@ button:hover {
 .volunteering-long-term section:last-child {
   border-bottom: none;
   margin-bottom: 0;
+}
+
+/*CONTACT*/
+
+.contact-section {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label { /* COME BACK TO */
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 700;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+button { /*COME BACK TO */
+  padding: 0.7rem 1.2rem;
+  border: none;
+  background: #333;
+  color: white; 
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.85;
 }

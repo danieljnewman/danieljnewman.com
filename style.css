@@ -719,22 +719,38 @@ main h2 { /* MAY COME BACK TO */
   background: #251546;
 }
 
-.portfolio-page .portfolio-page-link {
-    position: relative;
+ .portfolio-page-link {
+    display: flex;
+    align-items: center;
     width: 100%;
     margin-bottom: 20px;
 }
 
-.portfolio-page .portfolio-page-link h3 {
+.portfolio-page-link h3 {
     margin: 0;
 }
 
-.portfolio-page .portfolio-page-link .back-link {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
+.portfolio-page-link .back-link {
+    margin-left: auto;
+    margin-bottom: 0;
+    white-space: nowrap;
+}
+
+/*
+.portfolio-page-link {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.portfolio-page-link h3 {
     margin: 0;
+}
+
+.portfolio-page-link .back-link {
+    margin-left: auto;
+    margin-bottom: 0;
     white-space: nowrap;
 }
 

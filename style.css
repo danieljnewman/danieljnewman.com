@@ -726,11 +726,19 @@ main h2 { /* MAY COME BACK TO */
   background: #251546;
 }
 
+/*Back to Port link*/
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
 .portfolio-page .portfolio-page-link {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 .portfolio-page .portfolio-page-link h3 {
@@ -739,7 +747,6 @@ main h2 { /* MAY COME BACK TO */
 
 .portfolio-page .portfolio-page-link .back-link {
     margin-left: auto;
-    margin-bottom: 0;
     white-space: nowrap;
 }
 

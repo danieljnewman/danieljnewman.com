@@ -826,3 +826,5 @@ document.addEventListener(
 
   }
 );
+
+console.log("NEW SCRIPT.JS LOADED");

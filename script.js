@@ -308,23 +308,32 @@ async function buildPortfolioImages() {
     const images =
       await getEventImages(event);
 
-    for (const item of images) {
+    const checkedImages =
+      await Promise.all(
 
-      const orientation =
-        await getImageOrientation(
-          item.image
-        );
+        images.map(async item => {
 
-      if (!orientation) {
-        continue;
-      }
+          const orientation =
+            await getImageOrientation(
+              item.image
+            );
 
-      allImages.push({
-        ...item,
-        orientation: orientation
-      });
+          if (!orientation) {
+            return null;
+          }
 
-    }
+          return {
+            ...item,
+            orientation: orientation
+          };
+
+        })
+
+      );
+
+    allImages.push(
+      ...checkedImages.filter(Boolean)
+    );
 
   }
 

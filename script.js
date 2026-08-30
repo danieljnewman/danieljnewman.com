@@ -362,6 +362,199 @@ async function buildPortfolioImages() {
 
 }
 
+/* =========================
+   SHUFFLE
+   ========================= */
+
+function shuffle(array) {
+
+  const shuffled = [...array];
+
+  for (
+    let i = shuffled.length - 1;
+    i > 0;
+    i--
+  ) {
+
+    const j =
+      Math.floor(
+        Math.random() * (i + 1)
+      );
+
+    [
+      shuffled[i],
+      shuffled[j]
+    ] = [
+      shuffled[j],
+      shuffled[i]
+    ];
+
+  }
+
+  return shuffled;
+
+}
+
+
+/* =========================
+   SELECT HOME IMAGES
+   ========================= */
+
+async function getHomeImages() {
+
+  const allImages =
+    await buildPortfolioImages();
+
+  const portraits =
+    shuffle(
+      allImages.filter(
+        item =>
+          item.orientation === "portrait"
+      )
+    );
+
+  const landscapes =
+    shuffle(
+      allImages.filter(
+        item =>
+          item.orientation === "landscape"
+      )
+    );
+
+  const selected = [];
+
+  const usedImages =
+    new Set();
+
+  const eventCounts = {};
+
+
+  /* =========================
+     SELECT TWO PORTRAITS
+     ========================= */
+
+  for (const item of portraits) {
+
+    if (selected.length >= 2) {
+      break;
+    }
+
+    if (usedImages.has(item.image)) {
+      continue;
+    }
+
+    const count =
+      eventCounts[item.event] || 0;
+
+    if (count >= 2) {
+      continue;
+    }
+
+    selected.push(item);
+
+    usedImages.add(item.image);
+
+    eventCounts[item.event] =
+      count + 1;
+
+  }
+
+
+  /* =========================
+     SELECT SIX LANDSCAPES
+     ========================= */
+
+  for (const item of landscapes) {
+
+    if (selected.length >= 8) {
+      break;
+    }
+
+    if (usedImages.has(item.image)) {
+      continue;
+    }
+
+    const count =
+      eventCounts[item.event] || 0;
+
+    if (count >= 2) {
+      continue;
+    }
+
+    selected.push(item);
+
+    usedImages.add(item.image);
+
+    eventCounts[item.event] =
+      count + 1;
+
+  }
+
+
+  /* =========================
+     CHECK SELECTION
+     ========================= */
+
+  if (selected.length < 8) {
+
+    console.warn(
+      "Not enough suitable images for homepage."
+    );
+
+    return [];
+
+  }
+
+
+  /* =========================
+     SEPARATE ORIENTATIONS
+     ========================= */
+
+  const portraitImages =
+    selected.filter(
+      item =>
+        item.orientation === "portrait"
+    );
+
+  const landscapeImages =
+    selected.filter(
+      item =>
+        item.orientation === "landscape"
+    );
+
+
+  /* =========================
+     FINAL ORDER
+     ========================= */
+
+  const homeImages = [
+
+    portraitImages[0],
+
+    landscapeImages[0],
+    landscapeImages[1],
+    landscapeImages[2],
+    landscapeImages[3],
+    landscapeImages[4],
+    landscapeImages[5],
+
+    portraitImages[1]
+
+  ];
+
+  console.log(
+    "HOME IMAGES SELECTED:",
+    homeImages
+  );
+
+  console.log(
+    "EVENT COUNTS:",
+    eventCounts
+  );
+
+  return homeImages;
+
+}
 
 /* =========================
    TEST ORIENTATION

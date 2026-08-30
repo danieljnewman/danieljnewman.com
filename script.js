@@ -827,4 +827,30 @@ document.addEventListener(
   }
 );
 
+console.log("STARTING HOME IMAGE TEST");
+
+document.addEventListener("DOMContentLoaded", async () => {
+
+  console.log("HOME DOM READY");
+
+  try {
+
+    const images = await getHomeImages();
+
+    console.log(
+      "HOME IMAGES:",
+      images
+    );
+
+  } catch (error) {
+
+    console.error(
+      "HOME IMAGE ERROR:",
+      error
+    );
+
+  }
+
+});
+
 console.log("NEW SCRIPT.JS LOADED");

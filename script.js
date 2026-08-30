@@ -52,6 +52,7 @@ function initialiseNavigation() {
   const nav =
     document.querySelector("nav");
 
+
   if (menuToggle && nav) {
 
     menuToggle.addEventListener(
@@ -86,6 +87,7 @@ function initialiseNavigation() {
       ".submenu-toggle"
     );
 
+
   submenuToggles.forEach(
     toggle => {
 
@@ -102,6 +104,7 @@ function initialiseNavigation() {
             return;
           }
 
+
           const submenu =
             parent.parentElement.querySelector(
               ":scope > .submenu"
@@ -111,15 +114,18 @@ function initialiseNavigation() {
             return;
           }
 
+
           const isOpen =
             submenu.classList.toggle(
               "open"
             );
 
+
           toggle.classList.toggle(
             "open",
             isOpen
           );
+
 
           toggle.setAttribute(
             "aria-expanded",
@@ -129,7 +135,8 @@ function initialiseNavigation() {
         }
       );
 
-    });
+    }
+  );
 
 
   /* =========================
@@ -139,6 +146,7 @@ function initialiseNavigation() {
   const currentPage =
     window.location.pathname
       .replace(/\/$/, "");
+
 
   document
     .querySelectorAll("nav a")
@@ -152,9 +160,15 @@ function initialiseNavigation() {
           .pathname
           .replace(/\/$/, "");
 
-      if (linkPage === currentPage) {
 
-        link.classList.add("active");
+      if (
+        linkPage ===
+        currentPage
+      ) {
+
+        link.classList.add(
+          "active"
+        );
 
       }
 
@@ -179,6 +193,7 @@ async function getPortfolioEvents() {
   const response =
     await fetch("/portfolio/");
 
+
   if (!response.ok) {
 
     throw new Error(
@@ -187,23 +202,28 @@ async function getPortfolioEvents() {
 
   }
 
+
   const html =
     await response.text();
+
 
   const parser =
     new DOMParser();
 
-  const document =
+
+  const portfolioDocument =
     parser.parseFromString(
       html,
       "text/html"
     );
 
+
   const links = [
-    ...document.querySelectorAll(
+    ...portfolioDocument.querySelectorAll(
       "a[href]"
     )
   ];
+
 
   const events = [];
 
@@ -216,6 +236,7 @@ async function getPortfolioEvents() {
         window.location.origin
       );
 
+
     const path =
       url.pathname.replace(
         /\/$/,
@@ -224,12 +245,14 @@ async function getPortfolioEvents() {
 
 
     /*
-     * Only include portfolio
-     * event pages.
+     * Only include links inside
+     * the portfolio section.
      */
 
     if (
-      path.startsWith("/portfolio/") &&
+      path.startsWith(
+        "/portfolio/"
+      ) &&
       path !== "/portfolio" &&
       !events.includes(path)
     ) {
@@ -245,6 +268,7 @@ async function getPortfolioEvents() {
     "Portfolio events found:",
     events
   );
+
 
   return events;
 
@@ -264,6 +288,7 @@ async function getEventImages(
     const response =
       await fetch(eventPage);
 
+
     if (!response.ok) {
 
       throw new Error(
@@ -272,24 +297,29 @@ async function getEventImages(
 
     }
 
+
     const html =
       await response.text();
+
 
     const parser =
       new DOMParser();
 
-    const document =
+
+    const eventDocument =
       parser.parseFromString(
         html,
         "text/html"
       );
 
+
     const links =
       [
-        ...document.querySelectorAll(
+        ...eventDocument.querySelectorAll(
           ".lightbox"
         )
       ];
+
 
     const images =
       links
@@ -298,17 +328,28 @@ async function getEventImages(
           const image =
             link.querySelector("img");
 
+
           if (!image) {
             return null;
           }
 
+
           return {
 
-            image: link.href,
+            image:
+              new URL(
+                link.href,
+                window.location.origin
+              ).href,
 
-            thumbnail: image.src,
+            thumbnail:
+              new URL(
+                image.src,
+                window.location.origin
+              ).href,
 
-            event: eventPage
+            event:
+              eventPage
 
           };
 
@@ -322,6 +363,7 @@ async function getEventImages(
       images.length
     );
 
+
     return images;
 
   } catch (error) {
@@ -331,6 +373,7 @@ async function getEventImages(
       eventPage,
       error
     );
+
 
     return [];
 
@@ -343,12 +386,15 @@ async function getEventImages(
    GET IMAGE ORIENTATION
    ========================= */
 
-function getImageOrientation(src) {
+function getImageOrientation(
+  src
+) {
 
   return new Promise(resolve => {
 
     const image =
       new Image();
+
 
     image.onload = () => {
 
@@ -367,11 +413,13 @@ function getImageOrientation(src) {
 
     };
 
+
     image.onerror = () => {
 
       resolve(null);
 
     };
+
 
     image.src = src;
 
@@ -389,6 +437,7 @@ async function buildPortfolioImages() {
   const events =
     await getPortfolioEvents();
 
+
   const allImages = [];
 
 
@@ -396,6 +445,7 @@ async function buildPortfolioImages() {
 
     const images =
       await getEventImages(event);
+
 
     const checkedImages =
       await Promise.all(
@@ -408,9 +458,11 @@ async function buildPortfolioImages() {
                 item.image
               );
 
+
             if (!orientation) {
               return null;
             }
+
 
             return {
 
@@ -441,6 +493,7 @@ async function buildPortfolioImages() {
     allImages.length
   );
 
+
   console.log(
     "PORTRAITS:",
     allImages.filter(
@@ -449,6 +502,7 @@ async function buildPortfolioImages() {
         "portrait"
     ).length
   );
+
 
   console.log(
     "LANDSCAPES:",
@@ -476,7 +530,8 @@ function shuffle(array) {
 
 
   for (
-    let i = shuffled.length - 1;
+    let i =
+      shuffled.length - 1;
     i > 0;
     i--
   ) {
@@ -507,6 +562,22 @@ function shuffle(array) {
 /* =========================
    SELECT HOME IMAGES
    ========================= */
+
+/*
+ * Homepage layout:
+ *
+ * 1 = portrait
+ * 2 = landscape
+ * 3 = landscape
+ * 4 = landscape
+ * 5 = landscape
+ * 6 = landscape
+ * 7 = portrait
+ *
+ * Total:
+ * 2 portraits
+ * 5 landscapes
+ */
 
 async function getHomeImages() {
 
@@ -604,6 +675,11 @@ async function getHomeImages() {
       )[0];
 
 
+    if (!item) {
+      return;
+    }
+
+
     selected.push(item);
 
     usedImages.add(
@@ -624,7 +700,7 @@ async function getHomeImages() {
 
 
   /* =========================
-     SELECT SIX LANDSCAPES
+     SELECT FIVE LANDSCAPES
      ========================= */
 
   while (
@@ -632,7 +708,7 @@ async function getHomeImages() {
       item =>
         item.orientation ===
         "landscape"
-    ).length < 6 &&
+    ).length < 5 &&
     landscapes.length
   ) {
 
@@ -685,6 +761,11 @@ async function getHomeImages() {
       )[0];
 
 
+    if (!item) {
+      return;
+    }
+
+
     selected.push(item);
 
     usedImages.add(
@@ -709,13 +790,14 @@ async function getHomeImages() {
      ========================= */
 
   if (
-    selected.length !== 8
+    selected.length !== 7
   ) {
 
     console.warn(
-      "Could not select 8 homepage images.",
+      "Could not select 7 homepage images.",
       selected.length
     );
+
 
     return [];
 
@@ -748,20 +830,25 @@ async function getHomeImages() {
 
   const homeImages = [
 
+    /* 1 — top left */
     portraitImages[0],
 
+    /* 2 — bottom left */
     landscapeImages[0],
 
+    /* 3 — top middle */
     landscapeImages[1],
 
+    /* 4 — middle middle */
     landscapeImages[2],
 
+    /* 5 — bottom middle */
     landscapeImages[3],
 
+    /* 6 — top right */
     landscapeImages[4],
 
-    landscapeImages[5],
-
+    /* 7 — bottom right */
     portraitImages[1]
 
   ];
@@ -771,6 +858,7 @@ async function getHomeImages() {
     "HOME IMAGES SELECTED:",
     homeImages
   );
+
 
   console.log(
     "EVENT COUNTS:",
@@ -794,6 +882,7 @@ async function displayHomeImages() {
       "#home-grid"
     );
 
+
   if (!grid) {
     return;
   }
@@ -807,8 +896,12 @@ async function displayHomeImages() {
 
     if (
       !images ||
-      images.length !== 8
+      images.length !== 7
     ) {
+
+      console.warn(
+        "Homepage images were not loaded."
+      );
 
       return;
 
@@ -852,8 +945,10 @@ async function displayHomeImages() {
             image.src =
               item.image;
 
+
             image.alt =
               "View portfolio";
+
 
             image.loading =
               "lazy";
@@ -862,6 +957,7 @@ async function displayHomeImages() {
             link.appendChild(
               image
             );
+
 
             grid.appendChild(
               link
@@ -905,6 +1001,7 @@ function initialiseLightbox() {
     document.querySelectorAll(
       ".lightbox"
     );
+
 
   const lightbox =
     document.querySelector(
@@ -1012,6 +1109,7 @@ function initialiseLightbox() {
     lightbox.style.display =
       "none";
 
+
     lightboxImage.src =
       "";
 
@@ -1052,6 +1150,7 @@ function initialiseLightbox() {
 
         e.stopPropagation();
 
+
         showPhoto(
           currentPhoto - 1
         );
@@ -1074,6 +1173,7 @@ function initialiseLightbox() {
 
         e.stopPropagation();
 
+
         showPhoto(
           currentPhoto + 1
         );
@@ -1095,6 +1195,7 @@ function initialiseLightbox() {
       function(e) {
 
         e.stopPropagation();
+
 
         closeLightbox();
 
@@ -1190,13 +1291,24 @@ document.addEventListener(
   "DOMContentLoaded",
   () => {
 
+    /*
+     * Build the homepage
+     * immediately.
+     */
+
     displayHomeImages();
+
+
+    /*
+     * Start portfolio lightbox.
+     */
 
     initialiseLightbox();
 
+
     /*
-     * Change the homepage
-     * selection every 60 seconds.
+     * Select a new set of
+     * 7 photos every 60 seconds.
      */
 
     setInterval(

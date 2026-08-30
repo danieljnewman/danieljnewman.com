@@ -433,38 +433,47 @@ async function getHomeImages() {
      SELECT TWO PORTRAITS
      ========================= */
 
-  for (const item of portraits) {
+  while (
+    selected.filter(
+      item =>
+        item.orientation === "portrait"
+    ).length < 2 &&
+    portraits.length
+  ) {
 
-    if (selected.length >= 2) {
-      break;
-    }
+    let bestIndex = 0;
+    let bestCount = Infinity;
 
-    if (usedImages.has(item.image)) {
-      continue;
-    }
+    portraits.forEach((item, index) => {
 
-    const count =
-      eventCounts[item.event] || 0;
+      if (usedImages.has(item.image)) {
+        return;
+      }
 
-    const lowestPortraitCount =
-      Math.min(
-        ...Object.values(eventCounts),
-        0
-      );
+      const count =
+        eventCounts[item.event] || 0;
 
-    if (
-      count > lowestPortraitCount &&
-      Object.keys(eventCounts).length > 1
-    ) {
-      continue;
-    }
+      if (count < bestCount) {
+
+        bestCount = count;
+        bestIndex = index;
+
+      }
+
+    });
+
+    const item =
+      portraits.splice(
+        bestIndex,
+        1
+      )[0];
 
     selected.push(item);
 
     usedImages.add(item.image);
 
     eventCounts[item.event] =
-      count + 1;
+      (eventCounts[item.event] || 0) + 1;
 
   }
 
@@ -473,38 +482,47 @@ async function getHomeImages() {
      SELECT SIX LANDSCAPES
      ========================= */
 
-  for (const item of landscapes) {
+  while (
+    selected.filter(
+      item =>
+        item.orientation === "landscape"
+    ).length < 6 &&
+    landscapes.length
+  ) {
 
-    if (selected.length >= 8) {
-      break;
-    }
+    let bestIndex = 0;
+    let bestCount = Infinity;
 
-    if (usedImages.has(item.image)) {
-      continue;
-    }
+    landscapes.forEach((item, index) => {
 
-    const count =
-      eventCounts[item.event] || 0;
+      if (usedImages.has(item.image)) {
+        return;
+      }
 
-    const lowestEventCount =
-      Math.min(
-        ...Object.values(eventCounts),
-        0
-      );
+      const count =
+        eventCounts[item.event] || 0;
 
-    if (
-      count > lowestEventCount &&
-      Object.keys(eventCounts).length > 1
-    ) {
-      continue;
-    }
+      if (count < bestCount) {
+
+        bestCount = count;
+        bestIndex = index;
+
+      }
+
+    });
+
+    const item =
+      landscapes.splice(
+        bestIndex,
+        1
+      )[0];
 
     selected.push(item);
 
     usedImages.add(item.image);
 
     eventCounts[item.event] =
-      count + 1;
+      (eventCounts[item.event] || 0) + 1;
 
   }
 
@@ -513,10 +531,11 @@ async function getHomeImages() {
      CHECK SELECTION
      ========================= */
 
-  if (selected.length < 8) {
+  if (selected.length !== 8) {
 
     console.warn(
-      "Not enough suitable images for homepage."
+      "Could not select 8 homepage images.",
+      selected.length
     );
 
     return [];

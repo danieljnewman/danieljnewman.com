@@ -179,22 +179,115 @@ async function getPortfolioEvents() {
 
 
 /* =========================
-   TEST
+   GET IMAGES FROM EVENTS
+   ========================= */
+
+async function getEventImages(eventPage) {
+
+  try {
+
+    const response =
+      await fetch(eventPage);
+
+    if (!response.ok) {
+      throw new Error(
+        `Failed to load ${eventPage}`
+      );
+    }
+
+    const html =
+      await response.text();
+
+    const parser =
+      new DOMParser();
+
+    const document =
+      parser.parseFromString(
+        html,
+        "text/html"
+      );
+
+    const links =
+      [...document.querySelectorAll(".lightbox")];
+
+    const images =
+      links.map(link => {
+
+        const image =
+          link.querySelector("img");
+
+        if (!image) {
+          return null;
+        }
+
+        return {
+          image: link.href,
+          thumbnail: image.src,
+          event: eventPage
+        };
+
+      }).filter(Boolean);
+
+    console.log(
+      eventPage,
+      "images found:",
+      images.length
+    );
+
+    return images;
+
+  } catch (error) {
+
+    console.error(
+      "Error loading event:",
+      eventPage,
+      error
+    );
+
+    return [];
+
+  }
+
+}
+
+
+/* =========================
+   TEST IMAGE SEARCH
    ========================= */
 
 document.addEventListener(
   "DOMContentLoaded",
-  () => {
+  async () => {
 
-    getPortfolioEvents()
-      .catch(error => {
+    try {
 
-        console.error(
-          "Homepage portfolio error:",
-          error
-        );
+      const events =
+        await getPortfolioEvents();
 
-      });
+      let totalImages = 0;
+
+      for (const event of events) {
+
+        const images =
+          await getEventImages(event);
+
+        totalImages += images.length;
+
+      }
+
+      console.log(
+        "TOTAL IMAGES FOUND:",
+        totalImages
+      );
+
+    } catch (error) {
+
+      console.error(
+        "Homepage portfolio error:",
+        error
+      );
+
+    }
 
   }
 );

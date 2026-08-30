@@ -557,7 +557,7 @@ async function getHomeImages() {
 }
 
 /* =========================
-   TEST ORIENTATION
+   TEST HOME IMAGE SELECTION
    ========================= */
 
 document.addEventListener(
@@ -566,7 +566,7 @@ document.addEventListener(
 
     try {
 
-      await buildPortfolioImages();
+      await getHomeImages();
 
     } catch (error) {
 

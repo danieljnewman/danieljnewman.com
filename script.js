@@ -183,6 +183,48 @@ function initialiseNavigation() {
 
 loadHeader();
 
+/* =========================
+   LOAD SHARED FOOTER
+   ========================= */
+
+async function loadFooter() {
+
+  const footerContainer = document.querySelector("#site-footer");
+
+  if (!footerContainer) {
+    return;
+  }
+
+  try {
+
+    const response = await fetch("/footer.html");
+
+    if (!response.ok) {
+      throw new Error("Failed to load footer");
+    }
+
+    const footerHTML = await response.text();
+
+    footerContainer.innerHTML = footerHTML;
+
+    const year = document.querySelector("#year");
+
+    if (year) {
+      year.textContent = new Date().getFullYear();
+    }
+
+  } catch (error) {
+
+    console.error("Error loading footer:", error);
+
+  }
+
+}
+
+/* START FOOTER */
+
+loadFooter();
+
 
 /* =========================
    HOME PORTFOLIO

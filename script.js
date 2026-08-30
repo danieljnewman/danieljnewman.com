@@ -446,7 +446,16 @@ async function getHomeImages() {
     const count =
       eventCounts[item.event] || 0;
 
-    if (count >= 2) {
+    const lowestPortraitCount =
+      Math.min(
+        ...Object.values(eventCounts),
+        0
+      );
+
+    if (
+      count > lowestPortraitCount &&
+      Object.keys(eventCounts).length > 1
+    ) {
       continue;
     }
 
@@ -477,7 +486,16 @@ async function getHomeImages() {
     const count =
       eventCounts[item.event] || 0;
 
-    if (count >= 2) {
+    const lowestEventCount =
+      Math.min(
+        ...Object.values(eventCounts),
+        0
+      );
+
+    if (
+      count > lowestEventCount &&
+      Object.keys(eventCounts).length > 1
+    ) {
       continue;
     }
 
@@ -542,6 +560,7 @@ async function getHomeImages() {
 
   ];
 
+
   console.log(
     "HOME IMAGES SELECTED:",
     homeImages
@@ -555,30 +574,6 @@ async function getHomeImages() {
   return homeImages;
 
 }
-
-/* =========================
-   TEST HOME IMAGE SELECTION
-   ========================= */
-
-document.addEventListener(
-  "DOMContentLoaded",
-  async () => {
-
-    try {
-
-      await getHomeImages();
-
-    } catch (error) {
-
-      console.error(
-        "Homepage portfolio error:",
-        error
-      );
-
-    }
-
-  }
-);
 
 /* =========================
    LIGHTBOX

@@ -252,7 +252,110 @@ async function getEventImages(eventPage) {
 
 
 /* =========================
-   TEST IMAGE SEARCH
+   GET IMAGE ORIENTATION
+   ========================= */
+
+function getImageOrientation(src) {
+
+  return new Promise(resolve => {
+
+    const image =
+      new Image();
+
+    image.onload = () => {
+
+      if (
+        image.naturalHeight >
+        image.naturalWidth
+      ) {
+
+        resolve("portrait");
+
+      } else {
+
+        resolve("landscape");
+
+      }
+
+    };
+
+    image.onerror = () => {
+
+      resolve(null);
+
+    };
+
+    image.src = src;
+
+  });
+
+}
+
+
+/* =========================
+   BUILD ALL PORTFOLIO IMAGES
+   ========================= */
+
+async function buildPortfolioImages() {
+
+  const events =
+    await getPortfolioEvents();
+
+  const allImages = [];
+
+  for (const event of events) {
+
+    const images =
+      await getEventImages(event);
+
+    for (const item of images) {
+
+      const orientation =
+        await getImageOrientation(
+          item.image
+        );
+
+      if (!orientation) {
+        continue;
+      }
+
+      allImages.push({
+        ...item,
+        orientation: orientation
+      });
+
+    }
+
+  }
+
+  console.log(
+    "TOTAL VALID IMAGES:",
+    allImages.length
+  );
+
+  console.log(
+    "PORTRAITS:",
+    allImages.filter(
+      item =>
+        item.orientation === "portrait"
+    ).length
+  );
+
+  console.log(
+    "LANDSCAPES:",
+    allImages.filter(
+      item =>
+        item.orientation === "landscape"
+    ).length
+  );
+
+  return allImages;
+
+}
+
+
+/* =========================
+   TEST ORIENTATION
    ========================= */
 
 document.addEventListener(
@@ -261,24 +364,7 @@ document.addEventListener(
 
     try {
 
-      const events =
-        await getPortfolioEvents();
-
-      let totalImages = 0;
-
-      for (const event of events) {
-
-        const images =
-          await getEventImages(event);
-
-        totalImages += images.length;
-
-      }
-
-      console.log(
-        "TOTAL IMAGES FOUND:",
-        totalImages
-      );
+      await buildPortfolioImages();
 
     } catch (error) {
 

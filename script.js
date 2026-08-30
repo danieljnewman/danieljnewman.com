@@ -245,8 +245,8 @@ async function getPortfolioEvents() {
 
 
     /*
-     * Only include links inside
-     * the portfolio section.
+     * Only include portfolio
+     * event pages.
      */
 
     if (
@@ -564,19 +564,22 @@ function shuffle(array) {
    ========================= */
 
 /*
- * Homepage layout:
+ * Homepage:
  *
- * 1 = portrait
- * 2 = landscape
- * 3 = landscape
- * 4 = landscape
- * 5 = landscape
- * 6 = landscape
- * 7 = portrait
+ * 1  = portrait
+ * 2  = landscape
+ * 3  = landscape
+ * 4  = landscape
+ * 5  = landscape
+ * 6  = landscape
+ * 7  = landscape
+ * 8  = landscape
+ * 9  = landscape
+ * 10 = portrait
  *
  * Total:
  * 2 portraits
- * 5 landscapes
+ * 8 landscapes
  */
 
 async function getHomeImages() {
@@ -700,7 +703,7 @@ async function getHomeImages() {
 
 
   /* =========================
-     SELECT FIVE LANDSCAPES
+     SELECT EIGHT LANDSCAPES
      ========================= */
 
   while (
@@ -708,7 +711,7 @@ async function getHomeImages() {
       item =>
         item.orientation ===
         "landscape"
-    ).length < 5 &&
+    ).length < 8 &&
     landscapes.length
   ) {
 
@@ -790,11 +793,11 @@ async function getHomeImages() {
      ========================= */
 
   if (
-    selected.length !== 7
+    selected.length !== 10
   ) {
 
     console.warn(
-      "Could not select 7 homepage images.",
+      "Could not select 10 homepage images.",
       selected.length
     );
 
@@ -836,19 +839,28 @@ async function getHomeImages() {
     /* 2 — bottom left */
     landscapeImages[0],
 
-    /* 3 — top middle */
+    /* 3 — column 2 / top */
     landscapeImages[1],
 
-    /* 4 — middle middle */
+    /* 4 — column 2 / middle */
     landscapeImages[2],
 
-    /* 5 — bottom middle */
+    /* 5 — column 2 / bottom */
     landscapeImages[3],
 
-    /* 6 — top right */
+    /* 6 — column 3 / top */
     landscapeImages[4],
 
-    /* 7 — bottom right */
+    /* 7 — column 3 / middle */
+    landscapeImages[5],
+
+    /* 8 — column 3 / bottom */
+    landscapeImages[6],
+
+    /* 9 — top right */
+    landscapeImages[7],
+
+    /* 10 — bottom right */
     portraitImages[1]
 
   ];
@@ -896,7 +908,7 @@ async function displayHomeImages() {
 
     if (
       !images ||
-      images.length !== 7
+      images.length !== 10
     ) {
 
       console.warn(
@@ -1292,8 +1304,7 @@ document.addEventListener(
   () => {
 
     /*
-     * Build the homepage
-     * immediately.
+     * Build homepage immediately.
      */
 
     displayHomeImages();
@@ -1308,7 +1319,7 @@ document.addEventListener(
 
     /*
      * Select a new set of
-     * 7 photos every 60 seconds.
+     * 10 photos every 60 seconds.
      */
 
     setInterval(

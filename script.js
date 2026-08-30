@@ -123,6 +123,81 @@ function initialiseNavigation() {
 
 loadHeader();
 
+/* =========================
+   HOME PORTFOLIO
+   ========================= */
+
+async function getPortfolioEvents() {
+
+  const response = await fetch("/portfolio/");
+
+  if (!response.ok) {
+    throw new Error("Failed to load portfolio page");
+  }
+
+  const html = await response.text();
+
+  const parser = new DOMParser();
+
+  const document = parser.parseFromString(
+    html,
+    "text/html"
+  );
+
+  const links = [
+    ...document.querySelectorAll("a[href]")
+  ];
+
+  const events = [];
+
+  links.forEach(link => {
+
+    const url = new URL(
+      link.href,
+      window.location.origin
+    );
+
+    const path = url.pathname.replace(/\/$/, "");
+
+    if (
+      path.startsWith("/portfolio/") &&
+      path !== "/portfolio" &&
+      !events.includes(path)
+    ) {
+
+      events.push(path);
+
+    }
+
+  });
+
+  console.log("Portfolio events found:", events);
+
+  return events;
+
+}
+
+
+/* =========================
+   TEST
+   ========================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    getPortfolioEvents()
+      .catch(error => {
+
+        console.error(
+          "Homepage portfolio error:",
+          error
+        );
+
+      });
+
+  }
+);
 
 /* =========================
    LIGHTBOX

@@ -498,16 +498,7 @@ async function getHomeImages() {
 
 
   /*
-   * Homepage positions:
-   *
-   * 1 = portrait
-   * 2 = landscape
-   * 3 = landscape
-   * 4 = landscape
-   * 5 = landscape
-   * 6 = landscape
-   * 7 = landscape
-   * 8 = portrait
+   * Return eight images.
    */
 
   return [

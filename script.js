@@ -183,45 +183,71 @@ function initialiseNavigation() {
 
 loadHeader();
 
+
 /* =========================
    LOAD SHARED FOOTER
    ========================= */
 
 async function loadFooter() {
 
-  const footerContainer = document.querySelector("#site-footer");
+  const footerContainer =
+    document.querySelector(
+      "#site-footer"
+    );
 
   if (!footerContainer) {
     return;
   }
 
+
   try {
 
-    const response = await fetch("/footer.html");
+    const response =
+      await fetch("/footer.html");
 
     if (!response.ok) {
-      throw new Error("Failed to load footer");
+      throw new Error(
+        "Failed to load footer"
+      );
     }
 
-    const footerHTML = await response.text();
 
-    footerContainer.innerHTML = footerHTML;
+    const footerHTML =
+      await response.text();
 
-    const year = document.querySelector("#year");
+
+    footerContainer.innerHTML =
+      footerHTML;
+
+
+    const year =
+      document.querySelector(
+        "#year"
+      );
+
 
     if (year) {
-      year.textContent = new Date().getFullYear();
+
+      year.textContent =
+        new Date().getFullYear();
+
     }
 
   } catch (error) {
 
-    console.error("Error loading footer:", error);
+    console.error(
+      "Error loading footer:",
+      error
+    );
 
   }
 
 }
 
-/* START FOOTER */
+
+/* =========================
+   START FOOTER
+   ========================= */
 
 loadFooter();
 
@@ -236,14 +262,21 @@ async function getPortfolioEvents() {
     await fetch("/portfolio/");
 
   if (!response.ok) {
-    throw new Error("Failed to load portfolio page");
+
+    throw new Error(
+      "Failed to load portfolio page"
+    );
+
   }
+
 
   const html =
     await response.text();
 
+
   const parser =
     new DOMParser();
+
 
   const document =
     parser.parseFromString(
@@ -251,10 +284,17 @@ async function getPortfolioEvents() {
       "text/html"
     );
 
+
   const links =
-    [...document.querySelectorAll("a[href]")];
+    [
+      ...document.querySelectorAll(
+        "a[href]"
+      )
+    ];
+
 
   const events = [];
+
 
   links.forEach(link => {
 
@@ -264,11 +304,20 @@ async function getPortfolioEvents() {
         window.location.origin
       );
 
+
     const path =
       url.pathname.replace(
         /\/$/,
         ""
       );
+
+
+    /*
+     * Only include portfolio
+     * event pages.
+     *
+     * Ignore old .html pages.
+     */
 
     if (
       path.startsWith("/portfolio/") &&
@@ -283,10 +332,12 @@ async function getPortfolioEvents() {
 
   });
 
+
   console.log(
     "Portfolio events found:",
     events
   );
+
 
   return events;
 
@@ -297,28 +348,42 @@ async function getPortfolioEvents() {
    GET IMAGES FROM EVENT
    ========================= */
 
-async function getEventImages(eventPage) {
+async function getEventImages(
+  eventPage
+) {
 
   try {
 
     const response =
       await fetch(eventPage);
 
+
     if (!response.ok) {
+
+      console.warn(
+        "Skipping unavailable event:",
+        eventPage
+      );
+
       return [];
+
     }
+
 
     const html =
       await response.text();
 
+
     const parser =
       new DOMParser();
+
 
     const document =
       parser.parseFromString(
         html,
         "text/html"
       );
+
 
     const links =
       [
@@ -327,34 +392,98 @@ async function getEventImages(eventPage) {
         )
       ];
 
-    return links
-      .map(link => {
 
-        const image =
-          link.querySelector("img");
+    const images =
+      links
+        .map(link => {
 
-        if (!image) {
-          return null;
-        }
+          const image =
+            link.querySelector("img");
 
-        return {
 
-          image: new URL(
-            link.href,
-            window.location.origin
-          ).href,
+          if (!image) {
+            return null;
+          }
 
-          thumbnail: new URL(
-            image.src,
-            window.location.origin
-          ).href,
 
-          event: eventPage
+          /*
+           * Get orientation from
+           * the class already placed
+           * on the image.
+           */
 
-        };
+          let orientation = null;
 
-      })
-      .filter(Boolean);
+
+          if (
+            image.classList.contains(
+              "homepage-portrait"
+            )
+          ) {
+
+            orientation =
+              "portrait";
+
+          }
+
+
+          if (
+            image.classList.contains(
+              "homepage-landscape"
+            )
+          ) {
+
+            orientation =
+              "landscape";
+
+          }
+
+
+          /*
+           * Ignore images that do not
+           * have a homepage orientation
+           * class.
+           */
+
+          if (!orientation) {
+            return null;
+          }
+
+
+          return {
+
+            image:
+              new URL(
+                link.href,
+                window.location.origin
+              ).href,
+
+            thumbnail:
+              new URL(
+                image.src,
+                window.location.origin
+              ).href,
+
+            event:
+              eventPage,
+
+            orientation:
+              orientation
+
+          };
+
+        })
+        .filter(Boolean);
+
+
+    console.log(
+      eventPage,
+      "images found:",
+      images.length
+    );
+
+
+    return images;
 
   } catch (error) {
 
@@ -364,6 +493,7 @@ async function getEventImages(eventPage) {
       error
     );
 
+
     return [];
 
   }
@@ -372,48 +502,7 @@ async function getEventImages(eventPage) {
 
 
 /* =========================
-   GET THUMBNAIL ORIENTATION
-   ========================= */
-
-function getThumbnailOrientation(src) {
-
-  return new Promise(resolve => {
-
-    const image =
-      new Image();
-
-    image.onload = () => {
-
-      if (
-        image.naturalHeight >
-        image.naturalWidth
-      ) {
-
-        resolve("portrait");
-
-      } else {
-
-        resolve("landscape");
-
-      }
-
-    };
-
-    image.onerror = () => {
-
-      resolve(null);
-
-    };
-
-    image.src = src;
-
-  });
-
-}
-
-
-/* =========================
-   BUILD IMAGE LIST
+   BUILD HOME IMAGE POOL
    ========================= */
 
 async function buildHomeImagePool() {
@@ -440,48 +529,33 @@ async function buildHomeImagePool() {
     eventResults.flat();
 
 
-  /*
-   * Work out orientation from
-   * the existing thumbnails.
-   */
-
-  const checkedImages =
-    await Promise.all(
-
-      allImages.map(
-        async item => {
-
-          const orientation =
-            await getThumbnailOrientation(
-              item.thumbnail
-            );
-
-          if (!orientation) {
-            return null;
-          }
-
-          return {
-            ...item,
-            orientation
-          };
-
-        }
-      )
-
-    );
-
-
-  const validImages =
-    checkedImages.filter(Boolean);
-
-
   console.log(
     "HOME IMAGE POOL:",
-    validImages.length
+    allImages.length
   );
 
 
-  return validImages;
+  console.log(
+    "HOME PORTRAITS:",
+    allImages.filter(
+      item =>
+        item.orientation ===
+        "portrait"
+    ).length
+  );
+
+
+  console.log(
+    "HOME LANDSCAPES:",
+    allImages.filter(
+      item =>
+        item.orientation ===
+        "landscape"
+    ).length
+  );
+
+
+  return allImages;
 
 }
 
@@ -529,7 +603,9 @@ function shuffle(array) {
    SELECT HOME IMAGES
    ========================= */
 
-function selectHomeImages(allImages) {
+function selectHomeImages(
+  allImages
+) {
 
   const portraits =
     shuffle(
@@ -553,15 +629,17 @@ function selectHomeImages(allImages) {
 
   const selected = [];
 
+
   const usedImages =
     new Set();
+
 
   const eventCounts = {};
 
 
-  /*
-   * Select two portraits.
-   */
+  /* =========================
+     SELECT TWO PORTRAITS
+     ========================= */
 
   while (
     selected.filter(
@@ -573,7 +651,9 @@ function selectHomeImages(allImages) {
   ) {
 
     let bestIndex = 0;
-    let bestCount = Infinity;
+
+    let bestCount =
+      Infinity;
 
 
     portraits.forEach(
@@ -584,7 +664,9 @@ function selectHomeImages(allImages) {
             item.image
           )
         ) {
+
           return;
+
         }
 
 
@@ -619,6 +701,7 @@ function selectHomeImages(allImages) {
 
     selected.push(item);
 
+
     usedImages.add(
       item.image
     );
@@ -636,9 +719,9 @@ function selectHomeImages(allImages) {
   }
 
 
-  /*
-   * Select eight landscapes.
-   */
+  /* =========================
+     SELECT EIGHT LANDSCAPES
+     ========================= */
 
   while (
     selected.filter(
@@ -650,7 +733,9 @@ function selectHomeImages(allImages) {
   ) {
 
     let bestIndex = 0;
-    let bestCount = Infinity;
+
+    let bestCount =
+      Infinity;
 
 
     landscapes.forEach(
@@ -661,7 +746,9 @@ function selectHomeImages(allImages) {
             item.image
           )
         ) {
+
           return;
+
         }
 
 
@@ -696,6 +783,7 @@ function selectHomeImages(allImages) {
 
     selected.push(item);
 
+
     usedImages.add(
       item.image
     );
@@ -713,6 +801,10 @@ function selectHomeImages(allImages) {
   }
 
 
+  /* =========================
+     CHECK SELECTION
+     ========================= */
+
   if (
     selected.length !== 10
   ) {
@@ -722,10 +814,15 @@ function selectHomeImages(allImages) {
       selected.length
     );
 
+
     return [];
 
   }
 
+
+  /* =========================
+     SEPARATE ORIENTATIONS
+     ========================= */
 
   const portraitImages =
     selected.filter(
@@ -743,22 +840,37 @@ function selectHomeImages(allImages) {
     );
 
 
-  /*
-   * Final grid order:
-   *
-   * 1  = portrait
-   * 2  = landscape
-   * 3  = landscape
-   * 4  = landscape
-   * 5  = landscape
-   * 6  = landscape
-   * 7  = landscape
-   * 8  = landscape
-   * 9  = landscape
-   * 10 = portrait
+  /* =========================
+     FINAL GRID ORDER
+     =========================
+
+     1   2   3   4
+
+     P   L   L   L
+
+     L   L   L   P
+
+     5   6   7   8
+
+     With the remaining two
+     landscape positions filling
+     the middle of columns 2 and 3.
+
+     Actual array order:
+
+     1 = portrait
+     2 = landscape
+     3 = landscape
+     4 = landscape
+     5 = landscape
+     6 = landscape
+     7 = landscape
+     8 = landscape
+     9 = landscape
+     10 = portrait
    */
 
-  return [
+  const homeImages = [
 
     portraitImages[0],
 
@@ -775,6 +887,21 @@ function selectHomeImages(allImages) {
 
   ];
 
+
+  console.log(
+    "HOME IMAGES SELECTED:",
+    homeImages
+  );
+
+
+  console.log(
+    "EVENT COUNTS:",
+    eventCounts
+  );
+
+
+  return homeImages;
+
 }
 
 
@@ -784,12 +911,14 @@ function selectHomeImages(allImages) {
 
 let homeImagePool = null;
 
+
 async function displayHomeImages() {
 
   const grid =
     document.querySelector(
       "#home-grid"
     );
+
 
   if (!grid) {
     return;
@@ -799,13 +928,15 @@ async function displayHomeImages() {
   try {
 
     /*
-     * Build the image pool only once.
+     * Build the image pool
+     * only once.
      */
 
     if (!homeImagePool) {
 
       grid.style.opacity =
         "0";
+
 
       homeImagePool =
         await buildHomeImagePool();
@@ -823,6 +954,10 @@ async function displayHomeImages() {
       !images ||
       images.length !== 10
     ) {
+
+      console.warn(
+        "Homepage could not select 10 images."
+      );
 
       return;
 
@@ -864,28 +999,30 @@ async function displayHomeImages() {
 
 
             /*
-             * Use the thumbnail first.
-             * This means the grid appears
-             * much faster.
+             * Use the thumbnail
+             * immediately.
              */
 
             image.src =
               item.thumbnail;
 
+
             image.alt =
               "View portfolio";
+
 
             image.loading =
               "eager";
 
 
             /*
-             * Once loaded, replace the
-             * thumbnail with the full image.
+             * Load the full image
+             * in the background.
              */
 
             const fullImage =
               new Image();
+
 
             fullImage.onload =
               () => {
@@ -895,6 +1032,7 @@ async function displayHomeImages() {
 
               };
 
+
             fullImage.src =
               item.image;
 
@@ -902,6 +1040,7 @@ async function displayHomeImages() {
             link.appendChild(
               image
             );
+
 
             grid.appendChild(
               link
@@ -918,6 +1057,7 @@ async function displayHomeImages() {
         grid.style.opacity =
           "1";
 
+
       },
       300
     );
@@ -933,31 +1073,6 @@ async function displayHomeImages() {
   }
 
 }
-
-
-/* =========================
-   START HOME PORTFOLIO
-   ========================= */
-
-document.addEventListener(
-  "DOMContentLoaded",
-  () => {
-
-    displayHomeImages();
-
-
-    /*
-     * Change the 10 photos
-     * every 60 seconds.
-     */
-
-    setInterval(
-      displayHomeImages,
-      60000
-    );
-
-  }
-);
 
 
 /* =========================
@@ -1097,6 +1212,7 @@ function initialiseLightbox() {
         function(e) {
 
           e.preventDefault();
+
 
           showPhoto(index);
 
@@ -1261,7 +1377,7 @@ document.addEventListener(
   () => {
 
     /*
-     * Build homepage immediately.
+     * Build homepage.
      */
 
     displayHomeImages();

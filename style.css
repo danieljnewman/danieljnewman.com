@@ -776,6 +776,10 @@ main h2 { /* MAY COME BACK TO */
   background: #251546;
 }
 
+.gallery-card.rp .overlay { 
+  background: #;
+}
+
 .portfolio-page-link {
   display: flex;
   align-items: center;

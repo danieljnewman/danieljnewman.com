@@ -245,7 +245,7 @@ loadFooter();
 async function getPortfolioEvents() {
 
   const response =
-    await fetch("/portfolio/");
+    await fetch("/portfolio/photo/");
 
   if (!response.ok) {
 
@@ -300,8 +300,8 @@ async function getPortfolioEvents() {
      */
 
     if (
-      path.startsWith("/portfolio/") &&
-      path !== "/portfolio" &&
+      path.startsWith("/portfolio/photo/") &&
+      path !== "/portfolio/photo" &&
       !path.endsWith(".html") &&
       !events.includes(path)
     ) {

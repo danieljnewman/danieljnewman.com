@@ -1057,6 +1057,19 @@ async function displayHomeImages() {
 
 }
 
+document.querySelectorAll('.gallery-wrapper').forEach(wrapper => {
+  const button = wrapper.querySelector('.gallery-toggle');
+
+  wrapper.classList.add('collapsed');
+
+  button.addEventListener('click', () => {
+    const expanded = wrapper.classList.toggle('expanded');
+
+    wrapper.classList.toggle('collapsed', !expanded);
+
+    button.textContent = expanded ? 'VIEW LESS' : 'VIEW MORE';
+  });
+});
 
 /* =========================
    LIGHTBOX

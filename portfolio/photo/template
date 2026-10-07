@@ -25,7 +25,7 @@
     <section class="gallery-grid">
 
       <a href="../../images/portfolio/x-x-x-202x/XXX_202x_000.webp" class="lightbox homepage-landscape / homepage-portrait">
-        <img src="../../images/portfolio/x-x-x-2026/XXX_202x_000.webp" alt="Photo 1" loading="lazy"></a>
+        <img src="../../images/portfolio/x-x-x-2026/thumbnails/XXX_202x_000.webp" alt="Photo 1" loading="lazy"> decoding="async"></a>
       
     
     </section>

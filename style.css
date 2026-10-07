@@ -873,7 +873,59 @@ main h2 { /* MAY COME BACK TO */
   transform: scale(1.02);
 }
 
+/* Funny Life Film Festival - View More / View Less */
 
+.portfolio-page .gallery-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio-page .gallery-wrapper.collapsed {
+  max-height: 410px;
+}
+
+.portfolio-page .gallery-wrapper.expanded {
+  max-height: none;
+}
+
+.portfolio-page .gallery-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 120px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 15px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(0, 0, 0, 0.85)
+  );
+  z-index: 10;
+}
+
+.portfolio-page .gallery-toggle {
+  border: none;
+  padding: 10px 18px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.portfolio-page .gallery-wrapper.expanded .gallery-overlay {
+  position: relative;
+  height: auto;
+  padding: 15px 0 0;
+  background: none;
+}
+
+.portfolio-page .gallery-wrapper.expanded .gallery-toggle {
+  margin: 0 auto;
+}
   
 /* Lightbox */
 

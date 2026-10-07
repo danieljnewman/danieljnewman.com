@@ -798,6 +798,22 @@ main h2 { /* MAY COME BACK TO */
     white-space: nowrap;
 }
 
+== MOBILE VERSION ==
+
+@media (max-width: 768px) {
+  .portfolio-page-link {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .portfolio-page-link .back-link {
+    margin-left: 0;
+    margin-top: 5px;
+  }
+}
+
+
+
 /*
 .portfolio-page-link {
     display: flex;

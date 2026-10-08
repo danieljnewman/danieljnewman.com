@@ -694,6 +694,17 @@ main h2 { /* MAY COME BACK TO */
   min-width: 0;
 }
 
+/* MOBILE GRID */
+
+@media (max-width: 768px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+/* GALLERY CARD */
+
 .gallery-card {
   position: relative;
   overflow: hidden;
@@ -798,7 +809,7 @@ main h2 { /* MAY COME BACK TO */
     white-space: nowrap;
 }
 
-== MOBILE VERSION ==
+/* MOBILE VERSION */
 
 @media (max-width: 768px) {
   .portfolio-page-link {

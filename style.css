@@ -879,7 +879,7 @@ main h2 { /* MAY COME BACK TO */
 
 */
 
-
+/*PHOTO GALLERY GRID */
 
 .portfolio-page .gallery-grid-photo {
   display: flex;
@@ -897,6 +897,31 @@ main h2 { /* MAY COME BACK TO */
 }
 
 .portfolio-page .gallery-grid-photo img:hover {
+  transform: scale(1.02);
+}
+
+/* VIDEO GALLERY GRID */
+
+.portfolio-page .gallery-grid-video {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 20px, 0; /* MAY COME BACK TO */
+  min-width: 0;
+}
+
+.portfolio-page .gallery-grid-video img {
+  height: 200px;
+  width: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+.portfolio-page .gallery-grid-video img:hover {
   transform: scale(1.02);
 }
   

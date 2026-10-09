@@ -881,7 +881,7 @@ main h2 { /* MAY COME BACK TO */
 
 
 
-.portfolio-page .gallery-grid {
+.portfolio-page .gallery-grid-photo {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -889,14 +889,14 @@ main h2 { /* MAY COME BACK TO */
   margin-bottom: 20px;
 }
 
-.portfolio-page .gallery-grid img {
+.portfolio-page .gallery-grid-photo img {
   height: 200px;
   width: auto;
   display: block;
   border-radius: 8px;
 }
 
-.portfolio-page .gallery-grid img:hover {
+.portfolio-page .gallery-grid-photo img:hover {
   transform: scale(1.02);
 }
   

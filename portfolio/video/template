@@ -24,6 +24,21 @@
 
     <section class="gallery-grid-video">
 
+
+    
+    <article class="video-card">
+
+      <iframe src="https://www.youtube-nocookie.com/embed/x" title="North Shields FC vs CLUB"
+        loading="lazy" allowfullscreen></iframe>
+
+      <div class="video-caption">
+        <h5>vs CLUB</h5>
+        <p>Role: Camera Operator</p>
+      </div>
+
+    </article>
+
+
       <a href="../../images/portfolio/x-x-x-202x/XXX_202x_000.webp" class="lightbox homepage-landscape / homepage-portrait">
         <img src="../../images/portfolio/x-x-x-2026/thumbnails/XXX_202x_000.webp" alt="Photo 1" loading="lazy"> decoding="async"></a>
       

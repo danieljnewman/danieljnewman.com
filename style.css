@@ -948,6 +948,7 @@ main h2 { /* MAY COME BACK TO */
 
 .video-caption h5 {
   margin: 0;
+  padding: 0;
   /* margin: 0 0 8px;
   font-family: "Lexend", sans-serif;
   font-size: 1.1rem; */
@@ -955,6 +956,7 @@ main h2 { /* MAY COME BACK TO */
 
 .video-caption p {
   margin: 0;
+  padding: 0;
   /* line-height: 1.6; */
 }
 
@@ -969,7 +971,7 @@ main h2 { /* MAY COME BACK TO */
 @media (max-width: 600px) {
   .portfolio-page .gallery-grid-video {
     grid-template-columns: 1fr;
-    gap: 25px;
+    gap: 20px;
   }
 }
 

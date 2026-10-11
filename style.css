@@ -943,19 +943,20 @@ main h2 { /* MAY COME BACK TO */
 
 /* Text beneath the video */
 .video-caption {
-  padding-top: 4px;
+  /* padding-top: 4px; */
 }
 
-/* .video-caption h5 {
-  margin: 0 0 8px;
+.video-caption h5 {
+  margin: 0;
+  /* margin: 0 0 8px;
   font-family: "Lexend", sans-serif;
-  font-size: 1.1rem;
+  font-size: 1.1rem; */
 }
 
 .video-caption p {
   margin: 0;
-  line-height: 1.6;
-} */
+  /* line-height: 1.6; */
+}
 
 /* Tablet */
 @media (max-width: 900px) {

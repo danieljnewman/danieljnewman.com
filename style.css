@@ -763,12 +763,24 @@ main h2 { /* MAY COME BACK TO */
   background: #7466a3;
 }
 
-.gallery-card.rrl .overlay { 
-  background: #d93a34;
+.gallery-card.ep .overlay { 
+  background: #251546;
+}
+
+.gallery-card.nsfc .overlay { 
+  background: #c73c3a;
 }
 
 .gallery-card.pil .overlay { 
   background: #;
+}
+
+.gallery-card.rp .overlay { 
+  background: #112368;
+}
+
+.gallery-card.rrl .overlay { 
+  background: #d93a34;
 }
 
 .gallery-card.spf .overlay { 
@@ -781,14 +793,6 @@ main h2 { /* MAY COME BACK TO */
 
 .gallery-card.tm .overlay { 
   background: #ce6d96;
-}
-
-.gallery-card.ep .overlay { 
-  background: #251546;
-}
-
-.gallery-card.rp .overlay { 
-  background: #112368;
 }
 
 .portfolio-page-link {

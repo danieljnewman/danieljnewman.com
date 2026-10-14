@@ -1384,3 +1384,16 @@ document.addEventListener(
 
   }
 );
+
+
+document.querySelectorAll(".video-card").forEach(card => {
+  const preview = card.querySelector(".video-preview");
+  const iframe = preview.querySelector("iframe");
+
+  preview.addEventListener("mouseenter", () => {
+    if (!card.classList.contains("video-active")) {
+      iframe.src = iframe.dataset.src;
+      card.classList.add("video-active");
+    }
+  });
+});

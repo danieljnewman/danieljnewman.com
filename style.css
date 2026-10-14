@@ -904,9 +904,11 @@ main h2 { /* MAY COME BACK TO */
   transform: scale(1.02);
 }
 
+
 /* VIDEO GALLERY GRID */
 
-.portfolio-page .gallery-grid-video {
+.portfolio-page .gallery-grid-video,
+.portfolio-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
@@ -914,10 +916,17 @@ main h2 { /* MAY COME BACK TO */
   max-width: 1400px;
   margin: 0 auto;
   margin-bottom: 20px;
-  padding: 20px, 0; /* MAY COME BACK TO */
+  padding: 20px 0;
   min-width: 0;
+  box-sizing: border-box;
 }
 
+/* Video portfolio homepage grid */
+.portfolio-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Images in individual video galleries */
 .portfolio-page .gallery-grid-video img {
   height: 200px;
   width: auto;
@@ -930,13 +939,17 @@ main h2 { /* MAY COME BACK TO */
 }
 
 
-
 /* Individual video card */
+
 .video-card {
+  width: 100%;
   min-width: 0;
+/*  box-sizing: border-box; */
 }
 
+
 /* Video thumbnail */
+
 .video-card img {
   display: block;
   width: 100%;
@@ -947,34 +960,41 @@ main h2 { /* MAY COME BACK TO */
 
 
 /* Text beneath the video */
+
 .video-caption {
-  /* padding-top: 4px; */
+  width: 100%;
+  /* box-sizing: border-box; */
 }
 
 .video-caption h5 {
   margin: 0;
   padding: 0;
-  /* margin: 0 0 8px;
-  font-family: "Lexend", sans-serif;
-  font-size: 1.1rem; */
 }
 
 .video-caption p {
   margin: 0;
   padding: 0;
-  /* line-height: 1.6; */
 }
 
+
 /* Tablet */
+
 @media (max-width: 900px) {
   .portfolio-page .gallery-grid-video {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .portfolio-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
+
 /* Mobile */
+
 @media (max-width: 600px) {
-  .portfolio-page .gallery-grid-video {
+  .portfolio-page .gallery-grid-video,
+  .portfolio-grid {
     grid-template-columns: 1fr;
     gap: 20px;
   }
@@ -989,6 +1009,7 @@ main h2 { /* MAY COME BACK TO */
 
 .video-preview {
   position: relative;
+  width: 100%;
   aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: 8px;
@@ -1014,6 +1035,7 @@ main h2 { /* MAY COME BACK TO */
 }
 
 /* Replace thumbnail with YouTube embed on hover */
+
 .video-card:hover .video-preview iframe,
 .video-card:focus-within .video-preview iframe {
   opacity: 1;
@@ -1026,17 +1048,12 @@ main h2 { /* MAY COME BACK TO */
   pointer-events: none;
 }
 
-/* .video-caption {
-  padding-top: 12px;
-} */
-
 .video-caption h4 {
-  /* margin: 0 0 8px;
-} */
+  margin: 0 0 8px;
+}
 
 .video-caption p {
   margin: 0;
- /* line-height: 1.6;
 }
 
 

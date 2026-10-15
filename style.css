@@ -1115,7 +1115,6 @@ main h2 { /* MAY COME BACK TO */
   height: 100%;
   border: 0;
   border-radius: 10px;
-  box-sizing: border-box;
 }
 
 .btfcnsafc-preview img {
@@ -1144,23 +1143,6 @@ main h2 { /* MAY COME BACK TO */
   opacity: 0;
   pointer-events: none;
 }
-
-/* Caption below the thumbnail/player
-
-.btfcnsafc .video-caption {
-  display: block;
-  width: 100%;
-  padding-top: 8px;
-  /* box-sizing: border-box;
-}
-
-.btfcnsafc .video-caption h4 {
-  margin: 0 0 8px;
-}
-
-.btfcnsafc .video-caption ul {
-  margin-top: 0;
-} */
 
 
 /* Lightbox */

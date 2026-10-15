@@ -1351,3 +1351,7 @@ button { /*COME BACK TO */
 button:hover {
   opacity: 0.85;
 }
+
+.gallery-card[hidden] {
+  display: none !important;
+}

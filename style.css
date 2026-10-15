@@ -1100,7 +1100,7 @@ main h2 { /* MAY COME BACK TO */
   box-sizing: border-box;
 }
 
-/* Thumbnail and YouTube player share the same space */
+/* Thumbnail and player occupy the same area */
 
 .btfcnsafc-preview {
   position: relative;
@@ -1118,18 +1118,36 @@ main h2 { /* MAY COME BACK TO */
   height: 100%;
   border: 0;
   border-radius: 8px;
+  box-sizing: border-box;
 }
 
 .btfcnsafc-preview img {
   display: block;
   object-fit: cover;
+  z-index: 1;
 }
 
 .btfcnsafc-preview iframe {
   z-index: 2;
+  opacity: 0;
+  pointer-events: none;
 }
 
-/* Caption underneath */
+/* Show the player on hover or keyboard focus */
+
+.btfcnsafc:hover .btfcnsafc-preview iframe,
+.btfcnsafc:focus-within .btfcnsafc-preview iframe {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.btfcnsafc:hover .btfcnsafc-preview img,
+.btfcnsafc:focus-within .btfcnsafc-preview img {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Caption beneath the thumbnail/player */
 
 .btfcnsafc .video-caption {
   width: 100%;

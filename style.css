@@ -953,7 +953,7 @@ main h2 { /* MAY COME BACK TO */
 .video-card img {
   display: block;
   width: 100%;
-  /* aspect-ratio: 16 / 9; */
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   border-radius: 8px;
 }
@@ -1010,7 +1010,7 @@ main h2 { /* MAY COME BACK TO */
 .video-preview {
   position: relative;
   width: 100%;
-  /* aspect-ratio: 16 / 9; */
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: 8px;
 }

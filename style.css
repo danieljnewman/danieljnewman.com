@@ -1093,47 +1093,59 @@ main h2 { /* MAY COME BACK TO */
 /* BTFC vs NSAFC video card */
 
 .portfolio-grid > .gallery-card.btfcnsafc {
+  position: relative;
   display: block;
   width: 100%;
   height: auto;
   min-width: 0;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
+  overflow: visible;
 }
 
-/* Thumbnail and player occupy the same area */
+/* Keep the preview the same width as a normal gallery thumbnail */
 
 .btfcnsafc-preview {
   position: relative;
+  display: block;
   width: 100%;
   aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: 8px;
+ /* box-sizing: border-box; */
 }
 
-.btfcnsafc-preview img,
-.btfcnsafc-preview iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-  border-radius: 8px;
-/*  box-sizing: border-box; */
-}
+/* Thumbnail fills the entire preview */
 
 .btfcnsafc-preview img {
   display: block;
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none;
   object-fit: cover;
+  border-radius: 8px;
+  /* box-sizing: border-box; */
   z-index: 1;
 }
 
+/* Player occupies the exact same area */
+
 .btfcnsafc-preview iframe {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  border: 0;
+  border-radius: 8px;
+  /* box-sizing: border-box; */
   z-index: 2;
   opacity: 0;
   pointer-events: none;
 }
 
-/* Show the player on hover or keyboard focus */
+/* Reveal player on hover */
 
 .btfcnsafc:hover .btfcnsafc-preview iframe,
 .btfcnsafc:focus-within .btfcnsafc-preview iframe {
@@ -1147,12 +1159,13 @@ main h2 { /* MAY COME BACK TO */
   pointer-events: none;
 }
 
-/* Caption beneath the thumbnail/player */
+/* Caption beneath preview */
 
 /* .btfcnsafc .video-caption {
+  display: block;
   width: 100%;
-/*  box-sizing: border-box;
-} /*
+  box-sizing: border-box;
+} */
 
 
 /* Lightbox */

@@ -767,6 +767,10 @@ main h2 { /* MAY COME BACK TO */
   background: #251546;
 }
 
+.gallery-card.nlne .overlay { 
+  background: #1443cc;
+}
+
 .gallery-card.nsfc .overlay { 
   background: #c73c3a;
 }

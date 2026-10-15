@@ -1090,6 +1090,60 @@ main h2 { /* MAY COME BACK TO */
 }
 
 
+/* Billingham video card — use the portfolio grid sizing */
+
+.portfolio-grid > .btfcnsafc {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* Thumbnail */
+
+.portfolio-grid > .btfcnsafc > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+/* YouTube player beneath thumbnail */
+
+.btfcnsafc .video-embed {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-top: 8px;
+}
+
+.btfcnsafc .video-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 8px;
+}
+
+/* Caption beneath the player */
+
+.btfcnsafc .video-caption {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.btfcnsafc .video-caption h4 {
+  margin: 0 0 8px;
+}
+
+.btfcnsafc .video-caption ul {
+  margin-top: 0;
+}
+
+
 /* Lightbox */
 
 .lightbox-view {

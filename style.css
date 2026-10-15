@@ -1090,9 +1090,9 @@ main h2 { /* MAY COME BACK TO */
 }
 
 
-/* Billingham video card — use the portfolio grid sizing */
+/* BTFC vs NSAFC video card */
 
-.portfolio-grid > .btfcnsafc {
+.portfolio-grid > .gallery-card.btfcnsafc {
   display: block;
   width: 100%;
   height: auto;
@@ -1100,26 +1100,18 @@ main h2 { /* MAY COME BACK TO */
   box-sizing: border-box;
 }
 
-/* Thumbnail */
+/* Thumbnail and YouTube player share the same space */
 
-.portfolio-grid > .btfcnsafc > img {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-}
-
-/* YouTube player beneath thumbnail */
-
-.btfcnsafc .video-embed {
+.btfcnsafc-preview {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  margin-top: 8px;
+  overflow: hidden;
+  border-radius: 8px;
 }
 
-.btfcnsafc .video-embed iframe {
+.btfcnsafc-preview img,
+.btfcnsafc-preview iframe {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -1128,19 +1120,20 @@ main h2 { /* MAY COME BACK TO */
   border-radius: 8px;
 }
 
-/* Caption beneath the player */
+.btfcnsafc-preview img {
+  display: block;
+  object-fit: cover;
+}
+
+.btfcnsafc-preview iframe {
+  z-index: 2;
+}
+
+/* Caption underneath */
 
 .btfcnsafc .video-caption {
   width: 100%;
   box-sizing: border-box;
-}
-
-.btfcnsafc .video-caption h4 {
-  margin: 0 0 8px;
-}
-
-.btfcnsafc .video-caption ul {
-  margin-top: 0;
 }
 
 

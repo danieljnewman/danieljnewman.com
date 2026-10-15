@@ -1062,7 +1062,7 @@ main h2 { /* MAY COME BACK TO */
 .gallery-card .video-embed {
   position: relative;
   width: 100%;
- /* aspect-ratio: 16 / 9; */
+  aspect-ratio: 16 / 9;
   margin-top: 8px;
 }
 
@@ -1085,7 +1085,7 @@ main h2 { /* MAY COME BACK TO */
 .portfolio-grid > .gallery-card:has(.video-embed) > img {
   width: 100%;
   height: auto;
-/*  aspect-ratio: 16 / 9; */
+  aspect-ratio: 16 / 9;
   object-fit: cover;
 }
 
@@ -1105,7 +1105,7 @@ main h2 { /* MAY COME BACK TO */
 .btfcnsafc-preview {
   position: relative;
   width: 100%;
-/*  aspect-ratio: 16 / 9; */
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: 8px;
 }

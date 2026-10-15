@@ -897,7 +897,7 @@ main h2 { /* MAY COME BACK TO */
   height: 200px;
   width: auto;
   display: block;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
 .portfolio-page .gallery-grid-photo img:hover {
@@ -931,7 +931,7 @@ main h2 { /* MAY COME BACK TO */
   height: 200px;
   width: auto;
   display: block;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
 .portfolio-page .gallery-grid-video img:hover {
@@ -955,7 +955,7 @@ main h2 { /* MAY COME BACK TO */
   width: 100%;
  /* aspect-ratio: 16 / 9; */
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
 
@@ -1012,7 +1012,7 @@ main h2 { /* MAY COME BACK TO */
   width: 100%;
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
 .video-preview img,
@@ -1063,7 +1063,7 @@ main h2 { /* MAY COME BACK TO */
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  margin-top: 8px;
+  margin-top: 10px;
 }
 
 .gallery-card .video-embed iframe {
@@ -1072,7 +1072,7 @@ main h2 { /* MAY COME BACK TO */
   width: 100%;
   height: 100%;
   border: 0;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
 /* Allow gallery card content to display normally */

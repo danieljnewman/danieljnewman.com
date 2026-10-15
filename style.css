@@ -1144,6 +1144,11 @@ main h2 { /* MAY COME BACK TO */
   pointer-events: none;
 }
 
+/* Space between BTFC vs NSAFC card and caption */
+
+.portfolio-grid > .gallery-card.btfcnsafc > .video-caption {
+  margin-top: 10px;
+}
 
 /* Lightbox */
 

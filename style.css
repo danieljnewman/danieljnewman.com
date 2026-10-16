@@ -791,6 +791,10 @@ main h2 { /* MAY COME BACK TO */
   background: #3e8b45;
 }
 
+.gallery-card.swlgpitmu .overlay {
+  background: linear-gradient(45deg, #0d0c0f, #e03423, #ec8236, #ecd052, #75ca44, #59b978, #60d3f3, #071b80, #441981, #7e227e, #df3ac3, #0c0c12);
+}
+
 .gallery-card.tflff .overlay { 
   background: #9e386c;
 }

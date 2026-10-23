@@ -1,3 +1,26 @@
+/* CLOUDFLARE */
+
+(() => {
+  if (document.querySelector(
+    'script[src="https://static.cloudflareinsights.com/beacon.min.js"]'
+  )) {
+    return;
+  }
+
+  const cloudflareScript = document.createElement("script");
+
+  cloudflareScript.type = "module";
+  cloudflareScript.src =
+    "https://static.cloudflareinsights.com/beacon.min.js";
+
+  cloudflareScript.dataset.cfBeacon = JSON.stringify({
+    token: "3f120705253e4eadb5eeba4de7eae64c"
+  });
+
+  document.head.appendChild(cloudflareScript);
+})();
+
+
 /* =========================
    LOAD SHARED HEADER
    ========================= */

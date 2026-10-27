@@ -1273,6 +1273,11 @@ main h2 { /* MAY COME BACK TO */
   float: right;
 }
 
+.experience section h5 {
+  margin-top: 0;
+  margin-bottom: 0.25em;
+}
+
 .experience section ul {
   margin-top: 0.25em;
   margin-bottom: 0;

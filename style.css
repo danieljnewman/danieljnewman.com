@@ -1253,6 +1253,37 @@ main h2 { /* MAY COME BACK TO */
   margin-bottom: 0;
 }
 
+
+/*EXPERIENCE PAGE*/
+
+.experience section {
+  padding: 0 0 1.2em;
+  margin: 0 0 1.2em;
+  border-bottom: 1px solid currentColor;
+}
+
+.experience section h3,
+.experience section h4 {
+  display: inline-block;
+  margin-top: 0;
+  margin-bottom: 0.25em;
+}
+
+.experience section h4 {
+  float: right;
+}
+
+.experience section ul {
+  margin-top: 0.25em;
+  margin-bottom: 0;
+}
+
+.experience section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+
 /*VOLUNTEERING: SHORT-TERM PAGE*/
 
 .volunteering-short-term section {

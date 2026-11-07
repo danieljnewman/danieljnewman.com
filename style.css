@@ -1361,13 +1361,13 @@ main h2 { /* MAY COME BACK TO */
 
 .contact-section {
   max-width: 600px;
-  /* margin: 2rem auto; */
-  margin: 20px;
+  margin: 2rem auto;
   padding: 1.5rem;
 }
 
 .form-group {
-  margin-bottom: 1rem;
+ /* margin-bottom: 1rem; */
+  margin-bottom: 0;
 }
 
 label { /* COME BACK TO */

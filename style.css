@@ -1361,6 +1361,7 @@ main h2 { /* MAY COME BACK TO */
 
 .contact-section {
   max-width: 1000px;
+  width: 1000px;
   margin: 2rem auto;
   padding: 1.5rem;
 }

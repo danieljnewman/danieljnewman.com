@@ -1360,7 +1360,7 @@ main h2 { /* MAY COME BACK TO */
 /*CONTACT*/
 
 .contact-section {
-  max-width: 600px;
+  max-width: 1000px;
   margin: 2rem auto;
   padding: 1.5rem;
 }
@@ -1395,6 +1395,15 @@ button { /*COME BACK TO */
 button:hover {
   opacity: 0.85;
 }
+
+/* MOBILE FORM */
+
+@media (max-width: 768px) {
+  .contact-section {
+  max-width: 600px;
+}
+}
+
 
 .gallery-card[hidden] {
   display: none !important;

@@ -1387,6 +1387,16 @@ main h2 { /* MAY COME BACK TO */
   margin-top: 0;
 }
 
+.contact-section a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.contact-section a:hover {
+  color: blue;
+  text-decoration: none;
+}
+
 .contact-hidden {
   display: none !important;
 }
@@ -1416,6 +1426,7 @@ button { /*COME BACK TO */
   color: white; 
   border-radius: 6px;
   cursor: pointer;
+  align: right;
 }
 
 button:hover {

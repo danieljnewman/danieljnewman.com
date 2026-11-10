@@ -1428,6 +1428,7 @@ button { /*COME BACK TO */
   cursor: pointer;
   display: block;
   margin-left: auto;
+  margin-top: 20px;
 }
 
 button:hover {

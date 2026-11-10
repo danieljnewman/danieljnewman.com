@@ -1470,6 +1470,6 @@ button:hover {
 }
 
 .privacy-policy-link a:hover {
-  colour: blue;
+  color: blue;
   text-decoration: none;
 }

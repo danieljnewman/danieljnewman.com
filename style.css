@@ -1435,10 +1435,9 @@ button { /*COME BACK TO */
   color: white; 
   border-radius: 6px;
   cursor: pointer;
-  /* display: block; */
-  display: inline;
+  display: block;
   margin-left: auto;
-  margin-top: 20px;
+/*  margin-top: 20px; */
 }
 
 button:hover {

@@ -1378,7 +1378,12 @@ main h2 { /* MAY COME BACK TO */
   width: 800px;
   margin: 2rem auto;
   margin-top: 0;
+  margin-bottom: 0;
   padding: 1.5rem;
+}
+
+.contact-section h6 {
+  text-align: right;
 }
 
 .contact-hidden {

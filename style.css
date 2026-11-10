@@ -1416,6 +1416,7 @@ main h2 { /* MAY COME BACK TO */
 label { /* COME BACK TO */
   display: block;
   margin-bottom: 0.3rem;
+  margin-top: 0;
   font-weight: 700;
 }
 

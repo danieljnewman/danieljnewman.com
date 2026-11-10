@@ -1397,6 +1397,13 @@ main h2 { /* MAY COME BACK TO */
   text-decoration: none;
 }
 
+.contact-section .form-end {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+
+  
 .contact-hidden {
   display: none !important;
 }

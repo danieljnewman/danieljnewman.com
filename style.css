@@ -1377,6 +1377,7 @@ main h2 { /* MAY COME BACK TO */
   max-width: 800px;
   width: 800px;
   margin: 2rem auto;
+  margin-top: 0;
   padding: 1.5rem;
 }
 
@@ -1385,8 +1386,7 @@ main h2 { /* MAY COME BACK TO */
 }
 
 .form-group {
-/*  margin-bottom: 1rem; */
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
 }
 
 label { /* COME BACK TO */

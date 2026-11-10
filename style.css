@@ -1385,7 +1385,8 @@ main h2 { /* MAY COME BACK TO */
 }
 
 .form-group {
-  margin-bottom: 1rem;
+/*  margin-bottom: 1rem; */
+  margin-bottom: 20px;
 }
 
 label { /* COME BACK TO */

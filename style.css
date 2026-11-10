@@ -1441,5 +1441,6 @@ button:hover {
 }
 
 .privacy-policy-link a:hover {
+  colour: blue;
   text-decoration: none;
 }

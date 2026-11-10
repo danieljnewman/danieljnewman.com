@@ -1416,16 +1416,16 @@ button:hover {
 
 /* PRIVACY POLICY */
 
-.privacy-link {
+.privacy-policy-link {
   text-align: right;
   margin: 0;
 }
 
-.privacy-link a {
+.privacy-policy-link a {
   color: inherit;
   text-decoration: underline;
 }
 
-.privacy-link a:hover {
+.privacy-policy-link a:hover {
   text-decoration: none;
 }

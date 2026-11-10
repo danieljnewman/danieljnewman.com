@@ -1426,7 +1426,8 @@ button { /*COME BACK TO */
   color: white; 
   border-radius: 6px;
   cursor: pointer;
-  align: right;
+  display: block;
+  margin-left: auto;
 }
 
 button:hover {

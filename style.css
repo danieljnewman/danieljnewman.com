@@ -1383,8 +1383,8 @@ main h2 { /* MAY COME BACK TO */
 }
 
 .contact-section h6 {
-  text-align: right;
-  margin: 0;
+  text-align: center;
+  margin-right: 20px;
 }
 
 .contact-section a {

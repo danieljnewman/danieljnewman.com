@@ -1413,3 +1413,19 @@ button:hover {
 .gallery-card[hidden] {
   display: none !important;
 }
+
+/* PRIVACY POLICY */
+
+.privacy-link {
+  text-align: right;
+  margin: 0;
+}
+
+.privacy-link a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.privacy-link a:hover {
+  text-decoration: none;
+}

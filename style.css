@@ -1436,6 +1436,7 @@ button { /*COME BACK TO */
   border-radius: 6px;
   cursor: pointer;
   display: block;
+  display: inline;
   margin-left: auto;
   margin-top: 20px;
 }

@@ -1379,7 +1379,7 @@ main h2 { /* MAY COME BACK TO */
 /*  margin: 2rem auto; */
   margin-top: 0;
   margin-bottom: 0;
-  padding: 1.5rem;
+/*  padding: 1.5rem; */
 }
 
 .contact-section h6 {
@@ -1436,7 +1436,7 @@ button { /*COME BACK TO */
   border-radius: 6px;
   cursor: pointer;
   display: block;
-  margin-left: auto;
+ /* margin-left: auto; */
 /*  margin-top: 20px; */
 }
 

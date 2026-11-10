@@ -443,6 +443,8 @@ header .submenu-toggle {
 
 }
 
+/* FOOTER */
+
 footer {
   padding: 0.75em;
   padding-left: 2em;
@@ -464,6 +466,18 @@ footer * {
 footer span {
   padding: 0;
 }
+
+.footer-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-text p {
+  margin: 0;
+}
+
+/* REST OF PAGE */
 
 main {
   padding-top: 6rem;

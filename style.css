@@ -1002,24 +1002,24 @@ main h2 { /* MAY COME BACK TO */
 /* Tablet */
 
 @media (max-width: 900px) {
-  .portfolio-page .gallery-grid-video {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+.portfolio-page .gallery-grid-video {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
 
-  .portfolio-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+.portfolio-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
 }
 
 
 /* Mobile */
 
 @media (max-width: 600px) {
-  .portfolio-page .gallery-grid-video,
-  .portfolio-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
+.portfolio-page .gallery-grid-video,
+.portfolio-grid {
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
 }
 
 
@@ -1447,11 +1447,25 @@ button:hover {
 /* MOBILE FORM */
 
 @media (max-width: 768px) {
-  .contact-section {
-  max-width: 600px;
-}
+.contact-section {
+  width: 100%;
+  max-width: 100%;;
+ /*  padding: 1rem; */
+/*  box-sizing: border-box; */  
 }
 
+input, textarea {
+  width: 100%;
+  max-width: 100%;
+ /*   box-sizing: border-box; */
+  }
+
+button {
+  display: block;
+  margin-left: auto;
+  }
+
+}
 
 .gallery-card[hidden] {
   display: none !important;

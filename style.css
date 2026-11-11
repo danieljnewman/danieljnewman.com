@@ -1449,22 +1449,21 @@ button:hover {
 @media (max-width: 768px) {
 .contact-section {
   width: 100%;
-  max-width: 100%;;
+/*  max-width: 100%; */
  /*  padding: 1rem; */
 /*  box-sizing: border-box; */  
 }
 
 input, textarea {
   width: 100%;
-  max-width: 100%;
+/*  max-width: 100%; */
  /*   box-sizing: border-box; */
-  }
+}
 
 button {
   display: block;
   margin-left: auto;
   }
-
 }
 
 .gallery-card[hidden] {

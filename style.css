@@ -1464,6 +1464,12 @@ button {
   display: block;
   margin-left: auto;
   }
+
+.contact-section .form-end {
+  display: none;
+ /* justify-content: space-between; */
+  /* align-items: center; */
+}
 }
 
 .gallery-card[hidden] {

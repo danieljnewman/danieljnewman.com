@@ -1436,6 +1436,7 @@ button { /*COME BACK TO */
   border-radius: 6px;
   cursor: pointer;
   display: block;
+align-self: flex-end;
  /* margin-left: auto; */
 /*  margin-top: 20px; */
 }
@@ -1471,6 +1472,28 @@ button {
   /* align-items: center; */
 }
 }
+
+@media (max-width: 768px) {
+
+  .contact-form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .contact-form-group h6 {
+    margin-top: 10px;
+  }
+
+  .contact-form-group button {
+    align-self: flex-end;
+    margin-top: 20px;
+  }
+
+}
+
+
+
 
 .gallery-card[hidden] {
   display: none !important;

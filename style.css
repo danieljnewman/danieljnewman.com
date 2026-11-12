@@ -477,6 +477,17 @@ footer span {
   margin: 0;
 }
 
+.footer-break {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .footer-break {
+    display: block;
+  }
+}
+
+
 /* REST OF PAGE */
 
 main {

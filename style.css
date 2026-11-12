@@ -1450,36 +1450,24 @@ button:hover {
 @media (max-width: 768px) {
   .contact-section {
     width: 100%;
-    
-    padding: 0 1rem;
-    box-sizing: border-box;
 /*  max-width: 100%; */
- /*  padding: 1rem; */
-/*  box-sizing: border-box; */  
+    padding: 0 1rem; /* TO COME BACK TO */
+    box-sizing: border-box; /* TO COME BACK TO */
   }
 
   input, textarea {
     width: 100%;
 /*  max-width: 100%; */
- /*   box-sizing: border-box; */
     display: block;
-
-    box-sizing: border-box;
+    box-sizing: border-box; /* TO COME BACK TO */
 }
 
   button {
     display: block;
     margin-left: auto;
+    margin-top: 10px;
   }
 
-.contact-section .form-end {
- /* display: none; */
- /* justify-content: space-between; */
-  /* align-items: center; */
-}
-}
-
-@media (max-width: 768px) {
   .contact-section .form-end {
     display: flex;
     flex-direction: column;
@@ -1491,10 +1479,6 @@ button:hover {
     margin-left: 0;
   }
 
-  button {
-  /*  align-self: flex-end;
-    /* margin-top: 20px; */
-  }
 }
 
 

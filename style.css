@@ -1465,7 +1465,7 @@ button:hover {
   button {
     display: block;
     margin-left: auto;
-    margin-top: 10px;
+    margin-top: 0;
   }
 
   .contact-section .form-end {
@@ -1476,6 +1476,7 @@ button:hover {
 
   .contact-section .form-end h6 {
     margin-top: 10px;
+    margin-bottom: 10px;
     margin-left: 0;
   }
 

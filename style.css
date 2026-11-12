@@ -511,9 +511,16 @@ footer span {
 @media (max-width: 768px) {
   .footer-text {
     flex-direction: column;
+    align-items: left;
     text-align: left;
-    gap: 3px;
+/*   gap: 3px; */
   }
+
+  .footer-links {
+    display: flex;
+    align-items: left;
+    gap: 3px;
+}
 
   .footer-break {
     display: block;

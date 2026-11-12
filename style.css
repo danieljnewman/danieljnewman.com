@@ -488,10 +488,14 @@ footer span {
   margin: 0;
 }
 
+.footer-break, .footer-mobile-text {
+  display: none;
+}
+
 .footer-links {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
 }
 
 .footer-links a {
@@ -504,33 +508,24 @@ footer span {
   text-decoration: none;
 }
 
-
-.footer-break {
-  display: none;
-}
-
 @media (max-width: 768px) {
+  .footer-text {
+    flex-direction: column;
+    text-align: left;
+    gap: 3px;
+  }
+
   .footer-break {
     display: block;
   }
-}
 
+  .footer-desktop-text {
+    display: none;
+  }
 
-/* PRIVACY POLICY */
-
-.privacy-policy-link {
-  text-align: right;
-  margin: 0;
-}
-
-.privacy-policy-link a {
-  color: inherit;
-  text-decoration: underline;
-}
-
-.privacy-policy-link a:hover {
-  color: blue;
-  text-decoration: none;
+  .footer-mobile-text {
+    display: inline;
+  }
 }
 
 

@@ -1467,24 +1467,24 @@ button {
   }
 
 .contact-section .form-end {
-  display: none;
+ /* display: none; */
  /* justify-content: space-between; */
   /* align-items: center; */
 }
 }
 
 @media (max-width: 768px) {
-  .contact-form-group {
+  .contact-section .form-end {
     display: flex;
     flex-direction: column;
     align-items: stretch;
   }
 
-  .contact-form-group h6 {
+  .contact-section .form-end h6 {
     margin-top: 10px;
   }
 
-  .contact-form-group button {
+  button {
     align-self: flex-end;
     margin-top: 20px;
   }

@@ -1435,7 +1435,7 @@ button { /*COME BACK TO */
   color: white; 
   border-radius: 6px;
   cursor: pointer;
-  display: block;
+  display: inline-block;
  /* align-self: flex-end; */
  /* margin-left: auto; */
 /*  margin-top: 20px; */

@@ -467,17 +467,6 @@ footer span {
   padding: 0;
 }
 
-/* .footer-text {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-} */
-
-/* .footer-text p {
-  margin: 0;
-} */
-
-
 .footer-text {
   display: flex;
   justify-content: space-between;
@@ -511,30 +500,23 @@ footer span {
 @media (max-width: 768px) {
   .footer-text {
     flex-direction: column;
-    align-items: left;
+    align-items: flex-start;
     text-align: left;
-/*   gap: 3px; */
-  }
-
-  .footer-links {
-    display: flex;
-    align-items: left;
     gap: 3px;
-}
+  }
 
   .footer-break {
     display: block;
   }
 
-  .footer-desktop-text {
+  .desktop-text {
     display: none;
   }
 
-  .footer-mobile-text {
+  .mobile-text {
     display: inline;
   }
 }
-
 
 
 /* REST OF PAGE */

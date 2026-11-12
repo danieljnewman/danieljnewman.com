@@ -1436,6 +1436,7 @@ button { /*COME BACK TO */
   border-radius: 6px;
   cursor: pointer;
   display: block;
+  float: right;
  /* align-self: flex-end; */
  /* margin-left: auto; */
 /*  margin-top: 20px; */
@@ -1450,7 +1451,6 @@ button:hover {
 @media (max-width: 768px) {
   .contact-section {
     width: 100%;
-  
 /*  max-width: 100%; */
  /*  padding: 1rem; */
 /*  box-sizing: border-box; */  
@@ -1461,7 +1461,6 @@ button:hover {
 /*  max-width: 100%; */
  /*   box-sizing: border-box; */
     display: block;
-    margin: 20px 0;
 }
 
   button {

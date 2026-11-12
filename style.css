@@ -467,6 +467,17 @@ footer span {
   padding: 0;
 }
 
+/* .footer-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+} */
+
+/* .footer-text p {
+  margin: 0;
+} */
+
+
 .footer-text {
   display: flex;
   justify-content: space-between;
@@ -477,6 +488,23 @@ footer span {
   margin: 0;
 }
 
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-links a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.footer-links a:hover {
+  color: blue;
+  text-decoration: none;
+}
+
+
 .footer-break {
   display: none;
 }
@@ -486,6 +514,25 @@ footer span {
     display: block;
   }
 }
+
+
+/* PRIVACY POLICY */
+
+.privacy-policy-link {
+  text-align: right;
+  margin: 0;
+}
+
+.privacy-policy-link a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.privacy-policy-link a:hover {
+  color: blue;
+  text-decoration: none;
+}
+
 
 
 /* REST OF PAGE */
@@ -1498,21 +1545,4 @@ button:hover {
 
 .gallery-card[hidden] {
   display: none !important;
-}
-
-/* PRIVACY POLICY */
-
-.privacy-policy-link {
-  text-align: right;
-  margin: 0;
-}
-
-.privacy-policy-link a {
-  color: inherit;
-  text-decoration: underline;
-}
-
-.privacy-policy-link a:hover {
-  color: blue;
-  text-decoration: none;
 }

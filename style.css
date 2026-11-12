@@ -1429,7 +1429,6 @@ input, textarea {
 }
 
 button { /*COME BACK TO */
- /* padding: 0.7rem 1.2rem; */
   padding: 10px 20px;
   border: none;
   background: #333;
@@ -1437,7 +1436,6 @@ button { /*COME BACK TO */
   border-radius: 6px;
   cursor: pointer;
   display: inline-block;
-  margin-right: auto;
  /* align-self: flex-end; */
  /* margin-left: auto; */
 /*  margin-top: 20px; */
@@ -1461,7 +1459,7 @@ input, textarea {
   width: 100%;
 /*  max-width: 100%; */
  /*   box-sizing: border-box; */
-  display: inline-block;
+  display: inline;
 }
 
 button {

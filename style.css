@@ -1451,7 +1451,7 @@ button:hover {
   .contact-section {
     width: 100%;
 /*  max-width: 100%; */
-    padding: 0 1rem; /* TO COME BACK TO */
+    /* padding: 0 1rem; /* TO COME BACK TO */
     box-sizing: border-box; /* TO COME BACK TO */
   }
 
@@ -1465,7 +1465,7 @@ button:hover {
   button {
     display: block;
     margin-left: auto;
-    margin-top: 0;
+    margin-top: 10px;
   }
 
   .contact-section .form-end {

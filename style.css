@@ -1526,6 +1526,20 @@ button:hover {
 
 /* == TERMS & CONDITIONS = WILL NEED TO COME BACK TO PX! == */
 
+/* First-level sections */
+.t-a-c-content > li {
+  margin-bottom: 25px;
+}
+
+/* Second-level items */
+.t-a-c-content > li > ol > li {
+  margin-bottom: 12px;
+}
+
+/* Third-level items */
+.t-a-c-content > li > ol > li > ol > li {
+  margin-bottom: 12px;
+}
 
 /* PRE T-O-C */
 
@@ -1556,7 +1570,7 @@ button:hover {
   display: grid;
   grid-template-columns: 30px 1fr;
   column-gap: 15px;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .t-a-c-t-o-c li::before {
@@ -1623,7 +1637,7 @@ button:hover {
   display: grid;
   grid-template-columns: 40px 1fr;
   column-gap: 15px;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .t-a-c-content > li > ol > li::before {
@@ -1644,7 +1658,7 @@ button:hover {
   display: grid;
   grid-template-columns: 50px 1fr;
   column-gap: 15px;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .t-a-c-content > li > ol > li > ol > li::before {

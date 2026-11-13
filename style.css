@@ -1659,7 +1659,7 @@ button:hover {
   display: grid;
   grid-template-columns: 50px 1fr;
   column-gap: 15px;
-  margin-bottom: 10px;
+  margin: 10px 0;
 }
 
 .t-a-c-content > li > ol > li > ol > li::before {

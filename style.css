@@ -1522,3 +1522,133 @@ button:hover {
 .gallery-card[hidden] {
   display: none !important;
 }
+
+
+/* TERMS & CONDITIONS = WILL NEED TO COME BACK TO PX! */
+
+.t-a-c-pre-t-o-c {
+  text-align: left;
+  display: grid;
+  grid-template-columns: 25px 1fr;
+  gap: 10px;
+}
+
+.roman {
+  text-align: left;
+}
+
+.t-a-c-t-o-c ol {
+  list-style: none;
+  counter-reset: toc;
+  padding-left: 25px;
+}
+
+.t-a-c-t-o-c li {
+  counter-increment: toc;
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  column-gap: 10px;
+  margin-bottom: 8px;
+}
+
+.t-a-c-t-o-c li::before {
+  content: counter(toc);
+}
+
+.t-a-c-t-o-c li h4 {
+  margin: 0;
+}
+
+.t-a-c-t-o-c li a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.t-a-c-t-o-c li a:hover {
+  color: blue;
+  text-decoration: underline;
+}
+
+
+.t-a-c-content {
+  text-align: left;
+}
+
+/* .t-a-c-content {
+  counter-reset: section;
+  list-style: none;
+  padding-left: 0;
+}
+
+ .t-a-c-content > li {
+  counter-increment: section;
+  display: grid;
+  grid-template-columns: 25px 1fr;
+  column-gap: 10px;
+  margin-bottom: 12px;
+}
+
+.t-a-c-content > li::before {
+  content: counter(section);
+}
+
+.t-a-c-content > li > ol {
+  grid-column: 1 / -1;
+  counter-reset: subsection;
+  list-style: none;
+  padding-left: 35px;
+}
+
+.t-a-c-content > li > ol > li {
+  counter-increment: subsection;
+  display: grid;
+  grid-template-columns: 35px 1fr;
+  column-gap: 5px;
+  margin-bottom: 8px;
+}
+
+.t-a-c-content > li > ol > li::before {
+  content: counter(section) "." counter(subsection);
+} */
+
+.t-a-c-content {
+  counter-reset: section;
+  list-style: none;
+  padding-left: 25px;
+}
+
+.t-a-c-content > li {
+  counter-increment: section;
+  counter-reset: subsection;
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  column-gap: 10px;
+  margin-bottom: 20px;
+}
+
+.t-a-c-content > li::before {
+  content: counter(section);
+}
+
+.t-a-c-content > li > h4 {
+  margin: 0;
+  grid-column: 2;
+}
+
+.t-a-c-content > li > ol {
+  grid-column: 1 / -1;
+  list-style: none;
+  padding-left: 40px;
+}
+
+.t-a-c-content > li > ol > li {
+  counter-increment: subsection;
+  display: grid;
+  grid-template-columns: 35px 1fr;
+  column-gap: 10px;
+  margin-bottom: 8px;
+}
+
+.t-a-c-content > li > ol > li::before {
+  content: counter(section) "." counter(subsection);
+}

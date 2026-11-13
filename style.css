@@ -1524,18 +1524,25 @@ button:hover {
 }
 
 
-/* TERMS & CONDITIONS = WILL NEED TO COME BACK TO PX! */
+/* == TERMS & CONDITIONS = WILL NEED TO COME BACK TO PX! == */
+
+/* PRE T-O-C */
 
 .t-a-c-pre-t-o-c {
   text-align: left;
+}
+
+.t-a-c-pre-t-o-c p {
   display: grid;
   grid-template-columns: 25px 1fr;
-  gap: 10px;
+  column-gap: 10px;
 }
 
 .roman {
   text-align: left;
 }
+
+/* TABLE OF CONTENTS */
 
 .t-a-c-t-o-c ol {
   list-style: none;
@@ -1561,17 +1568,78 @@ button:hover {
 
 .t-a-c-t-o-c li a {
   color: inherit;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .t-a-c-t-o-c li a:hover {
   color: blue;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
+/* CONTENT */
 
 .t-a-c-content {
   text-align: left;
+}
+
+.t-a-c-content {
+  counter-reset: section;
+  list-style: none;
+  padding-left: 25px;
+}
+
+.t-a-c-content > li {
+  counter-increment: section;
+  counter-reset: subsection;
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  column-gap: 10px;
+  margin-bottom: 20px;
+}
+
+.t-a-c-content > li::before {
+  content: counter(section);
+}
+
+.t-a-c-content h4 {
+  margin: 0;
+  grid-column: 2;
+}
+
+.t-a-c-content ol {
+  grid-column: 1 / -1;
+  list-style: none;
+  padding-left: 40px;
+}
+
+.t-a-c-content > li > ol > li {
+  counter-increment: subsection;
+  counter-reset: subsubsection;
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  column-gap: 10px;
+  margin-bottom: 8px;
+}
+
+.t-a-c-content > li > ol > li::before {
+  content: counter(section) "." counter(subsection);
+}
+
+.t-a-c-content > li > ol > li > ol {
+  grid-column: 1 / -1;
+  padding-left: 35px;
+}
+
+.t-a-c-content > li > ol > li > ol > li {
+  counter-increment: subsubsection;
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  column-gap: 10px;
+  margin-bottom: 8px;
+}
+
+.t-a-c-content > li > ol > li > ol > li::before {
+  content: counter(section) "." counter(subsection) "." counter(subsubsection);
 }
 
 /* .t-a-c-content {
@@ -1609,7 +1677,7 @@ button:hover {
 
 .t-a-c-content > li > ol > li::before {
   content: counter(section) "." counter(subsection);
-} */
+}
 
 .t-a-c-content {
   counter-reset: section;
@@ -1651,4 +1719,4 @@ button:hover {
 
 .t-a-c-content > li > ol > li::before {
   content: counter(section) "." counter(subsection);
-}
+} */

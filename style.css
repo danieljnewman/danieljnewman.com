@@ -1536,13 +1536,12 @@ button:hover {
 .t-a-c-pre-t-o-c p {
   display: grid;
   grid-template-columns: 25px 1fr;
-  column-gap: 10px;
+  column-gap: 15px;
 }
 
 .roman {
   text-align: left;
 }
-
 
 /* TABLE OF CONTENTS */
 
@@ -1556,7 +1555,7 @@ button:hover {
   counter-increment: toc;
   display: grid;
   grid-template-columns: 30px 1fr;
-  column-gap: 10px;
+  column-gap: 15px;
   margin-bottom: 8px;
 }
 
@@ -1568,18 +1567,19 @@ button:hover {
   margin: 0;
 }
 
-.t-a-c-t-o-c li a {
+/* TOC links */
+
+.t-a-c-t-o-c a {
   color: inherit;
   text-decoration: underline;
 }
 
-.t-a-c-t-o-c li a:hover {
+.t-a-c-t-o-c a:hover {
   color: blue;
   text-decoration: none;
 }
 
-
-/* CONTENT */
+/* TERMS & CONDITIONS CONTENT */
 
 .t-a-c-content {
   text-align: left;
@@ -1588,14 +1588,14 @@ button:hover {
   padding-left: 25px;
 }
 
-/* Main sections: 1, 2, 3 */
+/* FIRST LEVEL */
 
 .t-a-c-content > li {
   counter-increment: section;
   counter-reset: subsection;
   display: grid;
   grid-template-columns: 30px 1fr;
-  column-gap: 10px;
+  column-gap: 15px;
   margin-bottom: 20px;
 }
 
@@ -1603,26 +1603,26 @@ button:hover {
   content: counter(section);
 }
 
-.t-a-c-content > li > h4 {
+.t-a-c-content h4 {
   margin: 0;
   grid-column: 2;
 }
 
-/* Second level: 1.1, 1.2, 2.1, 2.2 */
+/* SECOND LEVEL */
 
 .t-a-c-content > li > ol {
   grid-column: 1 / -1;
   list-style: none;
-  padding-left: 0;
-  margin-left: 0;
+  padding-left: 40px;
+  margin: 0;
 }
 
 .t-a-c-content > li > ol > li {
   counter-increment: subsection;
   counter-reset: subsubsection;
   display: grid;
-  grid-template-columns: 30px 1fr;
-  column-gap: 10px;
+  grid-template-columns: 40px 1fr;
+  column-gap: 15px;
   margin-bottom: 8px;
 }
 
@@ -1630,20 +1630,20 @@ button:hover {
   content: counter(section) "." counter(subsection);
 }
 
-/* Third level: 1.1.1, 1.1.2, 2.2.1 */
+/* THIRD LEVEL */
 
 .t-a-c-content > li > ol > li > ol {
   grid-column: 1 / -1;
   list-style: none;
-  padding-left: 0;
-  margin-left: 0;
+  padding-left: 40px;
+  margin: 0;
 }
 
 .t-a-c-content > li > ol > li > ol > li {
   counter-increment: subsubsection;
   display: grid;
-  grid-template-columns: 45px 1fr;
-  column-gap: 10px;
+  grid-template-columns: 50px 1fr;
+  column-gap: 15px;
   margin-bottom: 8px;
 }
 
@@ -1651,9 +1651,21 @@ button:hover {
   content: counter(section) "." counter(subsection) "." counter(subsubsection);
 }
 
-/* Align paragraphs alongside their numbering */
+/* PARAGRAPH POSITIONING */
 
-.t-a-c-content li p {
+.t-a-c-content li > p {
   grid-column: 2;
   margin: 0;
+}
+
+/* CONTENT LINKS */
+
+.t-a-c-content a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.t-a-c-content a:hover {
+  color: blue;
+  text-decoration: none;
 }

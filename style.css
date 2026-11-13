@@ -1526,20 +1526,23 @@ button:hover {
 
 /* == TERMS & CONDITIONS = WILL NEED TO COME BACK TO PX! == */
 
-/* First-level sections */
+/* First-level sections 
 .t-a-c-content > li {
   margin-bottom: 25px;
-}
+} */
 
-/* Second-level items */
+/* Second-level items 
 .t-a-c-content > li > ol > li {
   margin-bottom: 12px;
-}
+} */
 
-/* Third-level items */
+/* Third-level items 
 .t-a-c-content > li > ol > li > ol > li {
   margin-bottom: 12px;
-}
+} */
+
+.t-a-c-dates h6 {
+  margin: 0;
 
 /* PRE T-O-C */
 

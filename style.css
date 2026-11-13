@@ -1619,6 +1619,7 @@ button:hover {
 
 .t-a-c-content h4 {
   margin: 0;
+  margin-bottom: 10px;
   grid-column: 2;
 }
 
@@ -1649,7 +1650,7 @@ button:hover {
 .t-a-c-content > li > ol > li > ol {
   grid-column: 1 / -1;
   list-style: none;
-  padding-left: 50px;
+  padding-left: 55px;
   margin: 0;
 }
 
@@ -1670,7 +1671,6 @@ button:hover {
 .t-a-c-content li > p {
   grid-column: 2;
   margin: 0;
-  margin-bottom: 15px;
 }
 
 /* CONTENT LINKS */

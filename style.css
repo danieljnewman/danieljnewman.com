@@ -1526,6 +1526,7 @@ button:hover {
 
 /* == TERMS & CONDITIONS = WILL NEED TO COME BACK TO PX! == */
 
+
 /* PRE T-O-C */
 
 .t-a-c-pre-t-o-c {
@@ -1541,6 +1542,7 @@ button:hover {
 .roman {
   text-align: left;
 }
+
 
 /* TABLE OF CONTENTS */
 
@@ -1576,114 +1578,17 @@ button:hover {
   text-decoration: none;
 }
 
+
 /* CONTENT */
 
 .t-a-c-content {
   text-align: left;
-}
-
-.t-a-c-content {
   counter-reset: section;
   list-style: none;
   padding-left: 25px;
 }
 
-.t-a-c-content > li {
-  counter-increment: section;
-  counter-reset: subsection;
-  display: grid;
-  grid-template-columns: 30px 1fr;
-  column-gap: 10px;
-  margin-bottom: 20px;
-}
-
-.t-a-c-content > li::before {
-  content: counter(section);
-}
-
-.t-a-c-content h4 {
-  margin: 0;
-  grid-column: 2;
-}
-
-.t-a-c-content ol {
-  grid-column: 1 / -1;
-  list-style: none;
-  padding-left: 40px;
-}
-
-.t-a-c-content > li > ol > li {
-  counter-increment: subsection;
-  counter-reset: subsubsection;
-  display: grid;
-  grid-template-columns: 40px 1fr;
-  column-gap: 10px;
-  margin-bottom: 8px;
-}
-
-.t-a-c-content > li > ol > li::before {
-  content: counter(section) "." counter(subsection);
-}
-
-.t-a-c-content > li > ol > li > ol {
-  grid-column: 1 / -1;
-  padding-left: 35px;
-}
-
-.t-a-c-content > li > ol > li > ol > li {
-  counter-increment: subsubsection;
-  display: grid;
-  grid-template-columns: 50px 1fr;
-  column-gap: 10px;
-  margin-bottom: 8px;
-}
-
-.t-a-c-content > li > ol > li > ol > li::before {
-  content: counter(section) "." counter(subsection) "." counter(subsubsection);
-}
-
-/* .t-a-c-content {
-  counter-reset: section;
-  list-style: none;
-  padding-left: 0;
-}
-
- .t-a-c-content > li {
-  counter-increment: section;
-  display: grid;
-  grid-template-columns: 25px 1fr;
-  column-gap: 10px;
-  margin-bottom: 12px;
-}
-
-.t-a-c-content > li::before {
-  content: counter(section);
-}
-
-.t-a-c-content > li > ol {
-  grid-column: 1 / -1;
-  counter-reset: subsection;
-  list-style: none;
-  padding-left: 35px;
-}
-
-.t-a-c-content > li > ol > li {
-  counter-increment: subsection;
-  display: grid;
-  grid-template-columns: 35px 1fr;
-  column-gap: 5px;
-  margin-bottom: 8px;
-}
-
-.t-a-c-content > li > ol > li::before {
-  content: counter(section) "." counter(subsection);
-}
-
-.t-a-c-content {
-  counter-reset: section;
-  list-style: none;
-  padding-left: 25px;
-}
+/* Main sections: 1, 2, 3 */
 
 .t-a-c-content > li {
   counter-increment: section;
@@ -1703,20 +1608,52 @@ button:hover {
   grid-column: 2;
 }
 
+/* Second level: 1.1, 1.2, 2.1, 2.2 */
+
 .t-a-c-content > li > ol {
   grid-column: 1 / -1;
   list-style: none;
-  padding-left: 40px;
+  padding-left: 0;
+  margin-left: 0;
 }
 
 .t-a-c-content > li > ol > li {
   counter-increment: subsection;
+  counter-reset: subsubsection;
   display: grid;
-  grid-template-columns: 35px 1fr;
+  grid-template-columns: 30px 1fr;
   column-gap: 10px;
   margin-bottom: 8px;
 }
 
 .t-a-c-content > li > ol > li::before {
   content: counter(section) "." counter(subsection);
-} */
+}
+
+/* Third level: 1.1.1, 1.1.2, 2.2.1 */
+
+.t-a-c-content > li > ol > li > ol {
+  grid-column: 1 / -1;
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.t-a-c-content > li > ol > li > ol > li {
+  counter-increment: subsubsection;
+  display: grid;
+  grid-template-columns: 45px 1fr;
+  column-gap: 10px;
+  margin-bottom: 8px;
+}
+
+.t-a-c-content > li > ol > li > ol > li::before {
+  content: counter(section) "." counter(subsection) "." counter(subsubsection);
+}
+
+/* Align paragraphs alongside their numbering */
+
+.t-a-c-content li p {
+  grid-column: 2;
+  margin: 0;
+}

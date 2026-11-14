@@ -1794,6 +1794,7 @@ button:hover {
   scroll-margin-top: 100px;
 }
 
+
 /* SECOND LEVEL */
 
 .p-p-content > li > ol {
@@ -1802,15 +1803,19 @@ button:hover {
   counter-reset: subsection;
   padding-left: 45px;
   margin: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .p-p-content > li > ol > li {
   counter-increment: subsection;
   counter-reset: subsubsection;
   display: grid;
-  grid-template-columns: 40px 1fr;
+  grid-template-columns: 40px minmax(0, 1fr);
   column-gap: 15px;
   margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .p-p-content > li > ol > li::before {
@@ -1824,15 +1829,19 @@ button:hover {
   list-style: none;
   padding-left: 55px;
   margin: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .p-p-content > li > ol > li > ol > li {
   counter-increment: subsubsection;
   counter-reset: subsubsubsection;
   display: grid;
-  grid-template-columns: 50px 1fr;
+  grid-template-columns: 50px minmax(0, 1fr);
   column-gap: 15px;
   margin: 10px 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .p-p-content > li > ol > li > ol > li::before {
@@ -1846,14 +1855,19 @@ button:hover {
   list-style: none;
   padding-left: 65px;
   margin: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .p-p-content > li > ol > li > ol > li > ol > li {
   counter-increment: subsubsubsection;
+  counter-reset: fifthsection;
   display: grid;
-  grid-template-columns: 75px 1fr;
+  grid-template-columns: 75px minmax(0, 1fr);
   column-gap: 15px;
   margin: 10px 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .p-p-content > li > ol > li > ol > li > ol > li::before {
@@ -1862,19 +1876,23 @@ button:hover {
 
 /* FIFTH LEVEL */
 
-.p-p-content > li > ol > li > ol > li > ol > li > ol > li > ol {
+.p-p-content > li > ol > li > ol > li > ol > li > ol {
   grid-column: 1 / -1;
   list-style: none;
   padding-left: 75px;
   margin: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .p-p-content > li > ol > li > ol > li > ol > li > ol > li {
   counter-increment: fifthsection;
   display: grid;
-  grid-template-columns: 85px 1fr;
+  grid-template-columns: 85px minmax(0, 1fr);
   column-gap: 15px;
   margin: 10px 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .p-p-content > li > ol > li > ol > li > ol > li > ol > li::before {

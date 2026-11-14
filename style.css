@@ -1871,9 +1871,8 @@ button:hover {
 
 .p-p-content > li > ol > li > ol > li > ol > li > ol > li {
   counter-increment: fifthsection;
-  counter-reset: sixthsection;
   display: grid;
-  grid-template-columns: 60px 1fr;
+  grid-template-columns: 85px 1fr;
   column-gap: 15px;
   margin: 10px 0;
 }

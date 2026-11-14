@@ -1865,14 +1865,14 @@ button:hover {
 .p-p-content > li > ol > li > ol > li > ol > li > ol > li > ol {
   grid-column: 1 / -1;
   list-style: none;
-  padding-left: 85px;
+  padding-left: 75px;
   margin: 0;
 }
 
 .p-p-content > li > ol > li > ol > li > ol > li > ol > li {
   counter-increment: fifthsection;
   display: grid;
-  grid-template-columns: 85px 1fr;
+  grid-template-columns: 65px 1fr;
   column-gap: 15px;
   margin: 10px 0;
 }

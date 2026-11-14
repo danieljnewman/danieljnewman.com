@@ -1420,3 +1420,52 @@ document.querySelectorAll(".video-card").forEach(card => {
     }
   });
 });
+
+
+/* LIGHTBOX WATERMARK GENERATOR */
+
+async function createWatermarkedImage(imageUrl) {
+  const image = new Image();
+  image.crossOrigin = 'anonymous';
+  image.src = imageUrl;
+
+  await new Promise((resolve, reject) => {
+    image.onload = resolve;
+    image.onerror = reject;
+  });
+
+  const canvas = document.createElement('canvas');
+
+  canvas.width = image.naturalWidth;
+  canvas.height = image.naturalHeight;
+
+  const ctx = canvas.getContext('2d');
+
+  // Draw original photograph
+  ctx.drawImage(image, 0, 0);
+
+  // Watermark styling
+  const fontSize = 16;
+  const padding = 20;
+
+  ctx.font = `700 ${fontSize}px OpenDyslexic, sans-serif`;
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+  ctx.textAlign = 'right';
+  ctx.textBaseline = 'bottom';
+
+  // Watermark shadow
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.75)';
+  ctx.shadowBlur = 4;
+  ctx.shadowOffsetX = 1;
+  ctx.shadowOffsetY = 2;
+
+  // Draw watermark
+  ctx.fillText(
+    'Daniel J Newman',
+    canvas.width - padding,
+    canvas.height - padding
+  );
+
+  // Return watermarked image
+  return canvas.toDataURL('image/webp', 0.92);
+}

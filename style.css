@@ -1860,6 +1860,27 @@ button:hover {
   content: counter(section) "." counter(subsection) "." counter(subsubsection) "." counter(subsubsubsection);
 }
 
+/* FIFTH LEVEL */
+
+.p-p-content > li > ol > li > ol > li > ol > li > ol > li > ol {
+  grid-column: 1 / -1;
+  list-style: none;
+  padding-left: 85px;
+  margin: 0;
+}
+
+.p-p-content > li > ol > li > ol > li > ol > li > ol > li {
+  counter-increment: fifthsection;
+  display: grid;
+  grid-template-columns: 85px 1fr;
+  column-gap: 15px;
+  margin: 10px 0;
+}
+
+.p-p-content > li > ol > li > ol > li > ol > li > ol > li::before {
+  content: counter(section) "." counter(subsection) "." counter(subsubsection) "." counter(subsubsubsection) "." counter(fifthsection);
+}
+
 /* PARAGRAPH POSITIONING */
 
 .p-p-content li > p {

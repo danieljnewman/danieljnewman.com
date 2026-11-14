@@ -119,6 +119,8 @@ html {
 
 /* ---- HEADER ---- */
 
+/* --- DESKTOP --- */
+
 header {
   position: fixed;
   top: 0;
@@ -155,10 +157,75 @@ header h1 a:hover {
   text-decoration: none;
 }
 
+/* --- MOBILE --- */
+
+@media (max-width: 768px) {
+
+  header {
+    padding: 0.8em 1em;
+  }
+
+  header h1 {
+    font-size: 1.5em;
+  }
+
 
 /* ---- NAVIGATION ---- */
 
-/* -- DESKTOP -- */
+/* - DARK MODE - */
+
+@media (prefers-color-scheme: dark) {
+
+  nav a:hover {
+    background-color: rgba(255,255,255,0.08);
+  }
+
+  nav a:active {
+    background-color: rgba(255,255,255,0.12);
+  }
+
+  nav a.active {
+    background-color: rgba(255,255,255,0.16);
+  }
+}
+
+/* --- MAIN --- */
+
+  nav ul.nav {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0;
+
+    width: 100%;
+  }
+
+  nav ul.nav > li {
+    width: 100%;
+  }
+
+  nav a,
+  nav span {
+    padding: 0.8em 1em;
+  }
+
+/* -- EXPERIENCE/VOLUNTEERING -- */
+
+  .nav-item-with-toggle {
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+  }
+
+  .nav-item-with-toggle > a,
+  .nav-item-with-toggle > span {
+    flex: 1;
+  }
+
+/* --- DESKTOP --- */
 
 nav {
   margin-left: auto;
@@ -246,8 +313,7 @@ nav a:visited {
   color: var(--text-color);
 }
 
-
-/* - HIDDEN - */
+/* -- HIDDEN -- */
 
 .menu-toggle {
   display: none;
@@ -262,37 +328,29 @@ header .submenu-toggle {
   display: none !important;
 }
 
-/* -- MOBILE -- */
+/* --- MOBILE --- */
 
-@media (max-width: 768px) {
+  nav {
+    display: none;
 
-  header {
-    padding: 0.8em 1em;
+    position: absolute;
+
+    top: 100%;
+    left: 0;
+    right: 0;
+
+    margin: 0;
+
+    background-color: var(--header-bg);
+
+    box-shadow: 0 4px 6px rgba(0,0,0,.1);
   }
 
-  header h1 {
-    font-size: 1.5em;
+  nav.open {
+    display: block;
   }
 
-/* --- DARK MODE --- */
-
-@media (prefers-color-scheme: dark) {
-
-  nav a:hover {
-    background-color: rgba(255,255,255,0.08);
-  }
-
-  nav a:active {
-    background-color: rgba(255,255,255,0.12);
-  }
-
-  nav a.active {
-    background-color: rgba(255,255,255,0.16);
-  }
-}
-
-
-/* ---- HAMBURGER ---- */
+/* -- HAMBURGER -- */
 
   .menu-toggle {
     display: flex;
@@ -325,69 +383,34 @@ header .submenu-toggle {
     border-radius: 2px;
   }
 
+/* -- SUBMENUS -- */
 
-/* MOBILE NAV */
+  nav ul li ul.submenu {
+    position: static;
 
-  nav {
     display: none;
 
-    position: absolute;
+    min-width: 0;
 
-    top: 100%;
-    left: 0;
-    right: 0;
+    padding: 0;
 
-    margin: 0;
-
-    background-color: var(--header-bg);
-
-    box-shadow: 0 4px 6px rgba(0,0,0,.1);
+    background: rgba(0,0,0,0.03);
   }
 
-  nav.open {
+  /* - NO HOVER - */
+
+  nav ul li:hover > ul.submenu {
+    display: none;
+  }
+
+  /* - JavaScript - */
+
+  nav ul li > ul.submenu.open {
     display: block;
   }
+}
 
-
-/* MAIN NAVIGATION */
-
-  nav ul.nav {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 0;
-
-    width: 100%;
-  }
-
-  nav ul.nav > li {
-    width: 100%;
-  }
-
-  nav a,
-  nav span {
-    padding: 0.8em 1em;
-  }
-
-
-/* EXPERIENCE/VOLUNTEERING */
-
-  .nav-item-with-toggle {
-    display: flex;
-
-    align-items: center;
-
-    width: 100%;
-  }
-
-  .nav-item-with-toggle > a,
-  .nav-item-with-toggle > span {
-    flex: 1;
-  }
-
-
-/* SUBMENU ARROWS ~ MOBILE ONLY */
+/* -- ARROWS -- */
 
   header .submenu-toggle {
     display: flex !important;
@@ -422,35 +445,51 @@ header .submenu-toggle {
   }
 
 
-/* MOBILE SUBMENUS */
+/* ---- PAGE CONTENT ---- */
 
-  nav ul li ul.submenu {
-    position: static;
-
-    display: none;
-
-    min-width: 0;
-
-    padding: 0;
-
-    background: rgba(0,0,0,0.03);
-  }
-
-  /* Disable desktop hover behaviour on mobile */
-
-  nav ul li:hover > ul.submenu {
-    display: none;
-  }
-
-  /* JavaScript opens submenu */
-
-  nav ul li > ul.submenu.open {
-    display: block;
-  }
-
+main {
+  padding-top: 6rem;
+  padding-left: 2em;
+  padding-right: 2em;
+  margin: 0 auto;
+  flex: 1;
 }
 
-/* FOOTER */
+html {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main p, body p, body * {
+  font-family: "OpenDyslexic";
+  font-style: normal;
+  font-weight: 400;
+}
+
+main, body h2, body h3, body h4, body h5, body h6 {
+  font-family: "OpenDyslexic";
+  font-style: normal;
+  font-weight: 700;
+}
+
+main h2 { /* MAY COME BACK TO */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+
+/* ---- FOOTER ---- */
 
 footer {
   padding: 0.75em;
@@ -518,48 +557,7 @@ footer span {
 }
 
 
-/* REST OF PAGE */
 
-main {
-  padding-top: 6rem;
-  padding-left: 2em;
-  padding-right: 2em;
-  margin: 0 auto;
-  flex: 1;
-}
-
-html {
-  height: 100%;
-  margin: 0;
-}
-
-body {
-  height: 100%;
-  margin: 0;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-main p, body p, body * {
-  font-family: "OpenDyslexic";
-  font-style: normal;
-  font-weight: 400;
-}
-
-main, body h2, body h3, body h4, body h5, body h6 {
-  font-family: "OpenDyslexic";
-  font-style: normal;
-  font-weight: 700;
-}
-
-main h2 { /* MAY COME BACK TO */
-  text-align: center;
-  margin-bottom: 20px;
-}
 
 
 /* HOME GRID */

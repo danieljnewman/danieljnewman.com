@@ -1396,10 +1396,6 @@ footer span {
 
 /* -- WATERMARK -- */
 
-.lightbox-view {
-  position: relative;
-}
-
 .lightbox-view::after {
   content: "Daniel J Newman";
   position: absolute;

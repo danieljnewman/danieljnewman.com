@@ -1865,19 +1865,16 @@ button:hover {
 .p-p-content > li > ol > li > ol > li > ol > li > ol > li > ol {
   grid-column: 1 / -1;
   list-style: none;
-  padding-left: 0;
+  padding-left: 75px;
   margin: 0;
-  width: 100%;
-  box-sizing: border-box;
 }
 
 .p-p-content > li > ol > li > ol > li > ol > li > ol > li {
   counter-increment: fifthsection;
+  counter-reset: sixthsection;
   display: grid;
-  grid-template-columns: max-content minmax(0, 1fr);
+  grid-template-columns: 60px 1fr;
   column-gap: 15px;
-  width: 100%;
-  box-sizing: border-box;
   margin: 10px 0;
 }
 

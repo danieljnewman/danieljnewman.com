@@ -1171,13 +1171,13 @@ footer span {
 }
 
 .portfolio-page-link h3 {
-    margin: 0;
+  margin: 0;
 }
 
 .portfolio-page-link .back-link {
-    margin-left: auto;
-    margin-bottom: 0;
-    white-space: nowrap;
+  margin-left: auto;
+  margin-bottom: 0;
+  white-space: nowrap;
 }
 
 /* --- MOBILE --- */
@@ -1259,39 +1259,39 @@ footer span {
   font-size: 1rem;
 }
 
-.gallery-card.aoitp .overlay { 
+.gallery-card.aoitp .overlay {
   background: #c845a5;
 }
 
-.gallery-card.bdo .overlay { 
+.gallery-card.bdo .overlay {
   background: #7466a3;
 }
 
-.gallery-card.ep .overlay { 
+.gallery-card.ep .overlay {
   background: #251546;
 }
 
-.gallery-card.nlne .overlay { 
+.gallery-card.nlne .overlay {
   background: #1443cc;
 }
 
-.gallery-card.nsfc .overlay { 
+.gallery-card.nsfc .overlay {
   background: #c73c3a;
 }
 
-.gallery-card.pil .overlay { 
+.gallery-card.pil .overlay {
   background: #;
 }
 
-.gallery-card.rp .overlay { 
+.gallery-card.rp .overlay {
   background: #112368;
 }
 
-.gallery-card.rrl .overlay { 
+.gallery-card.rrl .overlay {
   background: #d93a34;
 }
 
-.gallery-card.spf .overlay { 
+.gallery-card.spf .overlay {
   background: #3e8b45;
 }
 
@@ -1299,11 +1299,11 @@ footer span {
   background: linear-gradient(45deg, #0d0c0f, #e03423, #ec8236, #ecd052, #75ca44, #59b978, #60d3f3, #071b80, #441981, #7e227e, #df3ac3, #0c0c12);
 }
 
-.gallery-card.tflff .overlay { 
+.gallery-card.tflff .overlay {
   background: #9e386c;
 }
 
-.gallery-card.tm .overlay { 
+.gallery-card.tm .overlay {
   background: #ce6d96;
 }
 
@@ -1454,14 +1454,15 @@ footer span {
 .video-card {
   width: 100%;
   min-width: 0;
-/*  box-sizing: border-box; */
+  /* box-sizing: border-box; */
 }
 
 /* - THUMBNAIL - */
+
 .video-card img {
   display: block;
   width: 100%;
- /* aspect-ratio: 16 / 9; */
+  /* aspect-ratio: 16 / 9; */
   object-fit: cover;
   border-radius: 10px;
 }
@@ -1636,8 +1637,7 @@ footer span {
 
 /* DESKTOP */
 
-.portfolio-page .gallery-grid-video,
-.portfolio-grid {
+.portfolio-page .gallery-grid-video {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
@@ -1647,24 +1647,24 @@ footer span {
   margin-bottom: 20px;
   padding: 20px 0;
   min-width: 0;
-/*  box-sizing: border-box; */
+  /* box-sizing: border-box; */
 }
 
 /* --- TABLET --- */
 
 @media (max-width: 900px) {
-.portfolio-page .gallery-grid-video {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
+  .portfolio-page .gallery-grid-video {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 /* --- MOBILE --- */
 
 @media (max-width: 600px) {
-.portfolio-page .gallery-grid-video {
-  grid-template-columns: 1fr;
-  gap: 20px;
-}
+  .portfolio-page .gallery-grid-video {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
 }
 
 /* --- MAIN --- */

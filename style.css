@@ -1879,7 +1879,7 @@ button:hover {
 .p-p-content > li > ol > li > ol > li > ol > li > ol {
   grid-column: 1 / -1;
   list-style: none;
-  padding-left: 75px;
+  padding-left: 85px;
   margin: 0;
   width: 100%;
   box-sizing: border-box;

@@ -1700,20 +1700,6 @@ button:hover {
 
 /* == PRIVACY POLICY = WILL NEED TO COME BACK TO PX! == */
 
-/* First-level sections 
-.p-p-content > li {
-  margin-bottom: 25px;
-} */
-
-/* Second-level items 
-.t-a-c-content > li > ol > li {
-  margin-bottom: 12px;
-} */
-
-/* Third-level items 
-.t-a-c-content > li > ol > li > ol > li {
-  margin-bottom: 12px;
-} */
 
 .p-p-dates h6 {
   margin: 5px 0;
@@ -1775,7 +1761,7 @@ button:hover {
   text-decoration: none;
 }
 
-/* TERMS & CONDITIONS CONTENT */
+/* PRIVACY POLICY CONTENT */
 
 .p-p-content {
   text-align: left;
@@ -1788,7 +1774,6 @@ button:hover {
 
 .p-p-content > li {
   counter-increment: section;
-  counter-reset: subsection;
   display: grid;
   grid-template-columns: 30px 1fr;
   column-gap: 15px;
@@ -1814,6 +1799,7 @@ button:hover {
 .p-p-content > li > ol {
   grid-column: 1 / -1;
   list-style: none;
+  counter-reset: subsection;
   padding-left: 45px;
   margin: 0;
 }
@@ -1892,3 +1878,4 @@ button:hover {
   color: blue;
   text-decoration: none;
 }
+

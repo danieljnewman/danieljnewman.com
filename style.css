@@ -1864,12 +1864,11 @@ button:hover {
 
 .p-p-content > li > ol > li > ol > li > ol > li > ol > li > ol {
   grid-column: 1 / -1;
-  display: block;
   list-style: none;
+  padding-left: 0;
+  margin: 0;
   width: 100%;
   box-sizing: border-box;
-  padding-left: 75px;
-  margin: 0;
 }
 
 .p-p-content > li > ol > li > ol > li > ol > li > ol > li {
@@ -1879,18 +1878,11 @@ button:hover {
   column-gap: 15px;
   width: 100%;
   box-sizing: border-box;
-  min-width: 0;
   margin: 10px 0;
 }
 
 .p-p-content > li > ol > li > ol > li > ol > li > ol > li::before {
   content: counter(section) "." counter(subsection) "." counter(subsubsection) "." counter(subsubsubsection) "." counter(fifthsection);
-}
-
-.p-p-content > li > ol > li > ol > li > ol > li > ol > li > p {
-  grid-column: 2;
-  min-width: 0;
-  margin: 0;
 }
 
 /* PARAGRAPH POSITIONING */

@@ -1527,7 +1527,181 @@ button:hover {
 /* == TERMS & CONDITIONS = WILL NEED TO COME BACK TO PX! == */
 
 /* First-level sections 
-.t-a-c-content > li {
+.t-c-content > li {
+  margin-bottom: 25px;
+} */
+
+/* Second-level items 
+.t-c-content > li > ol > li {
+  margin-bottom: 12px;
+} */
+
+/* Third-level items 
+.t-c-content > li > ol > li > ol > li {
+  margin-bottom: 12px;
+} */
+
+.t-c-dates h6 {
+  margin: 5px 0;
+}
+
+.t-c-dates p {
+  margin-top: 20px
+}
+
+/* PRE T-O-C */
+
+.t-c-pre-ta-co {
+  text-align: left;
+}
+
+.t-c-pre-ta-co p {
+  display: grid;
+  grid-template-columns: 25px 1fr;
+  column-gap: 15px;
+}
+
+.roman {
+  text-align: left;
+}
+
+/* TABLE OF CONTENTS */
+
+.t-c-ta-co ol {
+  list-style: none;
+  counter-reset: toc;
+  padding-left: 25px;
+}
+
+.t-c-ta-co li {
+  counter-increment: toc;
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  column-gap: 15px;
+  margin-bottom: 10px;
+}
+
+.t-c-ta-co li::before {
+  content: counter(toc);
+}
+
+.t-c-ta-co li h4 {
+  margin: 0;
+}
+
+/* ToC links */
+
+.t-c-ta-co a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.t-c-ta-co a:hover {
+  color: blue;
+  text-decoration: none;
+}
+
+/* TERMS & CONDITIONS CONTENT */
+
+.t-c-content {
+  text-align: left;
+  counter-reset: section;
+  list-style: none;
+  padding-left: 25px;
+}
+
+/* FIRST LEVEL */
+
+.t-c-content > li {
+  counter-increment: section;
+  counter-reset: subsection;
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  column-gap: 15px;
+  margin-bottom: 20px;
+}
+
+.t-c-content > li::before {
+  content: counter(section);
+}
+
+.t-c-content h4 {
+  margin: 0;
+  margin-bottom: 10px;
+  grid-column: 2;
+}
+
+.t-c-content h4[id] {
+  scroll-margin-top: 100px;
+}
+
+/* SECOND LEVEL */
+
+.t-c-content > li > ol {
+  grid-column: 1 / -1;
+  list-style: none;
+  padding-left: 45px;
+  margin: 0;
+}
+
+.t-c-content > li > ol > li {
+  counter-increment: subsection;
+  counter-reset: subsubsection;
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  column-gap: 15px;
+  margin-bottom: 10px;
+}
+
+.t-c-content > li > ol > li::before {
+  content: counter(section) "." counter(subsection);
+}
+
+/* THIRD LEVEL */
+
+.t-c-content > li > ol > li > ol {
+  grid-column: 1 / -1;
+  list-style: none;
+  padding-left: 55px;
+  margin: 0;
+}
+
+.t-c-content > li > ol > li > ol > li {
+  counter-increment: subsubsection;
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  column-gap: 15px;
+  margin: 10px 0;
+}
+
+.t-c-content > li > ol > li > ol > li::before {
+  content: counter(section) "." counter(subsection) "." counter(subsubsection);
+}
+
+/* PARAGRAPH POSITIONING */
+
+.t-c-content li > p {
+  grid-column: 2;
+  margin: 0;
+}
+
+/* CONTENT LINKS */
+
+.t-c-content a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.t-c-content a:hover {
+  color: blue;
+  text-decoration: none;
+}
+
+
+/* == PRIVACY POLICY = WILL NEED TO COME BACK TO PX! == */
+
+/* First-level sections 
+.p-p-content > li {
   margin-bottom: 25px;
 } */
 
@@ -1541,21 +1715,21 @@ button:hover {
   margin-bottom: 12px;
 } */
 
-.t-a-c-dates h6 {
+.p-p-dates h6 {
   margin: 5px 0;
 }
 
-.t-a-c-dates p {
+.p-p-dates p {
   margin-top: 20px
 }
 
 /* PRE T-O-C */
 
-.t-a-c-pre-t-o-c {
+.p-p-pre-ta-co {
   text-align: left;
 }
 
-.t-a-c-pre-t-o-c p {
+.p-p-pre-ta-co p {
   display: grid;
   grid-template-columns: 25px 1fr;
   column-gap: 15px;
@@ -1567,13 +1741,13 @@ button:hover {
 
 /* TABLE OF CONTENTS */
 
-.t-a-c-t-o-c ol {
+.p-p-ta-co ol {
   list-style: none;
   counter-reset: toc;
   padding-left: 25px;
 }
 
-.t-a-c-t-o-c li {
+.p-p-ta-co li {
   counter-increment: toc;
   display: grid;
   grid-template-columns: 30px 1fr;
@@ -1581,29 +1755,29 @@ button:hover {
   margin-bottom: 10px;
 }
 
-.t-a-c-t-o-c li::before {
+.p-p-ta-co li::before {
   content: counter(toc);
 }
 
-.t-a-c-t-o-c li h4 {
+.p-p-ta-co li h4 {
   margin: 0;
 }
 
-/* TOC links */
+/* ToC links */
 
-.t-a-c-t-o-c a {
+.p-p-ta-co a {
   color: inherit;
   text-decoration: underline;
 }
 
-.t-a-c-t-o-c a:hover {
+.p-p-ta-co a:hover {
   color: blue;
   text-decoration: none;
 }
 
 /* TERMS & CONDITIONS CONTENT */
 
-.t-a-c-content {
+.p-p-content {
   text-align: left;
   counter-reset: section;
   list-style: none;
@@ -1612,7 +1786,7 @@ button:hover {
 
 /* FIRST LEVEL */
 
-.t-a-c-content > li {
+.p-p-content > li {
   counter-increment: section;
   counter-reset: subsection;
   display: grid;
@@ -1621,30 +1795,30 @@ button:hover {
   margin-bottom: 20px;
 }
 
-.t-a-c-content > li::before {
+.p-p-content > li::before {
   content: counter(section);
 }
 
-.t-a-c-content h4 {
+.p-p-content h4 {
   margin: 0;
   margin-bottom: 10px;
   grid-column: 2;
 }
 
-.t-a-c-content h4[id] {
+.p-p-content h4[id] {
   scroll-margin-top: 100px;
 }
 
 /* SECOND LEVEL */
 
-.t-a-c-content > li > ol {
+.p-p-content > li > ol {
   grid-column: 1 / -1;
   list-style: none;
   padding-left: 45px;
   margin: 0;
 }
 
-.t-a-c-content > li > ol > li {
+.p-p-content > li > ol > li {
   counter-increment: subsection;
   counter-reset: subsubsection;
   display: grid;
@@ -1653,46 +1827,68 @@ button:hover {
   margin-bottom: 10px;
 }
 
-.t-a-c-content > li > ol > li::before {
+.p-p-content > li > ol > li::before {
   content: counter(section) "." counter(subsection);
 }
 
 /* THIRD LEVEL */
 
-.t-a-c-content > li > ol > li > ol {
+.p-p-content > li > ol > li > ol {
   grid-column: 1 / -1;
   list-style: none;
   padding-left: 55px;
   margin: 0;
 }
 
-.t-a-c-content > li > ol > li > ol > li {
+.p-p-content > li > ol > li > ol > li {
   counter-increment: subsubsection;
+  counter-reset: subsubsubsection;
   display: grid;
   grid-template-columns: 50px 1fr;
   column-gap: 15px;
   margin: 10px 0;
 }
 
-.t-a-c-content > li > ol > li > ol > li::before {
+.p-p-content > li > ol > li > ol > li::before {
   content: counter(section) "." counter(subsection) "." counter(subsubsection);
+}
+
+/* FOURTH LEVEL */
+
+.p-p-content > li > ol > li > ol > li > ol {
+  grid-column: 1 / -1;
+  list-style: none;
+  padding-left: 55px;
+  margin: 0;
+}
+
+.p-p-content > li > ol > li > ol > li > ol > li {
+  counter-increment: subsubsubsection;
+  display: grid;
+  grid-template-columns: 75px 1fr;
+  column-gap: 15px;
+  margin: 10px 0;
+}
+
+.p-p-content > li > ol > li > ol > li > ol > li::before {
+  content: counter(section) "." counter(subsection) "." counter(subsubsection) "." counter(subsubsubsection);
 }
 
 /* PARAGRAPH POSITIONING */
 
-.t-a-c-content li > p {
+.p-p-content li > p {
   grid-column: 2;
   margin: 0;
 }
 
 /* CONTENT LINKS */
 
-.t-a-c-content a {
+.p-p-content a {
   color: inherit;
   text-decoration: underline;
 }
 
-.t-a-c-content a:hover {
+.p-p-content a:hover {
   color: blue;
   text-decoration: none;
 }

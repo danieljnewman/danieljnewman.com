@@ -1864,7 +1864,10 @@ button:hover {
 
 .p-p-content > li > ol > li > ol > li > ol > li > ol > li > ol {
   grid-column: 1 / -1;
+  display: block;
   list-style: none;
+  width: 100%;
+  box-sizing: border-box;
   padding-left: 75px;
   margin: 0;
 }
@@ -1872,13 +1875,22 @@ button:hover {
 .p-p-content > li > ol > li > ol > li > ol > li > ol > li {
   counter-increment: fifthsection;
   display: grid;
-  grid-template-columns: 65px 1fr;
+  grid-template-columns: max-content minmax(0, 1fr);
   column-gap: 15px;
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
   margin: 10px 0;
 }
 
 .p-p-content > li > ol > li > ol > li > ol > li > ol > li::before {
   content: counter(section) "." counter(subsection) "." counter(subsubsection) "." counter(subsubsubsection) "." counter(fifthsection);
+}
+
+.p-p-content > li > ol > li > ol > li > ol > li > ol > li > p {
+  grid-column: 2;
+  min-width: 0;
+  margin: 0;
 }
 
 /* PARAGRAPH POSITIONING */

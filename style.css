@@ -117,6 +117,7 @@ html {
 }
 
 
+
 /* ----- HEADER ----- */
 
 /* --- DESKTOP --- */
@@ -157,76 +158,9 @@ header h1 a:hover {
   text-decoration: none;
 }
 
-/* --- MOBILE --- */
-
-@media (max-width: 768px) {
-
-  header {
-    padding: 0.8em 1em;
-  }
-
-  header h1 {
-    font-size: 1.5em;
-  }
-  
-}
-
 /* ----- NAVIGATION ----- */
 
-/* -- DARK MODE -- */
-
-@media (prefers-color-scheme: dark) {
-
-  nav a:hover {
-    background-color: rgba(255,255,255,0.08);
-  }
-
-  nav a:active {
-    background-color: rgba(255,255,255,0.12);
-  }
-
-  nav a.active {
-    background-color: rgba(255,255,255,0.16);
-  }
-}
-
-/* --- MAIN --- */
-
-  nav ul.nav {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 0;
-
-    width: 100%;
-  }
-
-  nav ul.nav > li {
-    width: 100%;
-  }
-
-  nav a,
-  nav span {
-    padding: 0.8em 1em;
-  }
-
-/* -- EXPERIENCE/VOLUNTEERING -- */
-
-  .nav-item-with-toggle {
-    display: flex;
-
-    align-items: center;
-
-    width: 100%;
-  }
-
-  .nav-item-with-toggle > a,
-  .nav-item-with-toggle > span {
-    flex: 1;
-  }
-
-/* --- DESKTOP --- */
+/* -- DESKTOP -- */
 
 nav {
   margin-left: auto;
@@ -314,22 +248,55 @@ nav a:visited {
   color: var(--text-color);
 }
 
-/* -- HIDDEN -- */
-
-.menu-toggle {
-  display: none;
-}
+/* -- EXPERIENCE/VOLUNTEERING -- */
 
 .nav-item-with-toggle {
   display: flex;
   align-items: center;
 }
 
+/* -- HIDDEN ON DESKTOP -- */
+
+.menu-toggle {
+  display: none;
+}
+
 header .submenu-toggle {
   display: none !important;
 }
 
+/* -- DARK MODE -- */
+
+@media (prefers-color-scheme: dark) {
+
+  nav a:hover {
+    background-color: rgba(255,255,255,0.08);
+  }
+
+  nav a:active {
+    background-color: rgba(255,255,255,0.12);
+  }
+
+  nav a.active {
+    background-color: rgba(255,255,255,0.16);
+  }
+}
+
 /* --- MOBILE --- */
+
+@media (max-width: 768px) {
+
+  /* -- HEADER -- */
+
+  header {
+    padding: 0.8em 1em;
+  }
+
+  header h1 {
+    font-size: 1.5em;
+  }
+
+  /* -- NAVIGATION -- */
 
   nav {
     display: none;
@@ -351,7 +318,38 @@ header .submenu-toggle {
     display: block;
   }
 
-/* -- HAMBURGER -- */
+  nav ul.nav {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0;
+
+    width: 100%;
+  }
+
+  nav ul.nav > li {
+    width: 100%;
+  }
+
+  nav a,
+  nav span {
+    padding: 0.8em 1em;
+  }
+
+  /* -- EXPERIENCE/VOLUNTEERING -- */
+
+  .nav-item-with-toggle {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  .nav-item-with-toggle > a,
+  .nav-item-with-toggle > span {
+    flex: 1;
+  }
+
+  /* -- HAMBURGER -- */
 
   .menu-toggle {
     display: flex;
@@ -384,7 +382,7 @@ header .submenu-toggle {
     border-radius: 2px;
   }
 
-/* -- SUBMENUS -- */
+  /* -- SUBMENUS -- */
 
   nav ul li ul.submenu {
     position: static;
@@ -404,14 +402,13 @@ header .submenu-toggle {
     display: none;
   }
 
-  /* - JavaScript - */
+  /* - JAVASCRIPT - */
 
   nav ul li > ul.submenu.open {
     display: block;
   }
-}
 
-/* -- ARROWS -- */
+  /* -- ARROWS -- */
 
   header .submenu-toggle {
     display: flex !important;
@@ -444,6 +441,7 @@ header .submenu-toggle {
   header .submenu-toggle.open {
     transform: rotate(90deg);
   }
+}
 
 
 /* ----- PAGE CONTENT ----- */

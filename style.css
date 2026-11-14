@@ -1394,7 +1394,6 @@ footer span {
   opacity: 0.7;
 }
 
-
 /* -- WATERMARK -- */
 
 .lightbox-view {
@@ -1431,8 +1430,10 @@ footer span {
 
 /* -- GRID -- */
 
-.portfolio-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+@media (max-width: 1024px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 /* --- MOBILE --- */
@@ -1440,10 +1441,10 @@ footer span {
 /* -- GRID -- */
 
 @media (max-width: 600px) {
-.portfolio-grid {
-  grid-template-columns: 1fr;
-  gap: 20px;
-}
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
 }
 
 /* --- MAIN --- */

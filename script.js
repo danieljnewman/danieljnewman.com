@@ -1,3 +1,4 @@
+
 /* CLOUDFLARE */
 
 (() => {
@@ -417,12 +418,7 @@ async function getEventImages(
 
           /* =========================
              ORIENTATION
-             =========================
-
-             The homepage orientation
-             class is on the <a>, not
-             the <img>.
-          */
+             ========================= */
 
           let orientation = null;
 
@@ -854,19 +850,7 @@ function selectHomeImages(
 
   /* =========================
      FINAL ORDER
-     =========================
-
-     1  = portrait
-     2  = landscape
-     3  = landscape
-     4  = landscape
-     5  = landscape
-     6  = landscape
-     7  = landscape
-     8  = landscape
-     9  = landscape
-     10 = portrait
-   */
+     ========================= */
 
   const homeImages = [
 
@@ -1008,11 +992,6 @@ async function displayHomeImages() {
               "View portfolio";
 
 
-            /*
-             * Allow browser to load
-             * the homepage images quickly.
-             */
-
             image.loading =
               "eager";
 
@@ -1135,6 +1114,7 @@ function initialiseLightbox() {
             );
           }
 
+
           /* CREATE CANVAS */
 
           const canvas =
@@ -1149,6 +1129,7 @@ function initialiseLightbox() {
             throw new Error("Canvas unavailable");
           }
 
+
           /* DRAW ORIGINAL PHOTO */
 
           ctx.drawImage(
@@ -1161,61 +1142,84 @@ function initialiseLightbox() {
 
 
           /* =========================
-   WATERMARK SETTINGS
-   ========================= */
+             WATERMARK SETTINGS
+             ========================= */
 
-const displayScale = Math.min(
-  1,
-  (window.innerWidth * 0.9) / image.naturalWidth,
-  (window.innerHeight * 0.9) / image.naturalHeight
-);
+          const displayScale = Math.min(
+            1,
+            (window.innerWidth * 0.9) / image.naturalWidth,
+            (window.innerHeight * 0.9) / image.naturalHeight
+          );
 
-const fontSize = 16 / displayScale;
-const padding = 20 / displayScale;
+          const fontSize = 16 / displayScale;
+          const padding = 20 / displayScale;
 
-ctx.save();
+          ctx.save();
 
-ctx.font = `700 ${fontSize}px OpenDyslexic`;
+          ctx.font = `700 ${fontSize}px OpenDyslexic`;
 
-ctx.textAlign = "right";
-ctx.textBaseline = "bottom";
+          ctx.textAlign = "right";
+          ctx.textBaseline = "bottom";
 
-ctx.globalAlpha = 0.6;
-
-/* SUBTLE DARK SHADOW */
-
-ctx.shadowColor = "rgba(0, 0, 0, 0.65)";
-ctx.shadowBlur = 3 / displayScale;
-ctx.shadowOffsetX = 1 / displayScale;
-ctx.shadowOffsetY = 1 / displayScale;
-
-/* WATERMARK TEXT */
-
-ctx.fillStyle = "#ffffff";
-
-ctx.fillText(
-  "Daniel J Newman",
-  canvas.width - padding,
-  canvas.height - padding
-);
-
-ctx.restore();
+          ctx.globalAlpha = 0.6;
 
 
-/* =========================
-   EXPORT WATERMARKED IMAGE
-   ========================= */
+          /* SUBTLE DARK SHADOW */
 
-canvas.toBlob(function(blob) {
+          ctx.shadowColor = "rgba(0, 0, 0, 0.65)";
+          ctx.shadowBlur = 3 / displayScale;
+          ctx.shadowOffsetX = 1 / displayScale;
+          ctx.shadowOffsetY = 1 / displayScale;
 
-  if (!blob) {
-    reject(new Error("Image export failed"));
-    return;
+
+          /* WATERMARK TEXT */
+
+          ctx.fillStyle = "#ffffff";
+
+          ctx.fillText(
+            "Daniel J Newman",
+            canvas.width - padding,
+            canvas.height - padding
+          );
+
+          ctx.restore();
+
+
+          /* =========================
+             EXPORT WATERMARKED IMAGE
+             ========================= */
+
+          canvas.toBlob(function(blob) {
+
+            if (!blob) {
+              reject(new Error("Image export failed"));
+              return;
+            }
+
+            resolve(URL.createObjectURL(blob));
+
+          }, "image/webp", 0.92);
+
+
+        } catch (error) {
+
+          reject(error);
+
+        }
+
+      };
+
+
+      image.onerror = function() {
+        reject(new Error("Image could not be loaded"));
+      };
+
+      image.crossOrigin = "anonymous";
+      image.src = imageUrl;
+
+    });
+
   }
-
-  resolve(URL.createObjectURL(blob));
-
-}, "image/webp", 0.92);
 
 
   /* =========================
@@ -1244,26 +1248,36 @@ canvas.toBlob(function(blob) {
 
     lightboxImage.alt = image.alt;
 
+
     /* SHOW LIGHTBOX */
 
     lightbox.style.display = "flex";
 
+
     /* CLEAR PREVIOUS PHOTO */
 
     lightboxImage.removeAttribute("src");
+
 
     try {
 
       const watermarkedImage =
         await createWatermarkedImage(imageUrl);
 
+
       /* IGNORE OUTDATED IMAGE REQUESTS */
 
       if (request !== photoRequest) {
+
+        URL.revokeObjectURL(watermarkedImage);
+
         return;
+
       }
 
+
       lightboxImage.src = watermarkedImage;
+
 
     } catch (error) {
 
@@ -1294,6 +1308,10 @@ canvas.toBlob(function(blob) {
     photoRequest++;
 
     lightbox.style.display = "none";
+
+    if (lightboxImage.src.startsWith("blob:")) {
+      URL.revokeObjectURL(lightboxImage.src);
+    }
 
     lightboxImage.removeAttribute("src");
 

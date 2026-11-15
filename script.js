@@ -1117,79 +1117,114 @@ function initialiseLightbox() {
      CREATE WATERMARKED IMAGE
      ========================= */
 
-  async function createWatermarkedImage(imageUrl) {
+  function createWatermarkedImage(imageUrl) {
 
-    const image = new Image();
+    return new Promise((resolve, reject) => {
 
-    image.crossOrigin = "anonymous";
-    image.src = imageUrl;
+      const image = new Image();
 
-    await new Promise((resolve, reject) => {
+      image.onload = async function() {
 
-      image.onload = resolve;
-      image.onerror = reject;
+        try {
+
+          /* WAIT FOR WATERMARK FONT */
+
+          if (document.fonts) {
+            await document.fonts.load(
+              "700 16px OpenDyslexic"
+            );
+          }
+
+          /* CREATE CANVAS */
+
+          const canvas =
+            document.createElement("canvas");
+
+          canvas.width = image.naturalWidth;
+          canvas.height = image.naturalHeight;
+
+          const ctx = canvas.getContext("2d");
+
+          if (!ctx) {
+            throw new Error("Canvas unavailable");
+          }
+
+          /* DRAW ORIGINAL PHOTO */
+
+          ctx.drawImage(
+            image,
+            0,
+            0,
+            canvas.width,
+            canvas.height
+          );
+
+
+          /* =========================
+             WATERMARK SETTINGS
+             ========================= */
+
+          const displayScale = Math.min(
+            1,
+            (window.innerWidth * 0.9) / image.naturalWidth,
+            (window.innerHeight * 0.9) / image.naturalHeight
+          );
+
+          const fontSize = 16 / displayScale;
+          const padding = 20 / displayScale;
+
+          ctx.save();
+
+          ctx.font = `700 ${fontSize}px OpenDyslexic`;
+
+          ctx.textAlign = "right";
+          ctx.textBaseline = "bottom";
+
+          ctx.globalAlpha = 0.6;
+
+          /* SUBTLE DARK SHADOW */
+
+          ctx.shadowColor = "rgba(0, 0, 0, 0.65)";
+          ctx.shadowBlur = 3 / displayScale;
+          ctx.shadowOffsetX = 1 / displayScale;
+          ctx.shadowOffsetY = 1 / displayScale;
+
+          /* WATERMARK TEXT */
+
+          ctx.fillStyle = "#ffffff";
+
+          ctx.fillText(
+            "Daniel J Newman",
+            canvas.width - padding,
+            canvas.height - padding
+          );
+
+          ctx.restore();
+
+
+          /* EXPORT WATERMARKED IMAGE */
+
+          resolve(
+            canvas.toDataURL("image/webp", 0.92)
+          );
+
+        } catch (error) {
+
+          reject(error);
+
+        }
+
+      };
+
+
+      image.onerror = function() {
+        reject(new Error("Image could not be loaded"));
+      };
+
+      image.crossOrigin = "anonymous";
+      image.src = imageUrl;
 
     });
-
-    // Load OpenDyslexic font
-    if (document.fonts) {
-
-      await document.fonts.load(
-        "700 16px OpenDyslexic"
-      );
-
-    }
-
-    const canvas =
-      document.createElement("canvas");
-
-    canvas.width = image.naturalWidth;
-    canvas.height = image.naturalHeight;
-
-    const ctx =
-      canvas.getContext("2d");
-
-    // Draw original photograph
-    ctx.drawImage(image, 0, 0);
-
-    // Calculate display scale
-    const scale = Math.min(
-      1,
-      (window.innerWidth * 0.9) / image.naturalWidth,
-      (window.innerHeight * 0.9) / image.naturalHeight
-    );
-
-    // Watermark dimensions
-    const fontSize = 16 / scale;
-    const padding = 20 / scale;
-
-    // Watermark styling
-    ctx.font =
-      `700 ${fontSize}px OpenDyslexic, sans-serif`;
-
-    ctx.fillStyle =
-      "rgba(255, 255, 255, 0.6)";
-
-    ctx.textAlign = "right";
-    ctx.textBaseline = "bottom";
-
-    // Subtle dark shadow
-    ctx.shadowColor =
-      "rgba(0, 0, 0, 0.75)";
-
-    ctx.shadowBlur = 4 / scale;
-    ctx.shadowOffsetX = 1 / scale;
-    ctx.shadowOffsetY = 2 / scale;
-
-    // Apply watermark to photograph
-    ctx.fillText(
-      "Daniel J Newman",
-      canvas.width - padding,
-      canvas.height - padding
-    );
-
-    // Return watermarked WebP image
-    return canvas.toDataURL("image/webp", 0.92);
 
   }
 
@@ -1214,21 +1249,27 @@ function initialiseLightbox() {
 
     const link = lightboxLinks[currentPhoto];
 
-    const image =
-      link.querySelector("img");
+    const image = link.querySelector("img");
+
+    const imageUrl = link.href;
+
+    lightboxImage.alt = image.alt;
+
+    /* SHOW LIGHTBOX */
 
     lightbox.style.display = "flex";
 
-    lightboxImage.alt = image.alt;
+    /* CLEAR PREVIOUS PHOTO */
 
     lightboxImage.removeAttribute("src");
 
     try {
 
       const watermarkedImage =
-        await createWatermarkedImage(link.href);
+        await createWatermarkedImage(imageUrl);
 
-      // Prevent an older image replacing a newer selection
+      /* IGNORE OUTDATED IMAGE REQUESTS */
+
       if (request !== photoRequest) {
         return;
       }
@@ -1237,17 +1278,18 @@ function initialiseLightbox() {
 
     } catch (error) {
 
+      /* FALL BACK TO ORIGINAL PHOTO */
+
+      if (request !== photoRequest) {
+        return;
+      }
+
       console.error(
-        "Unable to create watermarked image:",
+        "Watermark could not be applied:",
         error
       );
 
-      if (request === photoRequest) {
-
-        lightboxImage.alt =
-          image.alt + " (Watermark could not be applied)";
-
-      }
+      lightboxImage.src = imageUrl;
 
     }
 
@@ -1264,7 +1306,7 @@ function initialiseLightbox() {
 
     lightbox.style.display = "none";
 
-    lightboxImage.src = "";
+    lightboxImage.removeAttribute("src");
 
   }
 
@@ -1375,3 +1417,74 @@ function initialiseLightbox() {
   });
 
 }
+
+
+/* =========================
+   START
+   ========================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    /*
+     * Build homepage.
+     */
+
+    displayHomeImages();
+
+
+    /*
+     * Start portfolio lightbox.
+     */
+
+    initialiseLightbox();
+
+
+    /*
+     * Change the 10-photo
+     * selection every 60 seconds.
+     */
+
+    setInterval(
+      displayHomeImages,
+      60000
+    );
+
+  }
+);
+
+
+/* =========================
+   VIDEO CARD PREVIEWS
+   ========================= */
+
+document.querySelectorAll(".video-card").forEach(card => {
+
+  const preview =
+    card.querySelector(".video-preview");
+
+  if (!preview) {
+    return;
+  }
+
+  const iframe =
+    preview.querySelector("iframe");
+
+  if (!iframe) {
+    return;
+  }
+
+  preview.addEventListener("mouseenter", () => {
+
+    if (!card.classList.contains("video-active")) {
+
+      iframe.src = iframe.dataset.src;
+
+      card.classList.add("video-active");
+
+    }
+
+  });
+
+});

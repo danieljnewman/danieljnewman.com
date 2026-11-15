@@ -1161,72 +1161,61 @@ function initialiseLightbox() {
 
 
           /* =========================
-             WATERMARK SETTINGS
-             ========================= */
+   WATERMARK SETTINGS
+   ========================= */
 
-          const displayScale = Math.min(
-            1,
-            (window.innerWidth * 0.9) / image.naturalWidth,
-            (window.innerHeight * 0.9) / image.naturalHeight
-          );
+const displayScale = Math.min(
+  1,
+  (window.innerWidth * 0.9) / image.naturalWidth,
+  (window.innerHeight * 0.9) / image.naturalHeight
+);
 
-          const fontSize = 16 / displayScale;
-          const padding = 20 / displayScale;
+const fontSize = 16 / displayScale;
+const padding = 20 / displayScale;
 
-          ctx.save();
+ctx.save();
 
-          ctx.font = `700 ${fontSize}px OpenDyslexic`;
+ctx.font = `700 ${fontSize}px OpenDyslexic`;
 
-          ctx.textAlign = "right";
-          ctx.textBaseline = "bottom";
+ctx.textAlign = "right";
+ctx.textBaseline = "bottom";
 
-          ctx.globalAlpha = 0.6;
+ctx.globalAlpha = 0.6;
 
-          /* SUBTLE DARK SHADOW */
+/* SUBTLE DARK SHADOW */
 
-          ctx.shadowColor = "rgba(0, 0, 0, 0.65)";
-          ctx.shadowBlur = 3 / displayScale;
-          ctx.shadowOffsetX = 1 / displayScale;
-          ctx.shadowOffsetY = 1 / displayScale;
+ctx.shadowColor = "rgba(0, 0, 0, 0.65)";
+ctx.shadowBlur = 3 / displayScale;
+ctx.shadowOffsetX = 1 / displayScale;
+ctx.shadowOffsetY = 1 / displayScale;
 
-          /* WATERMARK TEXT */
+/* WATERMARK TEXT */
 
-          ctx.fillStyle = "#ffffff";
+ctx.fillStyle = "#ffffff";
 
-          ctx.fillText(
-            "Daniel J Newman",
-            canvas.width - padding,
-            canvas.height - padding
-          );
+ctx.fillText(
+  "Daniel J Newman",
+  canvas.width - padding,
+  canvas.height - padding
+);
 
-          ctx.restore();
-
-
-          /* EXPORT WATERMARKED IMAGE */
-
-          resolve(
-            canvas.toDataURL("image/webp", 0.92)
-          );
-
-        } catch (error) {
-
-          reject(error);
-
-        }
-
-      };
+ctx.restore();
 
 
-      image.onerror = function() {
-        reject(new Error("Image could not be loaded"));
-      };
+/* =========================
+   EXPORT WATERMARKED IMAGE
+   ========================= */
 
-      image.crossOrigin = "anonymous";
-      image.src = imageUrl;
+canvas.toBlob(function(blob) {
 
-    });
-
+  if (!blob) {
+    reject(new Error("Image export failed"));
+    return;
   }
+
+  resolve(URL.createObjectURL(blob));
+
+}, "image/webp", 0.92);
 
 
   /* =========================

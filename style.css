@@ -1328,6 +1328,7 @@ footer span {
   transform: scale(1.02);
 }
 
+
 /* -- LIGHTBOX -- */
 
 .lightbox-view {
@@ -1393,24 +1394,6 @@ footer span {
 .lightbox-close:hover {
   opacity: 0.7;
 }
-
-/* -- WATERMARK -- */
-
-.lightbox-view::after {
-  content: "Daniel J Newman";
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  color: rgba(255, 255, 255, 0.6);
-  font-family: 'OpenDyslexic', sans-serif;
-  font-style: normal;
-  font-size: 16px;
-  font-weight: 700;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.75);
-  pointer-events: none;
-  z-index: 10;
-}
-
 
 /* ---- VIDEO ---- */
 

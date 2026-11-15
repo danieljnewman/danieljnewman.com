@@ -1080,6 +1080,7 @@ async function displayHomeImages() {
 
 }
 
+
 /* =========================
    LIGHTBOX
    ========================= */
@@ -1087,104 +1088,168 @@ async function displayHomeImages() {
 function initialiseLightbox() {
 
   const lightboxLinks =
-    document.querySelectorAll(
-      ".lightbox"
-    );
-
+    document.querySelectorAll(".lightbox");
 
   const lightbox =
-    document.querySelector(
-      ".lightbox-view"
-    );
+    document.querySelector(".lightbox-view");
 
-
-  if (
-    !lightboxLinks.length ||
-    !lightbox
-  ) {
-
+  if (!lightboxLinks.length || !lightbox) {
     return;
-
   }
 
-
   const lightboxImage =
-    lightbox.querySelector(
-      "img"
-    );
-
+    lightbox.querySelector("img");
 
   const closeButton =
-    lightbox.querySelector(
-      ".lightbox-close"
-    );
-
+    lightbox.querySelector(".lightbox-close");
 
   const previousButton =
-    lightbox.querySelector(
-      ".lightbox-prev"
-    );
-
+    lightbox.querySelector(".lightbox-prev");
 
   const nextButton =
-    lightbox.querySelector(
-      ".lightbox-next"
-    );
-
+    lightbox.querySelector(".lightbox-next");
 
   let currentPhoto = 0;
+  let photoRequest = 0;
+
+
+  /* =========================
+     CREATE WATERMARKED IMAGE
+     ========================= */
+
+  async function createWatermarkedImage(imageUrl) {
+
+    const image = new Image();
+
+    image.crossOrigin = "anonymous";
+    image.src = imageUrl;
+
+    await new Promise((resolve, reject) => {
+
+      image.onload = resolve;
+      image.onerror = reject;
+
+    });
+
+    // Load OpenDyslexic font
+    if (document.fonts) {
+
+      await document.fonts.load(
+        "700 16px OpenDyslexic"
+      );
+
+    }
+
+    const canvas =
+      document.createElement("canvas");
+
+    canvas.width = image.naturalWidth;
+    canvas.height = image.naturalHeight;
+
+    const ctx =
+      canvas.getContext("2d");
+
+    // Draw original photograph
+    ctx.drawImage(image, 0, 0);
+
+    // Calculate display scale
+    const scale = Math.min(
+      1,
+      (window.innerWidth * 0.9) / image.naturalWidth,
+      (window.innerHeight * 0.9) / image.naturalHeight
+    );
+
+    // Watermark dimensions
+    const fontSize = 16 / scale;
+    const padding = 20 / scale;
+
+    // Watermark styling
+    ctx.font =
+      `700 ${fontSize}px OpenDyslexic, sans-serif`;
+
+    ctx.fillStyle =
+      "rgba(255, 255, 255, 0.6)";
+
+    ctx.textAlign = "right";
+    ctx.textBaseline = "bottom";
+
+    // Subtle dark shadow
+    ctx.shadowColor =
+      "rgba(0, 0, 0, 0.75)";
+
+    ctx.shadowBlur = 4 / scale;
+    ctx.shadowOffsetX = 1 / scale;
+    ctx.shadowOffsetY = 2 / scale;
+
+    // Apply watermark to photograph
+    ctx.fillText(
+      "Daniel J Newman",
+      canvas.width - padding,
+      canvas.height - padding
+    );
+
+    // Return watermarked WebP image
+    return canvas.toDataURL("image/webp", 0.92);
+
+  }
 
 
   /* =========================
      SHOW PHOTO
      ========================= */
 
-  function showPhoto(index) {
+  async function showPhoto(index) {
 
     if (index < 0) {
-
-      index =
-        lightboxLinks.length - 1;
-
+      index = lightboxLinks.length - 1;
     }
 
-
-    if (
-      index >=
-      lightboxLinks.length
-    ) {
-
+    if (index >= lightboxLinks.length) {
       index = 0;
-
     }
 
+    currentPhoto = index;
 
-    currentPhoto =
-      index;
+    const request = ++photoRequest;
 
-
-    const link =
-      lightboxLinks[
-        currentPhoto
-      ];
-
+    const link = lightboxLinks[currentPhoto];
 
     const image =
-      link.querySelector(
-        "img"
+      link.querySelector("img");
+
+    lightbox.style.display = "flex";
+
+    lightboxImage.alt = image.alt;
+
+    lightboxImage.removeAttribute("src");
+
+    try {
+
+      const watermarkedImage =
+        await createWatermarkedImage(link.href);
+
+      // Prevent an older image replacing a newer selection
+      if (request !== photoRequest) {
+        return;
+      }
+
+      lightboxImage.src = watermarkedImage;
+
+    } catch (error) {
+
+      console.error(
+        "Unable to create watermarked image:",
+        error
       );
 
+      if (request === photoRequest) {
 
-    lightboxImage.src =
-      link.href;
+        lightboxImage.alt =
+          image.alt + " (Watermark could not be applied)";
 
+      }
 
-    lightboxImage.alt =
-      image.alt;
-
-
-    lightbox.style.display =
-      "flex";
+    }
 
   }
 
@@ -1195,12 +1260,11 @@ function initialiseLightbox() {
 
   function closeLightbox() {
 
-    lightbox.style.display =
-      "none";
+    photoRequest++;
 
+    lightbox.style.display = "none";
 
-    lightboxImage.src =
-      "";
+    lightboxImage.src = "";
 
   }
 
@@ -1209,23 +1273,17 @@ function initialiseLightbox() {
      PHOTO CLICK
      ========================= */
 
-  lightboxLinks.forEach(
-    (link, index) => {
+  lightboxLinks.forEach((link, index) => {
 
-      link.addEventListener(
-        "click",
-        function(e) {
+    link.addEventListener("click", function(e) {
 
-          e.preventDefault();
+      e.preventDefault();
 
+      showPhoto(index);
 
-          showPhoto(index);
+    });
 
-        }
-      );
-
-    }
-  );
+  });
 
 
   /* =========================
@@ -1234,19 +1292,13 @@ function initialiseLightbox() {
 
   if (previousButton) {
 
-    previousButton.addEventListener(
-      "click",
-      function(e) {
+    previousButton.addEventListener("click", function(e) {
 
-        e.stopPropagation();
+      e.stopPropagation();
 
+      showPhoto(currentPhoto - 1);
 
-        showPhoto(
-          currentPhoto - 1
-        );
-
-      }
-    );
+    });
 
   }
 
@@ -1257,19 +1309,13 @@ function initialiseLightbox() {
 
   if (nextButton) {
 
-    nextButton.addEventListener(
-      "click",
-      function(e) {
+    nextButton.addEventListener("click", function(e) {
 
-        e.stopPropagation();
+      e.stopPropagation();
 
+      showPhoto(currentPhoto + 1);
 
-        showPhoto(
-          currentPhoto + 1
-        );
-
-      }
-    );
+    });
 
   }
 
@@ -1280,17 +1326,13 @@ function initialiseLightbox() {
 
   if (closeButton) {
 
-    closeButton.addEventListener(
-      "click",
-      function(e) {
+    closeButton.addEventListener("click", function(e) {
 
-        e.stopPropagation();
+      e.stopPropagation();
 
+      closeLightbox();
 
-        closeLightbox();
-
-      }
-    );
+    });
 
   }
 
@@ -1299,173 +1341,37 @@ function initialiseLightbox() {
      CLICK OUTSIDE IMAGE
      ========================= */
 
-  lightbox.addEventListener(
-    "click",
-    function(e) {
+  lightbox.addEventListener("click", function(e) {
 
-      if (
-        e.target ===
-        lightbox
-      ) {
-
-        closeLightbox();
-
-      }
-
+    if (e.target === lightbox) {
+      closeLightbox();
     }
-  );
+
+  });
 
 
   /* =========================
      KEYBOARD CONTROLS
      ========================= */
 
-  document.addEventListener(
-    "keydown",
-    function(e) {
+  document.addEventListener("keydown", function(e) {
 
-      if (
-        lightbox.style.display !==
-        "flex"
-      ) {
-
-        return;
-
-      }
-
-
-      if (
-        e.key ===
-        "ArrowLeft"
-      ) {
-
-        showPhoto(
-          currentPhoto - 1
-        );
-
-      }
-
-
-      if (
-        e.key ===
-        "ArrowRight"
-      ) {
-
-        showPhoto(
-          currentPhoto + 1
-        );
-
-      }
-
-
-      if (
-        e.key ===
-        "Escape"
-      ) {
-
-        closeLightbox();
-
-      }
-
+    if (lightbox.style.display !== "flex") {
+      return;
     }
-  );
 
-}
-
-
-/* =========================
-   START
-   ========================= */
-
-document.addEventListener(
-  "DOMContentLoaded",
-  () => {
-
-    /*
-     * Build homepage.
-     */
-
-    displayHomeImages();
-
-
-    /*
-     * Start portfolio lightbox.
-     */
-
-    initialiseLightbox();
-
-
-    /*
-     * Change the 10-photo
-     * selection every 60 seconds.
-     */
-
-    setInterval(
-      displayHomeImages,
-      60000
-    );
-
-  }
-);
-
-
-document.querySelectorAll(".video-card").forEach(card => {
-  const preview = card.querySelector(".video-preview");
-  const iframe = preview.querySelector("iframe");
-
-  preview.addEventListener("mouseenter", () => {
-    if (!card.classList.contains("video-active")) {
-      iframe.src = iframe.dataset.src;
-      card.classList.add("video-active");
+    if (e.key === "ArrowLeft") {
+      showPhoto(currentPhoto - 1);
     }
-  });
-});
 
+    if (e.key === "ArrowRight") {
+      showPhoto(currentPhoto + 1);
+    }
 
-/* LIGHTBOX WATERMARK GENERATOR */
+    if (e.key === "Escape") {
+      closeLightbox();
+    }
 
-async function createWatermarkedImage(imageUrl) {
-  const image = new Image();
-  image.crossOrigin = 'anonymous';
-  image.src = imageUrl;
-
-  await new Promise((resolve, reject) => {
-    image.onload = resolve;
-    image.onerror = reject;
   });
 
-  const canvas = document.createElement('canvas');
-
-  canvas.width = image.naturalWidth;
-  canvas.height = image.naturalHeight;
-
-  const ctx = canvas.getContext('2d');
-
-  // Draw original photograph
-  ctx.drawImage(image, 0, 0);
-
-  // Watermark styling
-  const fontSize = 16;
-  const padding = 20;
-
-  ctx.font = `700 ${fontSize}px OpenDyslexic, sans-serif`;
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
-  ctx.textAlign = 'right';
-  ctx.textBaseline = 'bottom';
-
-  // Watermark shadow
-  ctx.shadowColor = 'rgba(0, 0, 0, 0.75)';
-  ctx.shadowBlur = 4;
-  ctx.shadowOffsetX = 1;
-  ctx.shadowOffsetY = 2;
-
-  // Draw watermark
-  ctx.fillText(
-    'Daniel J Newman',
-    canvas.width - padding,
-    canvas.height - padding
-  );
-
-  // Return watermarked image
-  return canvas.toDataURL('image/webp', 0.92);
 }

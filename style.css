@@ -1180,6 +1180,13 @@ footer span {
   white-space: nowrap;
 }
 
+/* -- 'FEATURED' -- */
+
+.portfolio-page-featured {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
 /* --- MOBILE --- */
 
 /* -- GRID -- */

@@ -1185,43 +1185,41 @@ function initialiseLightbox() {
 
 
           /* =========================
-             EXPORT WATERMARKED IMAGE
-             ========================= */
-
-          canvas.toBlob(function(blob) {
-
-            if (!blob) {
-              reject(new Error("Image export failed"));
-              return;
+           EXPORT WATERMARKED IMAGE
+           ========================= */
+        
+        canvas.toBlob(function(blob) {
+        
+          if (!blob) {
+            reject(new Error("Image export failed"));
+            return;
+          }
+        
+          /* GET ORIGINAL FILENAME */
+        
+          const originalFilename =
+            imageUrl.split("/").pop().split("?")[0];
+        
+          /* CHANGE FILE EXTENSION TO JPG */
+        
+          const jpgFilename =
+            originalFilename.replace(/\.[^/.]+$/, ".jpg");
+        
+          /* CREATE WATERMARKED JPG FILE */
+        
+          const watermarkedFile = new File(
+            [blob],
+            jpgFilename,
+            {
+              type: "image/jpeg"
             }
-
-            /* CHECK WEBP EXPORT */
-
-            if (blob.type !== "image/webp") {
-              reject(new Error("Image was not exported as WebP"));
-              return;
-            }
-
-            /* GET ORIGINAL FILENAME */
-
-            const originalFilename =
-              imageUrl.split("/").pop().split("?")[0];
-
-            /* CREATE WATERMARKED WEBP FILE */
-
-            const watermarkedFile = new File(
-              [blob],
-              originalFilename,
-              {
-                type: "image/webp"
-              }
-            );
-
-            resolve(
-              URL.createObjectURL(watermarkedFile)
-            );
-
-          }, "image/webp", 0.85);
+          );
+        
+          resolve(
+            URL.createObjectURL(watermarkedFile)
+          );
+        
+        }, "image/jpeg", 0.90);
 
 
         } catch (error) {

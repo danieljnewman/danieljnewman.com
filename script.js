@@ -1188,38 +1188,41 @@ function initialiseLightbox() {
           /* =========================
              EXPORT WATERMARKED IMAGE
              ========================= */
-
+          
           canvas.toBlob(function(blob) {
-
+          
             if (!blob) {
               reject(new Error("Image export failed"));
               return;
             }
-
-            resolve(URL.createObjectURL(blob));
-
-          }, "image/webp", 0.92);
-
-
-        } catch (error) {
-
-          reject(error);
-
-        }
-
-      };
-
-
-      image.onerror = function() {
-        reject(new Error("Image could not be loaded"));
-      };
-
-      image.crossOrigin = "anonymous";
-      image.src = imageUrl;
-
-    });
-
-  }
+          
+            /* CHECK WEBP EXPORT */
+          
+            if (blob.type !== "image/webp") {
+              reject(new Error("Image was not exported as WebP"));
+              return;
+            }
+          
+            /* GET ORIGINAL FILENAME */
+          
+            const originalFilename =
+              imageUrl.split("/").pop().split("?")[0];
+          
+            /* CREATE WATERMARKED WEBP FILE */
+          
+            const watermarkedFile = new File(
+              [blob],
+              originalFilename,
+              {
+                type: "image/webp"
+              }
+            );
+          
+            resolve(
+              URL.createObjectURL(watermarkedFile)
+            );
+          
+          }, "image/webp", 0.85);
 
 
   /* =========================

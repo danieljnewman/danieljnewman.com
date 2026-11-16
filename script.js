@@ -1,3 +1,4 @@
+
 /* CLOUDFLARE */
 
 (() => {
@@ -262,6 +263,52 @@ loadFooter();
 
 
 /* =========================
+   LOAD SHARED LIGHTBOX
+   ========================= */
+
+async function loadLightbox() {
+
+  const lightboxContainer =
+    document.querySelector(
+      "#site-lightbox"
+    );
+
+  if (!lightboxContainer) {
+    return;
+  }
+
+  try {
+
+    const response =
+      await fetch("/lightbox.html");
+
+    if (!response.ok) {
+      throw new Error(
+        "Failed to load lightbox"
+      );
+    }
+
+    const lightboxHTML =
+      await response.text();
+
+    lightboxContainer.innerHTML =
+      lightboxHTML;
+
+    initialiseLightbox();
+
+  } catch (error) {
+
+    console.error(
+      "Error loading lightbox:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =========================
    HOME PORTFOLIO
    ========================= */
 
@@ -314,13 +361,6 @@ async function getPortfolioEvents() {
         ""
       );
 
-
-    /*
-     * Only include portfolio
-     * event pages.
-     *
-     * Ignore .html pages.
-     */
 
     if (
       path.startsWith("/portfolio/photo/") &&
@@ -387,11 +427,6 @@ async function getEventImages(
       );
 
 
-    /*
-     * The .lightbox class is
-     * on the <a>.
-     */
-
     const links =
       [
         ...document.querySelectorAll(
@@ -445,11 +480,6 @@ async function getEventImages(
 
           }
 
-
-          /*
-           * Ignore images that don't
-           * have a homepage orientation.
-           */
 
           if (!orientation) {
             return null;
@@ -517,11 +547,6 @@ async function buildHomeImagePool() {
   const events =
     await getPortfolioEvents();
 
-
-  /*
-   * Load all event pages at
-   * the same time.
-   */
 
   const eventResults =
     await Promise.all(
@@ -908,11 +933,6 @@ async function displayHomeImages() {
 
   try {
 
-    /*
-     * Build the image pool
-     * only once.
-     */
-
     if (!homeImagePool) {
 
       grid.style.opacity =
@@ -945,10 +965,6 @@ async function displayHomeImages() {
     }
 
 
-    /*
-     * Fade out.
-     */
-
     grid.style.opacity =
       "0";
 
@@ -979,10 +995,6 @@ async function displayHomeImages() {
               );
 
 
-            /*
-             * Show thumbnail first.
-             */
-
             image.src =
               item.thumbnail;
 
@@ -998,11 +1010,6 @@ async function displayHomeImages() {
             image.decoding =
               "async";
 
-
-            /*
-             * Load full-size image
-             * in the background.
-             */
 
             const fullImage =
               new Image();
@@ -1033,10 +1040,6 @@ async function displayHomeImages() {
           }
         );
 
-
-        /*
-         * Fade in.
-         */
 
         grid.style.opacity =
           "1";
@@ -1185,41 +1188,45 @@ function initialiseLightbox() {
 
 
           /* =========================
-           EXPORT WATERMARKED IMAGE
-           ========================= */
-        
-        canvas.toBlob(function(blob) {
-        
-          if (!blob) {
-            reject(new Error("Image export failed"));
-            return;
-          }
-        
-          /* GET ORIGINAL FILENAME */
-        
-          const originalFilename =
-            imageUrl.split("/").pop().split("?")[0];
-        
-          /* CHANGE FILE EXTENSION TO JPG */
-        
-          const jpgFilename =
-            originalFilename.replace(/\.[^/.]+$/, ".jpg");
-        
-          /* CREATE WATERMARKED JPG FILE */
-        
-          const watermarkedFile = new File(
-            [blob],
-            jpgFilename,
-            {
-              type: "image/jpeg"
+             EXPORT WATERMARKED IMAGE
+             ========================= */
+
+          canvas.toBlob(function(blob) {
+
+            if (!blob) {
+              reject(new Error("Image export failed"));
+              return;
             }
-          );
-        
-          resolve(
-            URL.createObjectURL(watermarkedFile)
-          );
-        
-        }, "image/jpeg", 0.90);
+
+
+            /* GET ORIGINAL FILENAME */
+
+            const originalFilename =
+              imageUrl.split("/").pop().split("?")[0];
+
+
+            /* CHANGE FILE EXTENSION TO JPG */
+
+            const jpgFilename =
+              originalFilename.replace(/\.[^/.]+$/, ".jpg");
+
+
+            /* CREATE WATERMARKED JPG FILE */
+
+            const watermarkedFile = new File(
+              [blob],
+              jpgFilename,
+              {
+                type: "image/jpeg"
+              }
+            );
+
+
+            resolve(
+              URL.createObjectURL(watermarkedFile)
+            );
+
+          }, "image/jpeg", 0.90);
 
 
         } catch (error) {
@@ -1461,24 +1468,17 @@ document.addEventListener(
   "DOMContentLoaded",
   () => {
 
-    /*
-     * Build homepage.
-     */
+    /* BUILD HOMEPAGE */
 
     displayHomeImages();
 
 
-    /*
-     * Start portfolio lightbox.
-     */
+    /* LOAD SHARED LIGHTBOX */
 
-    initialiseLightbox();
+    loadLightbox();
 
 
-    /*
-     * Change the 10-photo
-     * selection every 60 seconds.
-     */
+    /* REFRESH HOMEPAGE IMAGES */
 
     setInterval(
       displayHomeImages,

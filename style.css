@@ -1287,7 +1287,11 @@ footer span {
 }
 
 .gallery-card.pil .overlay {
-  background: #;
+  background: #000000;
+}
+
+.gallery-card.pils .overlay {
+  background: linear-gradient(45deg, #000000, #833fee);
 }
 
 .gallery-card.rp .overlay {
